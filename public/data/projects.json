@@ -1,24 +1,5 @@
 [
   {
-    "name": "towerdefense-game",
-    "displayName": "towerdefense-game",
-    "summary": "A tower defense game project made for school",
-    "description": null,
-    "url": null,
-    "git": null,
-    "thumbnail": null,
-    "icon": "https://day.maiker.de/android-chrome-192x192.png",
-    "tags": ["game","tower defense","unity","c#","pixel art","3D"],
-    "developmentStatus": "planning",
-    "collaborators": [],
-    "position": ["lead programmer","game design","design"],
-    "timespan": {
-      "started": 1630706400,
-      "finished": null,
-      "year": "2021"
-    }
-  },
-  {
     "name": "what-day-is-it",
     "displayName": "what's the day?",
     "summary": "A website that maybe tells you what day it is.",
@@ -35,6 +16,25 @@
       "started": 1615762800,
       "finished": null,
       "year": "2021"
+    }
+  },
+  {
+    "name": "tank-trouble",
+    "displayName": "Tank Trouble",
+    "summary": "A game with only one item-slot and life",
+    "description": null,
+    "url": "https://nic4901.itch.io/tank-trouble",
+    "git": null,
+    "thumbnail": "https://img.itch.zone/aW1nLzI3OTgxMTgucG5n/315x250%23c/arCrEz.png",
+    "icon": null,
+    "tags": ["game","topdown","shooter","arcade","game jam","GMTK Game Jam 2019"],
+    "developmentStatus": "finished",
+    "collaborators": [{"name": "NIC4901","url": null}],
+    "position": ["graphics","game design","sound design"],
+    "timespan": {
+      "started": 1564696800,
+      "finished": 1564869600,
+      "year": "2019"
     }
   },
   {
@@ -57,22 +57,22 @@
     }
   },
   {
-    "name": "tank-trouble",
-    "displayName": "Tank Trouble",
-    "summary": "A game with only one item-slot and life",
+    "name": "towerdefense-game",
+    "displayName": "towerdefense-game",
+    "summary": "A tower defense game project made for school",
     "description": null,
-    "url": "https://nic4901.itch.io/tank-trouble",
+    "url": null,
     "git": null,
-    "thumbnail": "https://img.itch.zone/aW1nLzI3OTgxMTgucG5n/315x250%23c/arCrEz.png",
-    "icon": null,
-    "tags": ["game","topdown","shooter","arcade","game jam","GMTK Game Jam 2019"],
-    "developmentStatus": "finished",
-    "collaborators": [{"name": "NIC4901","url": null}],
-    "position": ["graphics","game design","sound design"],
+    "thumbnail": null,
+    "icon": "https://day.maiker.de/android-chrome-192x192.png",
+    "tags": ["game","tower defense","unity","c#","pixel art","3D"],
+    "developmentStatus": "planning",
+    "collaborators": [],
+    "position": ["lead programmer","game design","design"],
     "timespan": {
-      "started": 1564696800,
-      "finished": 1564869600,
-      "year": "2019"
+      "started": 1630706400,
+      "finished": null,
+      "year": "2021"
     }
   }
 ]

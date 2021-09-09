@@ -1,7 +1,21 @@
 
+$colorBlack: hsl(0,0,1%);
+$colorWhite: hsl(0,0,99%);
 
 // fonts
 
 $fontTitle: 'Urbanist', sans-serif;
 $fontText: 'Roboto', sans-serif;
 $fontCode: 'Overpass Mono', monospace;
+
+// font sizes
+
+$headingSizes:
+  1 7em 800, //h1
+  2 6em 700, //h2
+  3 5em 600, //h3
+  4 4em 600, //h4
+  5 3em 600, //h5
+  6 2em 600; //h6
+
+$textSize: 1.2em;
