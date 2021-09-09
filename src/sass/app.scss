@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono&family=Roboto&family=Urbanist&display=swap');
+@import 'variables';
+
+body {
+  font-family: $fontText;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// headings
+
+$headingSizes:
+  1 6em, //h1
+  2 5em, //h2
+  3 4em, //h3
+  4 3em, //h4
+  5 2em, //h5
+  6 1em; //h6
+
+@each $name, $size in $headingSizes {
+  h#{$name} {
+    font-size: $size;
+    font-family: $fontTitle;
+    margin: unset;
+    font-weight: unset;
+  }
+}

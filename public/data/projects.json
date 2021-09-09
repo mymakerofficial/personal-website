@@ -1,0 +1,78 @@
+[
+  {
+    "name": "towerdefense-game",
+    "displayName": "towerdefense-game",
+    "summary": "A tower defense game project made for school",
+    "description": null,
+    "url": null,
+    "git": null,
+    "thumbnail": null,
+    "icon": "https://day.maiker.de/android-chrome-192x192.png",
+    "tags": ["game","tower defense","unity","c#","pixel art","3D"],
+    "developmentStatus": "planning",
+    "collaborators": [],
+    "position": ["lead programmer","game design","design"],
+    "timespan": {
+      "started": 1630706400,
+      "finished": null,
+      "year": "2021"
+    }
+  },
+  {
+    "name": "what-day-is-it",
+    "displayName": "what's the day?",
+    "summary": "A website that maybe tells you what day it is.",
+    "description": null,
+    "url": "https://day.maiker.de",
+    "git": "https://github.com/mymakerofficial/what-day-is-it",
+    "thumbnail": "https://day.maiker.de/img/banner.jpg",
+    "icon": "https://day.maiker.de/android-chrome-192x192.png",
+    "tags": ["website","js","vue","pwa","markdown","random"],
+    "developmentStatus": "finished",
+    "collaborators": [],
+    "position": ["lead programmer"],
+    "timespan": {
+      "started": 1615762800,
+      "finished": null,
+      "year": "2021"
+    }
+  },
+  {
+    "name": "counting",
+    "displayName": "counting",
+    "summary": "Its a clicker but like everybody has the same counter.",
+    "description": null,
+    "url": "https://counting.cf",
+    "git": null,
+    "thumbnail": "https://counting.cf/733fcb3147fa883f2393c5efe66c4195.jpg",
+    "icon": "https://counting.cf/favicon/android-chrome-192x192.png",
+    "tags": ["website","pwa","js","threejs"],
+    "developmentStatus": "finished",
+    "collaborators": [{"name": "essiebes","url": null}],
+    "position": ["frontend developer"],
+    "timespan": {
+      "started": 1597442400,
+      "finished": 1601164800000,
+      "year": "2020"
+    }
+  },
+  {
+    "name": "tank-trouble",
+    "displayName": "Tank Trouble",
+    "summary": "A game with only one item-slot and life",
+    "description": null,
+    "url": "https://nic4901.itch.io/tank-trouble",
+    "git": null,
+    "thumbnail": "https://img.itch.zone/aW1nLzI3OTgxMTgucG5n/315x250%23c/arCrEz.png",
+    "icon": null,
+    "tags": ["game","topdown","shooter","arcade","game jam","GMTK Game Jam 2019"],
+    "developmentStatus": "finished",
+    "collaborators": [{"name": "NIC4901","url": null}],
+    "position": ["graphics","game design","sound design"],
+    "timespan": {
+      "started": 1564696800,
+      "finished": 1564869600,
+      "year": "2019"
+    }
+  }
+]
