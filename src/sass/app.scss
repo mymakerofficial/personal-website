@@ -43,3 +43,16 @@ p {
   height: calc(100vh - 128px);
   padding: 64px;
 }
+
+// -- pills --
+
+.pillContainer {
+  margin: 32px 0px;
+}
+
+.pill {
+  //background: $colorSecondary1;
+  margin: 0 12px;
+  padding: 6px 3px;
+  border-bottom: solid 2px $colorBlack;
+}
