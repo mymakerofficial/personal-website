@@ -10,6 +10,8 @@
     <Panel v-for="project in projects" :key="project.name">
       <h1>{{project.displayName}}</h1>
       <p>{{project.summary}}</p>
+      <br>
+      <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}}</button></a>
       <div class="pillContainer"><span class="pill" v-for="tag in project.tags" :key="tag">{{tag}}</span></div>
       <div class="pillContainer"><span class="pill" v-for="position in project.positions" :key="position">{{position}}</span></div>
     </Panel>

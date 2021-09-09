@@ -56,3 +56,18 @@ p {
   padding: 6px 3px;
   border-bottom: solid 2px $colorBlack;
 }
+
+// -- buttons --
+
+button {
+  margin: 12px;
+  padding: 6px 12px;
+  border: solid 2px $colorBlack;
+  background: none;
+  font-size: 1.1em;
+  font-weight: 600;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -6,6 +6,10 @@
     "description": null,
     "url": "https://day.maiker.de",
     "git": "https://github.com/mymakerofficial/what-day-is-it",
+    "buttons": [
+      {"text": "open", "url": "https://day.maiker.de"},
+      {"text": "github", "url": "https://github.com/mymakerofficial/what-day-is-it"}
+    ],
     "thumbnail": "https://day.maiker.de/img/banner.jpg",
     "icon": "https://day.maiker.de/android-chrome-192x192.png",
     "tags": ["website","js","vue","pwa","markdown","random"],
@@ -25,6 +29,9 @@
     "description": null,
     "url": "https://nic4901.itch.io/tank-trouble",
     "git": null,
+    "buttons": [
+      {"text": "play", "url": "https://nic4901.itch.io/tank-trouble"}
+    ],
     "thumbnail": "https://img.itch.zone/aW1nLzI3OTgxMTgucG5n/315x250%23c/arCrEz.png",
     "icon": null,
     "tags": ["game","topdown","shooter","arcade","game jam","GMTK Game Jam 2019"],
@@ -44,6 +51,9 @@
     "description": null,
     "url": "https://counting.cf",
     "git": null,
+    "buttons": [
+      {"text": "start clicking", "url": "https://counting.cf"}
+    ],
     "thumbnail": "https://counting.cf/733fcb3147fa883f2393c5efe66c4195.jpg",
     "icon": "https://counting.cf/favicon/android-chrome-192x192.png",
     "tags": ["website","pwa","js","threejs"],
@@ -63,6 +73,7 @@
     "description": null,
     "url": null,
     "git": null,
+    "buttons": [],
     "thumbnail": null,
     "icon": "https://day.maiker.de/android-chrome-192x192.png",
     "tags": ["game","tower defense","unity","c#","pixel art","3D"],
