@@ -5,9 +5,6 @@
 // -- basics --
 
 body {
-  font-family: $fontText;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
@@ -18,6 +15,12 @@ body {
 *::selection {
   background: $colorBlack;
   color: $colorWhite;
+}
+
+* {
+  font-family: $fontText;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 // -- text --
@@ -35,31 +38,54 @@ p {
   font-size: $textSize;
   font-family: $fontText;
   margin: 12px;
+
+  &.primary {
+    font-weight: 500;
+  }
+
+  &.secondary {
+    color: $colorSecondary1;
+  }
+}
+
+a {
+  color: $colorBlack;
+}
+
+label {
+  display: block;
+  margin: 32px 0 12px 12px;
+  padding: 4px 0;
+  font-weight: 600;
+  border-bottom: solid 2px $colorBlack;
 }
 
 // -- panel --
 
 .panel {
-  height: calc(100vh - 128px);
+  min-height: calc(100vh - 128px);
   padding: 64px;
+
+  .panelBody {
+    max-width: 980px;
+  }
+
+  .smallSection {
+    margin: 42px 0;
+  }
 }
 
-// -- pills --
+// -- lists --
 
-.pillContainer {
-  margin: 32px 0px;
-}
-
-.pill {
-  //background: $colorSecondary1;
+.listItem {
   margin: 0 12px;
   padding: 6px 3px;
-  border-bottom: solid 2px $colorBlack;
 }
 
 // -- buttons --
 
 button {
+  color: $colorBlack;
   margin: 12px;
   padding: 6px 12px;
   border: solid 2px $colorBlack;
@@ -69,5 +95,7 @@ button {
 
   &:hover {
     cursor: pointer;
+    color: $colorWhite;
+    background: $colorBlack;
   }
 }
