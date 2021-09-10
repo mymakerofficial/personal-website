@@ -3,7 +3,7 @@
     "name": "what-day-is-it",
     "displayName": "what's the day?",
     "summary": "A website that maybe tells you what day it is.",
-    "description": null,
+    "description": "\u0022We hand select only the best days from our selection of the most expertly crafted days. Made by the most experienced day craftsmen who have years of experience crafting the finest days known to mankind.\u0022",
     "url": "https://day.maiker.de",
     "git": "https://github.com/mymakerofficial/what-day-is-it",
     "buttons": [
@@ -26,7 +26,7 @@
     "name": "tank-trouble",
     "displayName": "Tank Trouble",
     "summary": "A game with only one item-slot and life",
-    "description": null,
+    "description": "Destroy all the enemy tanks without getting hit. Juggle between power-ups and try to reach the highest level.",
     "url": "https://nic4901.itch.io/tank-trouble",
     "git": null,
     "buttons": [
@@ -70,7 +70,7 @@
     "name": "school-games-launcher",
     "displayName": "school-games-launcher",
     "summary": "A simple games launcher made for school",
-    "description": null,
+    "description": "A game launcher that can start any exe, website or steam game. You can load steam game information, save play times, control users and other cool things.",
     "url": "https://github.com/mymakerofficial/school-games-launcher",
     "git": "https://github.com/mymakerofficial/school-games-launcher",
     "buttons": [
