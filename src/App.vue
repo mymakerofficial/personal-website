@@ -15,12 +15,22 @@
         <p class="primary">{{project.summary}}</p>
         <p class="secondary">{{project.description}}</p>
         <div class="smallSection">
-          <label>tags</label>
-          <div><span class="listItem" v-for="tag in project.tags" :key="tag">{{tag.toLowerCase()}}</span></div>
-          <label>development</label>
-          <div><span class="listItem">{{project.timespan.year}}</span><span class="listItem">({{project.developmentStatus}})</span></div>
-          <label>position</label>
-          <div><span class="listItem" v-for="position in project.positions" :key="position">{{position.toLowerCase()}}</span></div>
+          <div v-if="project.tags !== null && project.tags.length > 0">
+            <label>tags</label>
+            <div><span class="listItem" v-for="tag in project.tags" :key="tag">{{tag.toLowerCase()}}</span></div>
+          </div>
+          <div v-if="project.timespan.year">
+            <label>development</label>
+            <div><span class="listItem">{{project.timespan.year}}</span><span class="listItem">({{project.developmentStatus}})</span></div>
+          </div>
+          <div v-if="project.collaborators !== null && project.collaborators.length > 0">
+            <label>collaborators</label>
+            <div><span class="listItem" v-for="collaborator in project.collaborators" :key="collaborator.name">{{collaborator.name}}</span></div>
+          </div>
+          <div v-if="project.positions !== null && project.positions.length > 0">
+            <label>position</label>
+            <div><span class="listItem" v-for="position in project.positions" :key="position">{{position.toLowerCase()}}</span></div>
+          </div>
         </div>
       </div>
       <div class="panelFooter">

@@ -15,7 +15,7 @@
     "tags": ["website","js","vue","pwa","markdown","random"],
     "developmentStatus": "finished",
     "collaborators": [],
-    "positions": ["lead programmer"],
+    "positions": [],
     "timespan": {
       "started": 1615762800,
       "finished": null,
@@ -37,7 +37,7 @@
     "tags": ["game","topdown","shooter","arcade","game jam","GMTK Game Jam 2019"],
     "developmentStatus": "finished",
     "collaborators": [{"name": "NIC4901","url": null}],
-    "positions": ["graphics","game design","sound design"],
+    "positions": ["graphic design","game design","sound design"],
     "timespan": {
       "started": 1564696800,
       "finished": 1564869600,
@@ -59,7 +59,7 @@
     "tags": ["website","pwa","js","threejs"],
     "developmentStatus": "finished",
     "collaborators": [{"name": "essiebes","url": null}],
-    "positions": ["frontend developer"],
+    "positions": ["frontend developer", "graphic design"],
     "timespan": {
       "started": 1597442400,
       "finished": 1601164800000,
@@ -81,7 +81,7 @@
     "tags": ["app","c#","windows forms","launcher","school"],
     "developmentStatus": "finished",
     "collaborators": [],
-    "positions": ["lead programmer"],
+    "positions": [],
     "timespan": {
       "started": 1605049200,
       "finished": 1611183600,
@@ -101,7 +101,7 @@
     "tags": ["game","tower defense","unity","c#","pixel art","3D","school"],
     "developmentStatus": "planning",
     "collaborators": [],
-    "positions": ["lead programmer","game design","design"],
+    "positions": ["lead programmer","game design","graphic design"],
     "timespan": {
       "started": 1630706400,
       "finished": null,
