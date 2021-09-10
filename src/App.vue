@@ -65,11 +65,6 @@ export default {
 
   methods: {
     start(){
-      console.log(this.formatTimespan({
-        "started": 1615762800,
-        "finished": null,
-        "year": "2021"
-      }))
     },
     loadData(){
       axios.get(`/data/projects.json`).then(response => {
