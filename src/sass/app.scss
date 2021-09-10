@@ -8,13 +8,13 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  background: $colorWhite;
-  color: $colorBlack;
+  background: $colorBackground;
+  color: $colorText;
 }
 
 *::selection {
-  background: $colorBlack;
-  color: $colorWhite;
+  background: $colorText;
+  color: $colorBackground;
 }
 
 * {
@@ -49,7 +49,7 @@ p {
 }
 
 a {
-  color: $colorBlack;
+  color: $colorText;
 }
 
 label {
@@ -57,7 +57,7 @@ label {
   margin: 32px 0 12px 12px;
   padding: 4px 0;
   font-weight: 600;
-  border-bottom: solid 2px $colorBlack;
+  border-bottom: solid 2px $colorText;
 }
 
 // -- panel --
@@ -85,17 +85,17 @@ label {
 // -- buttons --
 
 button {
-  color: $colorBlack;
+  color: $colorText;
   margin: 12px;
   padding: 6px 12px;
-  border: solid 2px $colorBlack;
+  border: solid 2px $colorText;
   background: none;
   font-size: 1.1em;
   font-weight: 600;
 
   &:hover {
     cursor: pointer;
-    color: $colorWhite;
-    background: $colorBlack;
+    color: $colorBackground;
+    background: $colorText;
   }
 }
