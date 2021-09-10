@@ -67,6 +67,28 @@
     }
   },
   {
+    "name": "school-games-launcher",
+    "displayName": "school-games-launcher",
+    "summary": "A simple games launcher made for school",
+    "description": null,
+    "url": "https://github.com/mymakerofficial/school-games-launcher",
+    "git": "https://github.com/mymakerofficial/school-games-launcher",
+    "buttons": [
+      {"text": "github", "url": "https://github.com/mymakerofficial/school-games-launcher"}],
+
+    "thumbnail": null,
+    "icon": "https://github.com/mymakerofficial/school-games-launcher/raw/main/img/icon.png",
+    "tags": ["app","c#","windows forms","launcher","school"],
+    "developmentStatus": "finished",
+    "collaborators": [],
+    "positions": ["lead programmer"],
+    "timespan": {
+      "started": 1605049200,
+      "finished": 1611183600,
+      "year": "2020"
+    }
+  },
+  {
     "name": "towerdefense-game",
     "displayName": "towerdefense-game",
     "summary": "A tower defense game project made for school",
@@ -76,7 +98,7 @@
     "buttons": [],
     "thumbnail": null,
     "icon": "https://day.maiker.de/android-chrome-192x192.png",
-    "tags": ["game","tower defense","unity","c#","pixel art","3D"],
+    "tags": ["game","tower defense","unity","c#","pixel art","3D","school"],
     "developmentStatus": "planning",
     "collaborators": [],
     "positions": ["lead programmer","game design","design"],
