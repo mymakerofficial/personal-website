@@ -10,7 +10,9 @@ $fontTitle: 'Urbanist', sans-serif;
 $fontText: 'Roboto', sans-serif;
 $fontCode: 'Overpass Mono', monospace;
 
-// font sizes
+// sizes
+
+$screenSmall: 500px;
 
 $headingSizes:
   1 7em 800, //h1
@@ -19,5 +21,13 @@ $headingSizes:
   4 4em 600, //h4
   5 3em 600, //h5
   6 2em 600; //h6
+
+$headingSizesSmall:
+  1 4em 800, //h1
+  2 3.5em 700, //h2
+  3 3em 600, //h3
+  4 2.5em 600, //h4
+  5 2em 600, //h5
+  6 1.5em 600; //h6
 
 $textSize: 1.2em;

@@ -34,6 +34,17 @@ body {
   }
 }
 
+@each $name, $size, $weight in $headingSizesSmall {
+  @media screen and (max-width: $screenSmall) {
+    h#{$name} {
+      font-size: $size;
+      font-weight: $weight;
+      font-family: $fontTitle;
+      margin: unset;
+    }
+  }
+}
+
 p {
   font-size: $textSize;
   font-family: $fontText;
@@ -65,6 +76,13 @@ label {
 .panel {
   min-height: calc(100vh - 128px);
   padding: 64px;
+
+  @media screen and (max-width: $screenSmall) {
+    &{
+      padding: 24px;
+      min-height: calc(100vh - 48px);
+    }
+  }
 
   .panelBody {
     max-width: 980px;
