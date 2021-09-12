@@ -18,7 +18,7 @@
     "positions": [],
     "timespan": {
       "started": 1615762800,
-      "finished": null,
+      "finished": 1630101600,
       "year": "2021"
     }
   },
@@ -61,7 +61,7 @@
     "collaborators": [{"name": "essiebes","url": null}],
     "positions": ["frontend developer", "graphic design"],
     "timespan": {
-      "started": 1597442400,
+      "started": 1592517600,
       "finished": 1601416800,
       "year": "2020"
     }
