@@ -126,3 +126,10 @@ button {
   color: $colorTooltipText;
   padding: 4px 6px;
 }
+
+.tooltipArrow {
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+  border-color: $colorTooltipBackground transparent transparent transparent;
+}

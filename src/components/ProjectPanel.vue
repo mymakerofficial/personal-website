@@ -90,7 +90,7 @@ export default {
       return `${this.startDate ? start : "unknown"} - ${this.endDate ? end : "present"}`;
     },
     fullTimespan: function () {
-      return `~ ${this.startDate ? this.startDate.toLocaleDateString(window.navigator.language.toLowerCase() || "de-de") : "unknown"} - ${this.endDate ? this.endDate.toLocaleDateString(window.navigator.language.toLowerCase() || "de-de") : "present"}`
+      return `${this.startDate ? this.startDate.toLocaleDateString(window.navigator.language.toLowerCase() || "de-de") : "unknown"} - ${this.endDate ? this.endDate.toLocaleDateString(window.navigator.language.toLowerCase() || "de-de") : "present"}`
     }
   }
 }
