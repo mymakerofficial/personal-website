@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div ref="backgroundCanvas" class="backgroundCanvas"></div>
     <Panel>
       <h1>My_Maker</h1>
       <h6><i class="mdi mdi-arrow-right"></i> Programmer of dumb websites and games</h6>
@@ -24,6 +25,7 @@
 import Panel from "@/components/Panel";
 import axios from "axios";
 import ProjectPanel from "@/components/ProjectPanel";
+import background from "@/js/background";
 
 export default {
   name: 'App',
@@ -37,6 +39,12 @@ export default {
 
   methods: {
     start(){
+      document.background = background;
+      console.log(background)
+
+      background.setup(this.$refs.backgroundCanvas)
+
+      background.render()
     },
     loadData(){
       axios.get(`/data/projects.json`).then(response => {

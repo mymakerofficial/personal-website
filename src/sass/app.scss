@@ -133,3 +133,12 @@ button {
   border-style: solid;
   border-color: $colorTooltipBackground transparent transparent transparent;
 }
+
+// -- canvas --
+
+.backgroundCanvas canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
