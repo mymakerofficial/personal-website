@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 //import { ParametricGeometries } from "three/examples/jsm/geometries/ParametricGeometries";
+import {Boid} from "@/js/boids";
 
 export default {
     element: null,
@@ -8,7 +9,7 @@ export default {
     camera: null,
     renderer: null,
 
-    testCube: null,
+    objects: [],
 
     setup(element){
         this.element = element
@@ -25,15 +26,17 @@ export default {
 
         this.camera.position.setZ(5)
 
-        const geometry = new THREE.TorusKnotGeometry( 10, 3, 500, 100 );
-        const material = new THREE.MeshNormalMaterial( {color: 0x00ff00, side: THREE.DoubleSide} );
-        this.testCube = new THREE.Mesh( geometry, material );
-        this.testCube.scale.set(0.2, 0.2, 0.2)
-        this.scene.add(this.testCube)
+        const material = new THREE.MeshNormalMaterial( {side: THREE.DoubleSide} );
+        const geometry = new THREE.ConeGeometry( 0.1, 0.2, 32 );
 
-        let light = new THREE.PointLight( new THREE.Color("hsl(0, 0%, 70%)"), 1, 100 );
-        light.position.setZ(5)
-        this.scene.add(light)
+        for(let i = 0 ; i < 200 ; i++){
+            let mesh = new THREE.Mesh( geometry, material );
+            mesh.userData.boid = new Boid();
+            this.objects.push(mesh)
+            this.scene.add(mesh)
+        }
+
+        console.log(Boid.boids)
 
         let alight = new THREE.AmbientLight( new THREE.Color("hsl(0, 0%, 70%)"));
         this.scene.add(alight)
@@ -44,9 +47,21 @@ export default {
             this.render();
         });
 
-        this.testCube.rotation.x = window.scrollY / 1000;
-        this.testCube.rotation.y = window.scrollY / 1000;
-        this.testCube.rotation.z = window.scrollY / 1000;
+        for(let obj of this.objects){
+            obj.userData.boid.update()
+
+            obj.position.set(
+                obj.userData.boid.object.position.x,
+                obj.userData.boid.object.position.y,
+                obj.userData.boid.object.position.z
+            )
+            obj.quaternion.set(
+                obj.userData.boid.object.quaternion.x,
+                obj.userData.boid.object.quaternion.y,
+                obj.userData.boid.object.quaternion.z,
+                obj.userData.boid.object.quaternion.w
+            )
+        }
 
         this.renderer.render( this.scene, this.camera );
     }
