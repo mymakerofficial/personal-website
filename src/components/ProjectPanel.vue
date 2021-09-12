@@ -13,7 +13,7 @@
         </div>
         <div v-if="project.timespan.year">
           <label>development</label>
-          <div><span class="listItem">{{project.timespan.year}}</span><span class="listItem">({{project.developmentStatus}})</span></div>
+          <div><span class="listItem">{{this.timespan}}</span><span class="listItem">({{project.developmentStatus}})</span></div>
         </div>
         <div v-if="project.collaborators !== null && project.collaborators.length > 0">
           <label>collaborators</label>
@@ -33,11 +33,59 @@
 
 <script>
 import Panel from "@/components/Panel";
+
 export default {
   name: "ProjectPanel",
   components: {Panel},
 
-  props: ["project"]
+  props: ["project"],
+
+  computed: {
+    timespan: function () { // convert start and end timestamps to a fancy formatted string
+      // convert unixtimestamp to date
+      let startDate = this.project.timespan.started !== null ? new Date(this.project.timespan.started * 1000) : null
+      let endDate = this.project.timespan.finished !== null ? new Date(this.project.timespan.finished * 1000) : null
+
+      // calculate the time between start and end in days. if a date is missing return infinite
+      let timespanInDays = startDate && endDate ? Math.abs((startDate.getTime() - endDate.getTime()) / (1000 * 3600 * 24)) : Infinity
+
+      // only show day if project was finished in one month
+      let showDay = timespanInDays < 30;
+      // only show year on start date if project was finished in over one year
+      let showYear = timespanInDays > 365;
+
+      // show full month name when no day is shown
+      let monthFormat = showDay ? 'short' : 'long'
+
+      // format start date
+      let start = ""
+      if(this.project.timespan.started !== null){
+        let day = startDate.getDate(); // get day of the month
+        let month = new Intl.DateTimeFormat('en', { month: monthFormat }).format(startDate) // get month in text
+        let year = startDate.getFullYear(); // get year
+
+        // generate start date string
+        if(showDay) start += `${day} `
+        start += `${month}`
+        if(showYear) start += ` ${year} `
+      }
+
+      // format start date
+      let end = ""
+      if(this.project.timespan.finished !== null){
+        let day = endDate.getDate(); // get day of the month
+        let month = new Intl.DateTimeFormat('en', { month: monthFormat }).format(endDate) // get month in text
+        let year = endDate.getFullYear(); // get year
+
+        // generate end date string
+        if(showDay) end += `${day} `
+        end += `${month} ${year}`
+      }
+
+       // put it all together
+      return `${startDate ? start : "unknown"} - ${endDate ? end : "present"}`;
+    }
+  }
 }
 </script>
 
