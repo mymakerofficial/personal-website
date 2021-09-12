@@ -51,35 +51,36 @@ export default {
 
       // only show day if project was finished in one month
       let showDay = timespanInDays < 30;
-      // only show year on start date if project was finished in over one year
-      let showYear = timespanInDays > 365;
-
-      // show full month name when no day is shown
-      let monthFormat = showDay ? 'short' : 'long'
+      // show year on start if started and ended in different years
+      let showYearOnStart = startDate == null || endDate == null || startDate.getFullYear() !== endDate.getFullYear();
+      // only show year if project timespan is longer then a year
+      let yearOnly = endDate !== null && timespanInDays > 365 && startDate !== null;
 
       // format start date
       let start = ""
       if(this.project.timespan.started !== null){
         let day = startDate.getDate(); // get day of the month
-        let month = new Intl.DateTimeFormat('en', { month: monthFormat }).format(startDate) // get month in text
+        let month = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate) // get month in text
         let year = startDate.getFullYear(); // get year
 
         // generate start date string
         if(showDay) start += `${day} `
         start += `${month}`
-        if(showYear) start += ` ${year} `
+        if(showYearOnStart) start += ` ${year}`
+        if(yearOnly) start = ` ${year}` // overwrite if only year should be shown
       }
 
       // format start date
       let end = ""
       if(this.project.timespan.finished !== null){
         let day = endDate.getDate(); // get day of the month
-        let month = new Intl.DateTimeFormat('en', { month: monthFormat }).format(endDate) // get month in text
+        let month = new Intl.DateTimeFormat('en', { month: 'short' }).format(endDate) // get month in text
         let year = endDate.getFullYear(); // get year
 
         // generate end date string
         if(showDay) end += `${day} `
         end += `${month} ${year}`
+        if(yearOnly) end = `${year}` // overwrite if only year should be shown
       }
 
        // put it all together
