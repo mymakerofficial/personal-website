@@ -74,8 +74,9 @@
     "url": "https://github.com/mymakerofficial/school-games-launcher",
     "git": "mymakerofficial/school-games-launcher",
     "buttons": [
-      {"text": "github", "url": "https://github.com/mymakerofficial/school-games-launcher"}],
-
+      {"text": "download", "url": "https://github.com/mymakerofficial/school-games-launcher/releases/tag/v1.0"},
+      {"text": "github", "url": "https://github.com/mymakerofficial/school-games-launcher"}
+    ],
     "thumbnail": null,
     "icon": "https://github.com/mymakerofficial/school-games-launcher/raw/main/img/icon.png",
     "tags": ["app","c#","windows forms","launcher","school"],
