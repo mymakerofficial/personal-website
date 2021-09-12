@@ -5,7 +5,7 @@
     "summary": "A website that maybe tells you what day it is.",
     "description": "\u0022We hand select only the best days from our selection of the most expertly crafted days. Made by the most experienced day craftsmen who have years of experience crafting the finest days known to mankind.\u0022",
     "url": "https://day.maiker.de",
-    "git": "https://github.com/mymakerofficial/what-day-is-it",
+    "git": "mymakerofficial/what-day-is-it",
     "buttons": [
       {"text": "open", "url": "https://day.maiker.de"},
       {"text": "github", "url": "https://github.com/mymakerofficial/what-day-is-it"}
@@ -56,13 +56,13 @@
     ],
     "thumbnail": "https://counting.cf/733fcb3147fa883f2393c5efe66c4195.jpg",
     "icon": "https://counting.cf/favicon/android-chrome-192x192.png",
-    "tags": ["website","pwa","js","threejs"],
+    "tags": ["website","pwa","js","threejs","vue"],
     "developmentStatus": "finished",
     "collaborators": [{"name": "essiebes","url": null}],
     "positions": ["frontend developer", "graphic design"],
     "timespan": {
       "started": 1597442400,
-      "finished": 1601164800000,
+      "finished": 1601416800,
       "year": "2020"
     }
   },
@@ -72,7 +72,7 @@
     "summary": "A simple games launcher made for school",
     "description": "A game launcher that can start any exe, website or steam game. You can load steam game information, save play times, control users and other cool things.",
     "url": "https://github.com/mymakerofficial/school-games-launcher",
-    "git": "https://github.com/mymakerofficial/school-games-launcher",
+    "git": "mymakerofficial/school-games-launcher",
     "buttons": [
       {"text": "github", "url": "https://github.com/mymakerofficial/school-games-launcher"}],
 
