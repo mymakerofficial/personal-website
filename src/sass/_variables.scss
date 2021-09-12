@@ -1,8 +1,14 @@
 
-$colorText: #030303;
-$colorBackground: #fcfcfc;
+$colorBlack: #030303;
+$colorWhite: #fcfcfc;
+
+$colorText: $colorBlack;
+$colorBackground: $colorWhite;
 
 $colorSecondary1: #525252;
+
+$colorTooltipBackground: $colorBlack;
+$colorTooltipText: $colorWhite;
 
 // fonts
 

@@ -117,3 +117,12 @@ button {
     background: $colorText;
   }
 }
+
+// -- tooltip --
+
+.tooltip {
+  position: absolute;
+  background: $colorTooltipBackground;
+  color: $colorTooltipText;
+  padding: 4px 6px;
+}

@@ -13,7 +13,7 @@
         </div>
         <div v-if="project.timespan.year">
           <label>development</label>
-          <div><span class="listItem">{{this.timespan}}</span><span class="listItem">({{project.developmentStatus}})</span></div>
+          <div><span class="listItem"><Tooltip :tooltip="this.fullTimespan">{{this.timespan}}</Tooltip></span><span class="listItem">({{project.developmentStatus}})</span></div>
         </div>
         <div v-if="project.collaborators !== null && project.collaborators.length > 0">
           <label>collaborators</label>
@@ -33,35 +33,38 @@
 
 <script>
 import Panel from "@/components/Panel";
+import Tooltip from "@/components/Tooltip";
 
 export default {
   name: "ProjectPanel",
-  components: {Panel},
+  components: {Tooltip, Panel},
 
   props: ["project"],
 
   computed: {
+    startDate: function () {// convert unixtimestamp to date
+      return this.project.timespan.started !== null ? new Date(this.project.timespan.started * 1000) : null
+    },
+    endDate: function () {// convert unixtimestamp to date
+      return this.project.timespan.finished !== null ? new Date(this.project.timespan.finished * 1000) : null
+    },
     timespan: function () { // convert start and end timestamps to a fancy formatted string
-      // convert unixtimestamp to date
-      let startDate = this.project.timespan.started !== null ? new Date(this.project.timespan.started * 1000) : null
-      let endDate = this.project.timespan.finished !== null ? new Date(this.project.timespan.finished * 1000) : null
-
       // calculate the time between start and end in days. if a date is missing return infinite
-      let timespanInDays = startDate && endDate ? Math.abs((startDate.getTime() - endDate.getTime()) / (1000 * 3600 * 24)) : Infinity
+      let timespanInDays = this.startDate && this.endDate ? Math.abs((this.startDate.getTime() - this.endDate.getTime()) / (1000 * 3600 * 24)) : Infinity
 
       // only show day if project was finished in one month
       let showDay = timespanInDays < 30;
       // show year on start if started and ended in different years
-      let showYearOnStart = startDate == null || endDate == null || startDate.getFullYear() !== endDate.getFullYear();
+      let showYearOnStart = this.startDate == null || this.endDate == null || this.startDate.getFullYear() !== this.endDate.getFullYear();
       // only show year if project timespan is longer then a year
-      let yearOnly = endDate !== null && timespanInDays > 365 && startDate !== null;
+      let yearOnly = this.endDate !== null && timespanInDays > 365 && this.startDate !== null;
 
       // format start date
       let start = ""
       if(this.project.timespan.started !== null){
-        let day = startDate.getDate(); // get day of the month
-        let month = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate) // get month in text
-        let year = startDate.getFullYear(); // get year
+        let day = this.startDate.getDate(); // get day of the month
+        let month = new Intl.DateTimeFormat('en', { month: 'short' }).format(this.startDate) // get month in text
+        let year = this.startDate.getFullYear(); // get year
 
         // generate start date string
         if(showDay) start += `${day} `
@@ -73,9 +76,9 @@ export default {
       // format start date
       let end = ""
       if(this.project.timespan.finished !== null){
-        let day = endDate.getDate(); // get day of the month
-        let month = new Intl.DateTimeFormat('en', { month: 'short' }).format(endDate) // get month in text
-        let year = endDate.getFullYear(); // get year
+        let day = this.endDate.getDate(); // get day of the month
+        let month = new Intl.DateTimeFormat('en', { month: 'short' }).format(this.endDate) // get month in text
+        let year = this.endDate.getFullYear(); // get year
 
         // generate end date string
         if(showDay) end += `${day} `
@@ -84,7 +87,10 @@ export default {
       }
 
        // put it all together
-      return `${startDate ? start : "unknown"} - ${endDate ? end : "present"}`;
+      return `${this.startDate ? start : "unknown"} - ${this.endDate ? end : "present"}`;
+    },
+    fullTimespan: function () {
+      return `~ ${this.startDate ? this.startDate.toLocaleDateString(window.navigator.language.toLowerCase() || "de-de") : "unknown"} - ${this.endDate ? this.endDate.toLocaleDateString(window.navigator.language.toLowerCase() || "de-de") : "present"}`
     }
   }
 }
