@@ -3,14 +3,14 @@ import * as THREE from 'three';
 class Boid {
     static boids = [];
     static visualRange = 5;
-    static minDistance = 0.5;
-    static centeringFactor = 0.5;
+    static minDistance = 0.8;
+    static centeringFactor = 0.8;
     static avoidFactor = 0.02;
     static alignFactor = 0.02
 
     constructor() {
         this.object = new THREE.Object3D()
-        this.object.position.set(Math.random() * 6 - 3, Math.random() * 6 - 3, Math.random() * 6 - 3)
+        this.object.position.set(Math.random() * 10 - 5, Math.random() * 6 - 3, Math.random() * 6 - 3)
         this.object.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2)
 
         Boid.boids.push(this);
@@ -29,15 +29,18 @@ class Boid {
 
         if(Math.abs(this.object.position.x) > 10) {
             this.object.position.setX(-this.object.position.x)
-            this.object.translateY( 0.2 );
+            this.object.lookAt(0,0,0)
+            this.object.translateY( 2 );
         }
-        if(Math.abs(this.object.position.y) > 5) {
+        if(Math.abs(this.object.position.y) > 6) {
             this.object.position.setY(-this.object.position.y)
-            this.object.translateY( 0.2 );
+            this.object.lookAt(0,0,0)
+            this.object.translateY( 2 );
         }
         if(Math.abs(this.object.position.z) > 10) {
             this.object.position.setZ(-this.object.position.z)
-            this.object.translateY( 0.2 );
+            this.object.lookAt(0,0,0)
+            this.object.translateY( 2 );
         }
     }
 

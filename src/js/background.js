@@ -15,7 +15,7 @@ export default {
         this.element = element
 
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
+        this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
 
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.antialias = true
@@ -23,7 +23,7 @@ export default {
         this.element.appendChild( this.renderer.domElement );
 
         this.scene.background = new THREE.Color( 0xfcfcfc );
-        this.scene.fog = new THREE.Fog(0xfcfcfc, 0, 12);
+        this.scene.fog = new THREE.FogExp2(0xfcfcfc, 0.12);
 
         this.camera.position.setZ(10)
 
