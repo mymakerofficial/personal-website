@@ -40,7 +40,6 @@ export default {
   methods: {
     start(){
       document.background = background;
-      console.log(background)
 
       background.setup(this.$refs.backgroundCanvas)
 

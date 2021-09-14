@@ -23,20 +23,19 @@ export default {
         this.element.appendChild( this.renderer.domElement );
 
         this.scene.background = new THREE.Color( 0xfcfcfc );
+        this.scene.fog = new THREE.Fog(0xfcfcfc, 0, 12);
 
-        this.camera.position.setZ(5)
+        this.camera.position.setZ(10)
 
-        const material = new THREE.MeshNormalMaterial( {side: THREE.DoubleSide} );
+        const material = new THREE.MeshStandardMaterial( {color: 0xfcfcfc, side: THREE.DoubleSide} );
         const geometry = new THREE.ConeGeometry( 0.1, 0.2, 32 );
 
-        for(let i = 0 ; i < 200 ; i++){
+        for(let i = 0 ; i < 700 ; i++){
             let mesh = new THREE.Mesh( geometry, material );
             mesh.userData.boid = new Boid();
             this.objects.push(mesh)
             this.scene.add(mesh)
         }
-
-        console.log(Boid.boids)
 
         let alight = new THREE.AmbientLight( new THREE.Color("hsl(0, 0%, 70%)"));
         this.scene.add(alight)
