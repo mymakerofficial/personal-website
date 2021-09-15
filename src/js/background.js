@@ -74,17 +74,22 @@ export default {
         this.lastLoopTime = performance.now() - this.lastFrameStart;
         this.lastFrameStart = performance.now()
 
-        for(let obj of this.objects){
-            obj.userData.boid.update(this.lastLoopTime)
+        this.camera.position.setY((-window.pageYOffset / window.innerHeight) * 10)
+        this.camera.position.setZ(10 - (window.pageYOffset / window.innerHeight) * 20)
 
-            obj.position.set(
-                obj.userData.boid.position.x,
-                obj.userData.boid.position.y,
-                obj.userData.boid.position.z
-            )
+        if(window.pageYOffset < window.innerHeight){
+            for(let obj of this.objects){
+                obj.userData.boid.update(this.lastLoopTime)
+
+                obj.position.set(
+                    obj.userData.boid.position.x,
+                    obj.userData.boid.position.y,
+                    obj.userData.boid.position.z
+                )
+            }
+
+            this.renderer.render( this.scene, this.camera );
         }
-
-        this.renderer.render( this.scene, this.camera );
     }
 }
 
