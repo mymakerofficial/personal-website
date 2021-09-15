@@ -79,7 +79,7 @@ export default {
 
         if(window.pageYOffset < window.innerHeight){
             for(let obj of this.objects){
-                obj.userData.boid.update(this.lastLoopTime)
+                obj.userData.boid.update(this.lastLoopTime > 100 ? 16 : this.lastLoopTime)
 
                 obj.position.set(
                     obj.userData.boid.position.x,
