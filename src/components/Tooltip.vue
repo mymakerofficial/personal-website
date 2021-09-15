@@ -1,7 +1,7 @@
 <template>
   <span @mouseover="hover = true" @mouseleave="hover = false">
     <span ref="content" @mousemove="move"><slot></slot></span>
-    <span class="tooltip" ref="tooltip" v-if="hover" :style="{ top: posY, left: posX }">{{this.tooltip}}</span>
+    <span v-if="hover"><span class="tooltip" ref="tooltip" :style="{ top: top, left: left }">{{this.tooltip}}</span><span class="tooltipArrow" ref="tooltipArrow" :style="{ top: arrowTop, left: arrowLeft }"></span></span>
   </span>
 </template>
 
@@ -14,22 +14,34 @@ export default {
   data() {
     return {
       hover: false,
-      posX: 0,
-      posY: 0,
+      mouseX: 0,
+      mouseY: 0,
+      left: 0,
+      top: 0,
+      arrowLeft: 0,
+      arrowTop: 0,
     }
   },
 
   methods: {
     move(event) {
-      let x = event.clientX +
-          (document.documentElement.scrollLeft || document.body.scrollLeft) -
-          this.$refs.tooltip.offsetWidth / 2
+      let xCenter = this.$refs.content.offsetLeft + this.$refs.content.offsetWidth / 2
+      let xDiff = xCenter - event.clientX
+
+      let x = xCenter - xDiff / 4 - this.$refs.tooltip.offsetWidth / 2
+
       let y = this.$refs.content.offsetTop -
           this.$refs.tooltip.offsetHeight -
           this.$refs.content.offsetHeight / 2
 
-      this.posX = `${x}px`
-      this.posY = `${y}px`
+      let aX = event.clientX - 2.5;
+      let aY = this.$refs.content.offsetTop -
+          this.$refs.content.offsetHeight / 2
+
+      this.left = `${x}px`
+      this.top = `${y}px`
+      this.arrowLeft = `${aX}px`
+      this.arrowTop = `${aY}px`
     }
   }
 }
