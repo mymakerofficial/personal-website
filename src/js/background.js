@@ -11,11 +11,14 @@ export default {
 
     objects: [],
 
+    lastLoopTime: 16,
+    lastFrameStart: performance.now(),
+
     setup(element){
         this.element = element
 
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
+        this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
 
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.antialias = true
@@ -48,10 +51,11 @@ export default {
             this.render();
         });
 
-        //let start = new Date()
+        this.lastLoopTime = performance.now() - this.lastFrameStart;
+        this.lastFrameStart = performance.now()
 
         for(let obj of this.objects){
-            obj.userData.boid.update()
+            obj.userData.boid.update(this.lastLoopTime)
 
             obj.position.set(
                 obj.userData.boid.position.x,
@@ -59,9 +63,6 @@ export default {
                 obj.userData.boid.position.z
             )
         }
-        //let end = new Date()
-
-        //console.log(end.getUTCMilliseconds() - start.getUTCMilliseconds())
 
         this.renderer.render( this.scene, this.camera );
     }

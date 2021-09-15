@@ -22,7 +22,7 @@ class Boid {
         Boid.boids.push(this);
     }
 
-    update() {
+    update(deltaTime) {
         // create list with all boids that are in visual range
         let inRange = this.getBoidsInRange();
 
@@ -35,7 +35,7 @@ class Boid {
             this.keepInBounds()
         }
 
-        this.position.add(this.direction)
+        this.position.addScaledVector(this.direction, deltaTime / 16.33)
     }
 
     getBoidsInRange() {
