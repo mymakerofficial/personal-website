@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-//import { ParametricGeometries } from "three/examples/jsm/geometries/ParametricGeometries";
+import * as dat from 'dat.gui';
 import {Boid} from "@/js/boids";
 
 export default {
@@ -14,6 +14,8 @@ export default {
     lastLoopTime: 16,
     lastFrameStart: performance.now(),
 
+    gui: new dat.GUI({name: 'Background'}),
+
     setup(element){
         this.element = element
 
@@ -26,12 +28,10 @@ export default {
         this.element.appendChild( this.renderer.domElement );
 
         this.scene.background = new THREE.Color( 0xfcfcfc );
-        this.scene.fog = new THREE.FogExp2(0xfcfcfc, 0.12);
 
         this.camera.position.setZ(10)
 
-        const material = new THREE.MeshNormalMaterial( {color: 0xfcfcfc, side: THREE.DoubleSide} );
-        //const geometry = new THREE.ConeGeometry( 0.1, 0.2, 32 );
+        const material = new THREE.MeshNormalMaterial( {side: THREE.DoubleSide} );
         const geometry = new THREE.IcosahedronGeometry(0.1)
 
 
@@ -42,8 +42,28 @@ export default {
             this.scene.add(mesh)
         }
 
-        let alight = new THREE.AmbientLight( new THREE.Color("hsl(0, 0%, 70%)"));
-        this.scene.add(alight)
+
+        // dat.gui debug stuff
+        this.gui.hide()
+        document.debug = this.gui
+
+        let boidsFolder = this.gui.addFolder('Boids');
+        let boidsControlsFolder = boidsFolder.addFolder('Controls');
+        let boidsParametersFolder = boidsFolder.addFolder('Parameters');
+        boidsControlsFolder.add({ reset:function(){ Boid.boids.forEach((b) => b.reset()) }}, 'reset');
+        boidsControlsFolder.add({ pullIn:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, -2)) }}, 'pullIn');
+        boidsParametersFolder.add(Boid, 'visualRange', 0, 10);
+        boidsParametersFolder.add(Boid, 'minDistance', 0, 5);
+        boidsParametersFolder.add(Boid, 'centeringFactor', 0, 1);
+        boidsParametersFolder.add(Boid, 'avoidFactor', 0, 1);
+        boidsParametersFolder.add(Boid, 'alignFactor', 0, 1);
+        boidsParametersFolder.add(Boid, 'boundTurnFactor', 0, 1);
+        boidsParametersFolder.add(Boid, 'speedLimit', 0, 2);
+    },
+
+    resize() {
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        this.camera.aspect = window.innerWidth / window.innerHeight;
     },
 
     render(){

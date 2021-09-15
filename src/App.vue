@@ -45,6 +45,9 @@ export default {
 
       background.render()
     },
+    resize() {
+      background.resize()
+    },
     loadData(){
       axios.get(`/data/projects.json`).then(response => {
         this.projects = response.data
@@ -57,6 +60,11 @@ export default {
 
   created() {
     this.loadData();
+    window.addEventListener("resize", this.resize);
+  },
+
+  destroyed() {
+    window.removeEventListener("resize", this.resize);
   }
 }
 </script>

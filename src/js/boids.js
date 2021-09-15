@@ -7,19 +7,29 @@ class Boid {
     static centeringFactor = 0.008; // % to adjust velocity towards center of mass
     static avoidFactor = 0.005; // % to adjust velocity to stay away from other boids
     static alignFactor = 0.02; // % to adjust velocity to align direction with other boids
-    static boundTurnFactor = 1; // velocity to turn around when out of bounds
+    static boundTurnFactor = 0.01; // velocity to turn around when out of bounds
     static speedLimit = 0.1; // max speed of the boids
-
-    static boundaryFrustum = new THREE.Frustum();
 
     constructor() {
         // position vector
-        this.position = new THREE.Vector3(Math.random() * 4 - 2, Math.random() * 4 - 2, Math.random() * 4 - 2)
+        this.position = new THREE.Vector3()
         // direction vector
-        this.direction = new THREE.Vector3((Math.random() * 2 - 1) / 10, (Math.random() * 2 - 1) / 10, (Math.random() * 2 - 1) / 10);
+        this.direction = new THREE.Vector3();
 
         // add this boid to list of all boids
         Boid.boids.push(this);
+
+        this.reset()
+    }
+
+    reset() {
+        let a = Math.random() * Math.PI * 2
+        let r = Math.random() * 10 + 15
+        let x = r * Math.cos(a)
+        let y = r * Math.sin(a)
+        this.position = new THREE.Vector3(x, y, Math.random() * 4 - 2)
+
+        this.direction = new THREE.Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1);
     }
 
     update(deltaTime) {
@@ -31,9 +41,10 @@ class Boid {
             this.flyTowardsCenter(inRange)
             this.avoidCollision(inRange)
             this.alignWithOthers(inRange)
-            this.limitSpeed()
-            this.keepInBounds()
         }
+
+        this.limitSpeed()
+        this.keepInBounds()
 
         this.position.addScaledVector(this.direction, deltaTime / 16.33)
     }
@@ -86,23 +97,25 @@ class Boid {
     }
 
     keepInBounds(){
-        if (this.position.x < -10) {
-            this.direction.x += Boid.boundTurnFactor;
-        }
-        if (this.position.x > 10) {
-            this.direction.x -= Boid.boundTurnFactor
-        }
-        if (this.position.y < -10) {
-            this.direction.y += Boid.boundTurnFactor;
-        }
-        if (this.position.y > 10) {
-            this.direction.y -= Boid.boundTurnFactor;
-        }
-        if (this.position.z < -10) {
-            this.direction.z += Boid.boundTurnFactor;
-        }
-        if (this.position.z > 10) {
-            this.direction.z -= Boid.boundTurnFactor;
+        if(!this.ignoreBounds){
+            if (this.position.x < -10) {
+                this.direction.x += Boid.boundTurnFactor;
+            }
+            if (this.position.x > 10) {
+                this.direction.x -= Boid.boundTurnFactor
+            }
+            if (this.position.y < -10) {
+                this.direction.y += Boid.boundTurnFactor;
+            }
+            if (this.position.y > 10) {
+                this.direction.y -= Boid.boundTurnFactor;
+            }
+            if (this.position.z < -10) {
+                this.direction.z += Boid.boundTurnFactor;
+            }
+            if (this.position.z > 5) {
+                this.direction.z -= Boid.boundTurnFactor;
+            }
         }
     }
 
