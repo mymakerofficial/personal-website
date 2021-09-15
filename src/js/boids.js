@@ -18,11 +18,35 @@ class Boid {
     }
 
     update() {
-        this.flyTowardsCenter();
-        this.avoidCollision();
-        this.align();
-        this.keepInBounds();
+        let inRange = this.getBoidsInRange();
+        if(inRange.length > 0){
+            this.flyTowardsCenter(inRange);
+            this.avoidCollision(inRange);
+            this.align(inRange);
+            this.keepInBounds();
+        }
         this.object.translateY( this.velocity );
+    }
+
+    getBoidsInRange() {
+        let list = []
+        for(let i = 0; i < Boid.boids.length; i++){
+            let b = Boid.boids[i]
+
+            // deference between positions
+            let offset = new THREE.Vector3(
+                b.object.position.x - this.object.position.x,
+                b.object.position.y - this.object.position.y,
+                b.object.position.z - this.object.position.z
+            )
+            // calculate the square root distance
+            let sqrDistance = offset.x * offset.x + offset.y * offset.y + offset.z * offset.z
+            // if boid is inside visual range add to sum of positions
+            if (sqrDistance < Boid.visualRange * Boid.visualRange) {
+                list.push(b);
+            }
+        }
+        return list;
     }
 
     keepInBounds(){
@@ -45,61 +69,44 @@ class Boid {
         }
     }
 
-    flyTowardsCenter() {
+    flyTowardsCenter(inRange) {
         let x = 0;
         let y = 0;
         let z = 0;
-        let count = 0;
 
-        for(let i = 0; i < Boid.boids.length; i++){
-            let b = Boid.boids[i]
-
-            // deference between positions
-            let offset = new THREE.Vector3(
-                b.object.position.x - this.object.position.x,
-                b.object.position.y - this.object.position.y,
-                b.object.position.z - this.object.position.z
-            )
-            // calculate the square root distance
-            let sqrDistance = offset.x * offset.x + offset.y * offset.y + offset.z * offset.z
-            // if boid is inside visual range add to sum of positions
-            if (sqrDistance < Boid.visualRange * Boid.visualRange) {
-                x += b.object.position.x;
-                y += b.object.position.y;
-                z += b.object.position.z;
-                count += 1;
-            }
+        for(let i = 0; i < inRange.length; i++){
+            x += inRange[i].object.position.x;
+            y += inRange[i].object.position.y;
+            z += inRange[i].object.position.z;
         }
 
-        if (count > 0) {
-            // calculate average position of boids in view
-            x = x / count;
-            y = y / count;
-            z = z / count;
+        // calculate average position of boids in view
+        x /= inRange.length;
+        y /= inRange.length;
+        z /= inRange.length;
 
-            // calculate direction vector for center of boids
-            let moveDir = new THREE.Euler(
-                this.object.position.x - x,
-                this.object.position.y - y,
-                this.object.position.z - z
-            );
+        // calculate direction vector for center of boids
+        let moveDir = new THREE.Euler(
+            this.object.position.x - x,
+            this.object.position.y - y,
+            this.object.position.z - z
+        );
 
-            // rotate to center
-            this.object.rotation.set(
-                this.object.rotation.x + (moveDir.x - this.object.rotation.x) * Boid.centeringFactor,
-                this.object.rotation.y + (moveDir.y - this.object.rotation.y) * Boid.centeringFactor,
-                this.object.rotation.z + (moveDir.z - this.object.rotation.z) * Boid.centeringFactor
-            )
-        }
+        // rotate to center
+        this.object.rotation.set(
+            this.object.rotation.x + (moveDir.x - this.object.rotation.x) * Boid.centeringFactor,
+            this.object.rotation.y + (moveDir.y - this.object.rotation.y) * Boid.centeringFactor,
+            this.object.rotation.z + (moveDir.z - this.object.rotation.z) * Boid.centeringFactor
+        )
     }
 
-    avoidCollision() {
+    avoidCollision(inRange) {
         let x = 0;
         let y = 0;
         let z = 0;
 
-        for(let i = 0; i < Boid.boids.length; i++){
-            let b = Boid.boids[i]
+        for(let i = 0; i < inRange.length; i++){
+            let b = inRange[i]
 
             // deference between positions
             let offset = new THREE.Vector3(
@@ -125,52 +132,35 @@ class Boid {
         )
     }
 
-    align() {
+    align(inRange) {
         let x = 0;
         let y = 0;
         let z = 0;
         let v = 0;
-        let count = 0;
 
-        for(let i = 0; i < Boid.boids.length; i++){
-            let b = Boid.boids[i]
-
-            // deference between positions
-            let offset = new THREE.Vector3(
-                b.object.position.x - this.object.position.x,
-                b.object.position.y - this.object.position.y,
-                b.object.position.z - this.object.position.z
-            )
-            // calculate the square root distance
-            let sqrDistance = offset.x * offset.x + offset.y * offset.y + offset.z * offset.z
-            // if boid is inside visual range add to sum of rotation / velocity
-            if (sqrDistance < Boid.visualRange * Boid.visualRange) {
-                x += b.object.rotation.x;
-                y += b.object.rotation.y;
-                z += b.object.rotation.z;
-                v += b.velocity;
-                count += 1;
-            }
+        for(let i = 0; i < inRange.length; i++){
+            x += inRange[i].object.rotation.x;
+            y += inRange[i].object.rotation.y;
+            z += inRange[i].object.rotation.z;
+            v += inRange[i].velocity;
         }
 
-        if(count > 0){
-            // calculate average rotation
-            x = x / count;
-            y = y / count;
-            z = z / count;
-            // calculate average velocity
-            v = v / count;
+        // calculate average rotation
+        x /= inRange.length;
+        y /= inRange.length;
+        z /= inRange.length;
+        // calculate average velocity
+        v /= inRange.length;
 
-            // rotate to average
-            this.object.rotation.set(
-                this.object.rotation.x + (x - this.object.rotation.x) * Boid.alignFactor,
-                this.object.rotation.y + (y - this.object.rotation.y) * Boid.alignFactor,
-                this.object.rotation.z + (z - this.object.rotation.z) * Boid.alignFactor
-            )
+        // rotate to average
+        this.object.rotation.set(
+            this.object.rotation.x + (x - this.object.rotation.x) * Boid.alignFactor,
+            this.object.rotation.y + (y - this.object.rotation.y) * Boid.alignFactor,
+            this.object.rotation.z + (z - this.object.rotation.z) * Boid.alignFactor
+        )
 
-            // adjust velocity
-            this.velocity += (v - this.velocity) * 0.02;
-        }
+        // adjust velocity
+        this.velocity += (v - this.velocity) * 0.02;
     }
 }
 
