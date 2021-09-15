@@ -142,3 +142,25 @@ button {
   left: 0;
   z-index: -1;
 }
+
+// -- scroll bar --
+
+::-webkit-scrollbar {
+  width: 22px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 6px solid transparent;
+  background: $colorText;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $colorText;
+  background-clip: content-box;
+}
