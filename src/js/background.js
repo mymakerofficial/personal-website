@@ -30,7 +30,13 @@ export default {
         const material = new THREE.MeshStandardMaterial( {color: 0xfcfcfc, side: THREE.DoubleSide} );
         const geometry = new THREE.ConeGeometry( 0.1, 0.2, 32 );
 
-        for(let i = 0 ; i < 700 ; i++){
+        this.camera.updateMatrix();
+        this.camera.updateMatrixWorld();
+        var frustum = new THREE.Frustum();
+        frustum.setFromProjectionMatrix(new THREE.Matrix4().multiplyMatrices(this.camera.projectionMatrix, this.camera.matrixWorldInverse));
+        Boid.boundaryFrustum = frustum;
+
+        for(let i = 0 ; i < 500 ; i++){
             let mesh = new THREE.Mesh( geometry, material );
             mesh.userData.boid = new Boid();
             this.objects.push(mesh)
@@ -45,6 +51,8 @@ export default {
         requestAnimationFrame(() => {
             this.render();
         });
+
+        //let start = new Date()
 
         for(let obj of this.objects){
             obj.userData.boid.update()
@@ -61,6 +69,9 @@ export default {
                 obj.userData.boid.object.quaternion.w
             )
         }
+        //let end = new Date()
+
+        //console.log(end.getUTCMilliseconds() - start.getUTCMilliseconds())
 
         this.renderer.render( this.scene, this.camera );
     }

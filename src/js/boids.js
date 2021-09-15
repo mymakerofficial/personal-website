@@ -2,11 +2,13 @@ import * as THREE from 'three';
 
 class Boid {
     static boids = [];
-    static visualRange = 3;
-    static minDistance = 0.8;
+    static visualRange = 4;
+    static minDistance = 0.5;
     static centeringFactor = 0.8;
-    static avoidFactor = 0.02;
-    static alignFactor = 0.02
+    static avoidFactor = 0.3;
+    static alignFactor = 0.2;
+
+    static boundaryFrustum = new THREE.Frustum();
 
     constructor() {
         this.object = new THREE.Object3D()
@@ -81,22 +83,10 @@ class Boid {
     }
 
     keepInBounds(){
-        //when boid goes out of bounds invert position on axis
-
-        if(Math.abs(this.object.position.x) > 10) {
+        if (!Boid.boundaryFrustum.containsPoint(this.object.position)) {
             this.object.position.setX(-this.object.position.x)
-            this.object.lookAt(0,0,0)
-            this.object.translateY( 2 );
-        }
-        if(Math.abs(this.object.position.y) > 6) {
             this.object.position.setY(-this.object.position.y)
-            this.object.lookAt(0,0,0)
-            this.object.translateY( 2 );
-        }
-        if(Math.abs(this.object.position.z) > 10) {
-            this.object.position.setZ(-this.object.position.z)
-            this.object.lookAt(0,0,0)
-            this.object.translateY( 2 );
+            this.object.translateY( 0.1 );
         }
     }
 
