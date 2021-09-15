@@ -10,6 +10,11 @@ class Boid {
     static boundTurnFactor = 0.01; // velocity to turn around when out of bounds
     static speedLimit = 0.1; // max speed of the boids
 
+    // boundary size
+    static boundaryX = 10
+    static boundaryY = 10
+    static boundaryZ = 10
+
     constructor() {
         // position vector
         this.position = new THREE.Vector3()
@@ -98,19 +103,19 @@ class Boid {
 
     keepInBounds(){
         if(!this.ignoreBounds){
-            if (this.position.x < -10) {
+            if (this.position.x < -Boid.boundaryX) {
                 this.direction.x += Boid.boundTurnFactor;
             }
-            if (this.position.x > 10) {
+            if (this.position.x > Boid.boundaryX) {
                 this.direction.x -= Boid.boundTurnFactor
             }
-            if (this.position.y < -10) {
+            if (this.position.y < -Boid.boundaryY) {
                 this.direction.y += Boid.boundTurnFactor;
             }
-            if (this.position.y > 10) {
+            if (this.position.y > Boid.boundaryY) {
                 this.direction.y -= Boid.boundTurnFactor;
             }
-            if (this.position.z < -10) {
+            if (this.position.z < -Boid.boundaryZ) {
                 this.direction.z += Boid.boundTurnFactor;
             }
             if (this.position.z > 5) {

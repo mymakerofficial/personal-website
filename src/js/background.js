@@ -47,18 +47,35 @@ export default {
         this.gui.hide()
         document.debug = this.gui
 
+        let cameraFolder = this.gui.addFolder('Camera');
+        cameraFolder.add(this.camera, 'fov', 10, 180, 5).onChange(() => {this.camera.updateProjectionMatrix();});
         let boidsFolder = this.gui.addFolder('Boids');
         let boidsControlsFolder = boidsFolder.addFolder('Controls');
+        let boidsBoundaryFolder = boidsFolder.addFolder('Boundary');
         let boidsParametersFolder = boidsFolder.addFolder('Parameters');
         boidsControlsFolder.add({ reset:function(){ Boid.boids.forEach((b) => b.reset()) }}, 'reset');
+        boidsControlsFolder.add({ nullForce:function(){ Boid.boids.forEach((b) => b.direction = new THREE.Vector3()) }}, 'nullForce');
         boidsControlsFolder.add({ pullIn:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, -2)) }}, 'pullIn');
-        boidsParametersFolder.add(Boid, 'visualRange', 0, 10);
-        boidsParametersFolder.add(Boid, 'minDistance', 0, 5);
-        boidsParametersFolder.add(Boid, 'centeringFactor', 0, 1);
-        boidsParametersFolder.add(Boid, 'avoidFactor', 0, 1);
-        boidsParametersFolder.add(Boid, 'alignFactor', 0, 1);
-        boidsParametersFolder.add(Boid, 'boundTurnFactor', 0, 1);
-        boidsParametersFolder.add(Boid, 'speedLimit', 0, 2);
+        boidsControlsFolder.add({ pushOut:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, 2)) }}, 'pushOut');
+        boidsBoundaryFolder.add(Boid, 'boundaryX', 0, 20, 1);
+        boidsBoundaryFolder.add(Boid, 'boundaryY', 0, 20, 1);
+        boidsBoundaryFolder.add(Boid, 'boundaryZ', 0, 20, 1);
+        boidsParametersFolder.add(Boid, 'visualRange', 0, 10).listen();
+        boidsParametersFolder.add(Boid, 'minDistance', 0, 5).listen();
+        boidsParametersFolder.add(Boid, 'centeringFactor', 0, 1).listen();
+        boidsParametersFolder.add(Boid, 'avoidFactor', 0, 1).listen();
+        boidsParametersFolder.add(Boid, 'alignFactor', 0, 1).listen();
+        boidsParametersFolder.add(Boid, 'boundTurnFactor', 0, 1).listen();
+        boidsParametersFolder.add(Boid, 'speedLimit', 0, 1).listen();
+        boidsParametersFolder.add({ defaultValues:function(){
+            Boid.visualRange = 2;
+            Boid.minDistance = 0.6;
+            Boid.centeringFactor = 0.008;
+            Boid.avoidFactor = 0.005;
+            Boid.alignFactor = 0.02;
+            Boid.boundTurnFactor = 0.01;
+            Boid.speedLimit = 0.1;
+        }}, 'defaultValues');
     },
 
     resize() {
