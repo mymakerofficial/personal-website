@@ -10,6 +10,7 @@ class Boid {
 
     constructor() {
         this.object = new THREE.Object3D()
+        this.velocity = Math.random() / 10;
         this.object.position.set(Math.random() * 10 - 5, Math.random() * 6 - 3, Math.random() * 6 - 3)
         this.object.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2)
 
@@ -21,7 +22,7 @@ class Boid {
         this.avoidCollision();
         this.align();
         this.keepInBounds();
-        this.object.translateY( 0.02 );
+        this.object.translateY( this.velocity );
     }
 
     keepInBounds(){
@@ -128,6 +129,7 @@ class Boid {
         let x = 0;
         let y = 0;
         let z = 0;
+        let v = 0;
         let count = 0;
 
         for(let i = 0; i < Boid.boids.length; i++){
@@ -141,11 +143,12 @@ class Boid {
             )
             // calculate the square root distance
             let sqrDistance = offset.x * offset.x + offset.y * offset.y + offset.z * offset.z
-            // if boid is inside visual range add to sum of rotation
+            // if boid is inside visual range add to sum of rotation / velocity
             if (sqrDistance < Boid.visualRange * Boid.visualRange) {
                 x += b.object.rotation.x;
                 y += b.object.rotation.y;
                 z += b.object.rotation.z;
+                v += b.velocity;
                 count += 1;
             }
         }
@@ -155,6 +158,8 @@ class Boid {
             x = x / count;
             y = y / count;
             z = z / count;
+            // calculate average velocity
+            v = v / count;
 
             // rotate to average
             this.object.rotation.set(
@@ -162,6 +167,9 @@ class Boid {
                 this.object.rotation.y + (y - this.object.rotation.y) * Boid.alignFactor,
                 this.object.rotation.z + (z - this.object.rotation.z) * Boid.alignFactor
             )
+
+            // adjust velocity
+            this.velocity += (v - this.velocity) * 0.02;
         }
     }
 }
