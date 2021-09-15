@@ -154,8 +154,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 100px;
-  border: 6px solid transparent;
+  border: 9px solid transparent;
   background: $colorText;
   background-clip: content-box;
 }
