@@ -27,14 +27,10 @@ export default {
 
         this.camera.position.setZ(10)
 
-        const material = new THREE.MeshStandardMaterial( {color: 0xfcfcfc, side: THREE.DoubleSide} );
-        const geometry = new THREE.ConeGeometry( 0.1, 0.2, 32 );
+        const material = new THREE.MeshNormalMaterial( {color: 0xfcfcfc, side: THREE.DoubleSide} );
+        //const geometry = new THREE.ConeGeometry( 0.1, 0.2, 32 );
+        const geometry = new THREE.IcosahedronGeometry(0.1)
 
-        this.camera.updateMatrix();
-        this.camera.updateMatrixWorld();
-        var frustum = new THREE.Frustum();
-        frustum.setFromProjectionMatrix(new THREE.Matrix4().multiplyMatrices(this.camera.projectionMatrix, this.camera.matrixWorldInverse));
-        Boid.boundaryFrustum = frustum;
 
         for(let i = 0 ; i < 500 ; i++){
             let mesh = new THREE.Mesh( geometry, material );
@@ -58,15 +54,9 @@ export default {
             obj.userData.boid.update()
 
             obj.position.set(
-                obj.userData.boid.object.position.x,
-                obj.userData.boid.object.position.y,
-                obj.userData.boid.object.position.z
-            )
-            obj.quaternion.set(
-                obj.userData.boid.object.quaternion.x,
-                obj.userData.boid.object.quaternion.y,
-                obj.userData.boid.object.quaternion.z,
-                obj.userData.boid.object.quaternion.w
+                obj.userData.boid.position.x,
+                obj.userData.boid.position.y,
+                obj.userData.boid.position.z
             )
         }
         //let end = new Date()
