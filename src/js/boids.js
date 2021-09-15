@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 class Boid {
     static boids = [];
-    static visualRange = 5;
+    static visualRange = 3;
     static minDistance = 0.8;
     static centeringFactor = 0.8;
     static avoidFactor = 0.02;
@@ -20,16 +20,38 @@ class Boid {
     update() {
         let inRange = this.getBoidsInRange();
         if(inRange.length > 0){
-            this.flyTowardsCenter(inRange);
-            this.avoidCollision(inRange);
-            this.align(inRange);
+            let r1 = this.flyTowardsCenter(inRange);
+            let r2 = this.avoidCollision(inRange);
+            let r3 = this.alignRotation(inRange)
+            let v = this.alignVelocity(inRange);
+
+            // adjust rotation
+            this.object.rotation.set(
+                this.object.rotation.x + r1.x + r2.x + r3.x,
+                this.object.rotation.y + r1.y + r2.y + r3.y,
+                this.object.rotation.z + r1.z + r2.z + r3.z
+            );
+
+            // adjust velocity
+            this.velocity += v;
+
             this.keepInBounds();
         }
         this.object.translateY( this.velocity );
     }
 
     getBoidsInRange() {
-        let list = []
+        let list = {
+            length: 0,
+            positionX: [],
+            positionY: [],
+            positionZ: [],
+            rotationX: [],
+            rotationY: [],
+            rotationZ: [],
+            velocity: [],
+            distance: [],
+        }
         for(let i = 0; i < Boid.boids.length; i++){
             let b = Boid.boids[i]
 
@@ -43,7 +65,16 @@ class Boid {
             let sqrDistance = offset.x * offset.x + offset.y * offset.y + offset.z * offset.z
             // if boid is inside visual range add to sum of positions
             if (sqrDistance < Boid.visualRange * Boid.visualRange) {
-                list.push(b);
+                list.positionX.push(b.object.position.x);
+                list.positionY.push(b.object.position.y);
+                list.positionZ.push(b.object.position.z);
+                list.rotationX.push(b.object.rotation.x);
+                list.rotationY.push(b.object.rotation.y);
+                list.rotationZ.push(b.object.rotation.z);
+                list.velocity.push(b.velocity);
+                list.distance.push(sqrDistance);
+
+                list.length++
             }
         }
         return list;
@@ -70,20 +101,10 @@ class Boid {
     }
 
     flyTowardsCenter(inRange) {
-        let x = 0;
-        let y = 0;
-        let z = 0;
-
-        for(let i = 0; i < inRange.length; i++){
-            x += inRange[i].object.position.x;
-            y += inRange[i].object.position.y;
-            z += inRange[i].object.position.z;
-        }
-
-        // calculate average position of boids in view
-        x /= inRange.length;
-        y /= inRange.length;
-        z /= inRange.length;
+        // calculate average position
+        let x = inRange.positionX.reduce((pv, cv) => pv + cv, 0) / inRange.length
+        let y = inRange.positionY.reduce((pv, cv) => pv + cv, 0) / inRange.length
+        let z = inRange.positionZ.reduce((pv, cv) => pv + cv, 0) / inRange.length
 
         // calculate direction vector for center of boids
         let moveDir = new THREE.Euler(
@@ -92,11 +113,11 @@ class Boid {
             this.object.position.z - z
         );
 
-        // rotate to center
-        this.object.rotation.set(
-            this.object.rotation.x + (moveDir.x - this.object.rotation.x) * Boid.centeringFactor,
-            this.object.rotation.y + (moveDir.y - this.object.rotation.y) * Boid.centeringFactor,
-            this.object.rotation.z + (moveDir.z - this.object.rotation.z) * Boid.centeringFactor
+        // return rotation adjustment
+        return new THREE.Euler(
+            (moveDir.x - this.object.rotation.x) * Boid.centeringFactor,
+            (moveDir.y - this.object.rotation.y) * Boid.centeringFactor,
+            (moveDir.z - this.object.rotation.z) * Boid.centeringFactor
         )
     }
 
@@ -106,61 +127,42 @@ class Boid {
         let z = 0;
 
         for(let i = 0; i < inRange.length; i++){
-            let b = inRange[i]
-
-            // deference between positions
-            let offset = new THREE.Vector3(
-                b.object.position.x - this.object.position.x,
-                b.object.position.y - this.object.position.y,
-                b.object.position.z - this.object.position.z
-            )
-            // calculate the square root distance
-            let sqrDistance = offset.x * offset.x + offset.y * offset.y + offset.z * offset.z
-            // if boid is to close add difference in position
-            if (sqrDistance < Boid.minDistance * Boid.minDistance) {
-                x += this.object.position.x - b.object.position.x;
-                y += this.object.position.y - b.object.position.y;
-                z += this.object.position.z - b.object.position.z;
+            if (inRange.distance[i] < Boid.minDistance * Boid.minDistance) {
+                x += this.object.position.x - inRange.positionX[i];
+                y += this.object.position.y - inRange.positionY[i];
+                z += this.object.position.z - inRange.positionZ[i];
             }
         }
 
-        // rotate away
-        this.object.rotation.set(
-            this.object.rotation.x + (x - this.object.rotation.x) * Boid.avoidFactor,
-            this.object.rotation.y + (y - this.object.rotation.y) * Boid.avoidFactor,
-            this.object.rotation.z + (z - this.object.rotation.z) * Boid.avoidFactor
+        // return rotation adjustment
+        return new THREE.Euler(
+            (x - this.object.rotation.x) * Boid.avoidFactor,
+            (y - this.object.rotation.y) * Boid.avoidFactor,
+            (z - this.object.rotation.z) * Boid.avoidFactor
         )
     }
 
-    align(inRange) {
-        let x = 0;
-        let y = 0;
-        let z = 0;
-        let v = 0;
-
-        for(let i = 0; i < inRange.length; i++){
-            x += inRange[i].object.rotation.x;
-            y += inRange[i].object.rotation.y;
-            z += inRange[i].object.rotation.z;
-            v += inRange[i].velocity;
-        }
-
+    alignRotation(inRange) {
         // calculate average rotation
-        x /= inRange.length;
-        y /= inRange.length;
-        z /= inRange.length;
-        // calculate average velocity
-        v /= inRange.length;
+        let x = inRange.rotationX.reduce((pv, cv) => pv + cv, 0) / inRange.length
+        let y = inRange.rotationY.reduce((pv, cv) => pv + cv, 0) / inRange.length
+        let z = inRange.rotationZ.reduce((pv, cv) => pv + cv, 0) / inRange.length
 
-        // rotate to average
-        this.object.rotation.set(
-            this.object.rotation.x + (x - this.object.rotation.x) * Boid.alignFactor,
-            this.object.rotation.y + (y - this.object.rotation.y) * Boid.alignFactor,
-            this.object.rotation.z + (z - this.object.rotation.z) * Boid.alignFactor
+
+        // return rotation adjustment
+        return new THREE.Euler(
+            (x - this.object.rotation.x) * Boid.alignFactor,
+            (y - this.object.rotation.y) * Boid.alignFactor,
+            (z - this.object.rotation.z) * Boid.alignFactor
         )
+    }
 
-        // adjust velocity
-        this.velocity += (v - this.velocity) * 0.02;
+    alignVelocity(inRange){
+        // calculate average velocity
+        let v = inRange.velocity.reduce((pv, cv) => pv + cv, 0) / inRange.length
+
+        // return velocity adjustment
+        return (v - this.velocity) * 0.02
     }
 }
 
