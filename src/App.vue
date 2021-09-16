@@ -15,7 +15,7 @@
       <h6><a href="https://github.com/mymakerofficial" target="_blank">GitHub<i class="mdi mdi-arrow-top-right"></i></a></h6>
       <h6><a href="https://my-maker.itch.io/" target="_blank">itch.io<i class="mdi mdi-arrow-top-right"></i></a></h6>
       <h6><a href="https://www.youtube.com/channel/UCXv_YqyPVOSNocCS8fmu8Hw" target="_blank">YouTube<i class="mdi mdi-arrow-top-right"></i></a></h6>
-      <h6><Tooltip tooltip="Please tell me why my stuff is always offline"><a href="http://status.maiker.de" target="_blank">Status Page<i class="mdi mdi-arrow-top-right"></i></a></Tooltip></h6>
+      <h6><Tooltip tooltip="Please tell me why my stuff is always offline" time="2500"><a href="http://status.maiker.de" target="_blank">Status Page<i class="mdi mdi-arrow-top-right"></i></a></Tooltip></h6>
       <br><br><br>
       <h2>Contact</h2>
       <h6><a>root[at]maiker.de</a></h6>
