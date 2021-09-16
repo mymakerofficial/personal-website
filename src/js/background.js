@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
+import Stats from 'stats.js'
 import {Boid} from "@/js/boids";
 
 export default {
@@ -15,6 +16,7 @@ export default {
     lastFrameStart: performance.now(),
 
     gui: new dat.GUI({name: 'Background'}),
+    stats: new Stats(),
 
     setup(element){
         this.element = element
@@ -22,41 +24,52 @@ export default {
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
 
-        this.renderer = new THREE.WebGLRenderer();
+        this.renderer = new THREE.WebGLRenderer(  { alpha: true } );
         this.renderer.antialias = true
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.element.appendChild( this.renderer.domElement );
 
-        this.scene.background = new THREE.Color( 0xfcfcfc );
-
         this.camera.position.setZ(10)
 
-        const material = new THREE.MeshNormalMaterial( {side: THREE.DoubleSide} );
-        const geometry = new THREE.IcosahedronGeometry(0.1)
+        this.material = new THREE.MeshNormalMaterial( {side: THREE.DoubleSide} );
+        this.geometry = new THREE.IcosahedronGeometry(0.1)
+
+        this.spawnBoids(500)
 
 
-        for(let i = 0 ; i < 500 ; i++){
-            let mesh = new THREE.Mesh( geometry, material );
-            mesh.userData.boid = new Boid();
-            this.objects.push(mesh)
-            this.scene.add(mesh)
-        }
+        // debug stuff
 
-
-        // dat.gui debug stuff
         this.gui.hide()
         document.debug = this.gui
 
+        let debugData = { showStats: false, spawnAmount: 500 }
+
+        let statsFolder = this.gui.addFolder('Stats');
+        statsFolder.add({ toggleStats:() => {
+            if(debugData.showStats){
+                this.stats.dom.remove()
+            }else{
+                document.body.appendChild( this.stats.dom );
+            }
+            debugData.showStats = !debugData.showStats
+        }}, 'toggleStats');
+
+
         let cameraFolder = this.gui.addFolder('Camera');
         cameraFolder.add(this.camera, 'fov', 10, 180, 5).onChange(() => {this.camera.updateProjectionMatrix();});
+
+
         let boidsFolder = this.gui.addFolder('Boids');
         let boidsControlsFolder = boidsFolder.addFolder('Controls');
+        let boidsSpawnFolder = boidsFolder.addFolder('Spawner');
         let boidsBoundaryFolder = boidsFolder.addFolder('Boundary');
         let boidsParametersFolder = boidsFolder.addFolder('Parameters');
         boidsControlsFolder.add({ reset:function(){ Boid.boids.forEach((b) => b.reset()) }}, 'reset');
         boidsControlsFolder.add({ nullForce:function(){ Boid.boids.forEach((b) => b.direction = new THREE.Vector3()) }}, 'nullForce');
         boidsControlsFolder.add({ pullIn:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, -2)) }}, 'pullIn');
         boidsControlsFolder.add({ pushOut:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, 2)) }}, 'pushOut');
+        boidsSpawnFolder.add(debugData, 'spawnAmount', 0, 2000, 10);
+        boidsSpawnFolder.add({ spawn:() => { this.spawnBoids(debugData.spawnAmount) }}, 'spawn');
         boidsBoundaryFolder.add(Boid, 'boundaryX', 0, 20, 1);
         boidsBoundaryFolder.add(Boid, 'boundaryY', 0, 20, 1);
         boidsBoundaryFolder.add(Boid, 'boundaryZ', 0, 20, 1);
@@ -85,6 +98,20 @@ export default {
         this.renderer.setSize( window.innerWidth, window.innerHeight );
     },
 
+    spawnBoids(amount) {
+        this.objects.forEach((obj) => this.scene.remove(obj))
+
+        this.objects = [];
+        Boid.boids = [];
+
+        for(let i = 0 ; i < amount ; i++){
+            let mesh = new THREE.Mesh( this.geometry, this.material );
+            mesh.userData.boid = new Boid();
+            this.objects.push(mesh)
+            this.scene.add(mesh)
+        }
+    },
+
     render(){
         requestAnimationFrame(() => {
             this.render();
@@ -92,6 +119,7 @@ export default {
 
         this.lastLoopTime = performance.now() - this.lastFrameStart;
         this.lastFrameStart = performance.now()
+        this.stats.begin()
 
         this.camera.position.setY((-window.pageYOffset / window.innerHeight) * 10)
         this.camera.position.setZ(10 - (window.pageYOffset / window.innerHeight) * 20)
@@ -109,6 +137,8 @@ export default {
 
             this.renderer.render( this.scene, this.camera );
         }
+
+        this.stats.end()
     }
 }
 
