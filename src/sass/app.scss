@@ -47,6 +47,13 @@ h1, h2, h3, h4, h5, h6 {
       margin: unset;
     }
   }
+
+  .textContainer h#{$name} {
+    font-size: $size;
+    font-weight: $weight;
+    font-family: $fontTitle;
+    margin: unset;
+  }
 }
 
 p {
@@ -77,6 +84,15 @@ label {
   padding: 4px 0;
   font-weight: 600;
   border-bottom: solid 2px $colorText;
+}
+
+blockquote {
+  margin: 24px;
+  border-left: solid 2px $colorText;
+}
+
+.textContainer {
+  margin-bottom: 42px;
 }
 
 // -- panel --
