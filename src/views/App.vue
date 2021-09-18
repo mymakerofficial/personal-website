@@ -1,6 +1,7 @@
 <template>
   <div>
     <div ref="backgroundCanvas" class="backgroundCanvas"></div>
+    <router-view></router-view> <!-- Add this somewhere in your app.vue and then create your actual homepage as a view -->
     <Panel>
       <h1>My_Maker</h1>
       <h6><i class="mdi mdi-arrow-right"></i> Programmer of dumb websites and games</h6>
