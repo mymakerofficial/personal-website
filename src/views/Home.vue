@@ -25,7 +25,6 @@
 
 <script>
 import Panel from "@/components/Panel";
-import axios from "axios";
 import ProjectPanel from "@/components/ProjectPanel";
 import background from "@/js/background";
 import Tooltip from "@/components/Tooltip";
@@ -36,36 +35,27 @@ export default {
 
   data() {
     return {
-      projects: {}
+      projects: this.$store.state.projects
     }
   },
 
   methods: {
     start(){
-      document.background = background;
-
-      background.setup(this.$refs.backgroundCanvas)
-
-      background.render()
+      this.$nextTick(() => {
+        background.setup(this.$refs.backgroundCanvas)
+        background.render()
+      })
     },
     resize() {
       background.resize()
     },
     debug() {
       document.debug.show()
-    },
-    loadData(){
-      axios.get(`/data/projects.json`).then(response => {
-        this.projects = response.data
-        this.start()
-      }).catch(error => {
-        console.log(error)
-      })
-    },
+    }
   },
 
   created() {
-    this.loadData();
+    this.start()
     window.addEventListener("resize", this.resize);
   },
 
