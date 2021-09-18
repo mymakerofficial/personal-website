@@ -1,9 +1,17 @@
+:root {
+  --colorBlack: #030303;
+  --colorWhite: #fcfcfc;
 
-$colorBlack: #030303;
-$colorWhite: #fcfcfc;
+  --colorText: var(--colorBlack);
+  --colorHeader: var(--colorBlack);
+  --colorLink: var(--colorBlack);
+  --colorBackground: var(--colorWhite);
+};
 
-$colorText: $colorBlack;
-$colorBackground: $colorWhite;
+$colorText: var(--colorText);
+$colorHeader: var(--ccolorHeader);
+$colorLink: var(--colorLink);
+$colorBackground: var(--colorBackground);
 
 $colorSecondary1: #525252;
 

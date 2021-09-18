@@ -65,6 +65,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "../sass/app";
+<style scoped>
+
 </style>

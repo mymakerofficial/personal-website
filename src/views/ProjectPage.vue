@@ -25,14 +25,32 @@ export default {
   data() {
     return {
       project: this.$store.getters["projects/getByName"](this.$route.params.name),
-      content: ""
+      content: "",
+      config: {}
     }
   },
 
   methods: {
     start() {
+
+    },
+    applyConfig() {
+      let style = ``
+      if(this.config.textColor !== null) style += `--colorText: ${this.config.textColor};`
+      if(this.config.headerColor !== null) style += `--colorHeader: ${this.config.headerColor};`
+      if(this.config.linkColor !== null) style += `--colorLink: ${this.config.linkColor};`
+      if(this.config.backgroundColor !== null) style += `--colorBackground: ${this.config.backgroundColor};`
+      document.body.style = style
+    },
+    loadData() {
       axios.get(`/data/project-pages/${this.project.name}.md`).then(response => {
         this.content = markdown(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+      axios.get(`/data/project-pages/${this.project.name}.json`).then(response => {
+        this.config = response.data
+        this.applyConfig()
       }).catch(error => {
         console.log(error)
       })
@@ -40,11 +58,7 @@ export default {
   },
 
   created() {
-    this.start()
+    this.loadData()
   }
 }
 </script>
-
-<style scoped>
-
-</style>
