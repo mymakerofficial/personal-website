@@ -19,6 +19,14 @@ const createStore = () => {
                     console.log(error)
                 })
             }
+        },
+        getters: {
+            getProject: (state) => (name) => {
+                return state.projects.find(project => project.name === name)
+            },
+            getProjectNames: (state) => {
+                return state.projects.map(p => p.name)
+            }
         }
     });
 }
