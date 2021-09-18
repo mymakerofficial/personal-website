@@ -25,6 +25,10 @@ body {
 
 // -- text --
 
+h1, h2, h3, h4, h5, h6 {
+  color: $colorHeader
+}
+
 @each $name, $size, $weight in $headingSizes {
   h#{$name} {
     font-size: $size;
@@ -43,6 +47,13 @@ body {
       margin: unset;
     }
   }
+
+  .textContainer h#{$name} {
+    font-size: $size;
+    font-weight: $weight;
+    font-family: $fontTitle;
+    margin: unset;
+  }
 }
 
 p {
@@ -60,7 +71,7 @@ p {
 }
 
 a {
-  color: $colorText;
+  color: $colorLink;
 }
 
 span {
@@ -73,6 +84,15 @@ label {
   padding: 4px 0;
   font-weight: 600;
   border-bottom: solid 2px $colorText;
+}
+
+blockquote {
+  margin: 24px;
+  border-left: solid 2px $colorText;
+}
+
+.textContainer {
+  margin-bottom: 42px;
 }
 
 // -- panel --
@@ -107,10 +127,10 @@ label {
 // -- buttons --
 
 button {
-  color: $colorText;
+  color: $colorLink;
   margin: 12px;
   padding: 6px 12px;
-  border: solid 2px $colorText;
+  border: solid 2px $colorLink;
   background: none;
   font-size: 1.1em;
   font-weight: 600;
@@ -118,7 +138,7 @@ button {
   &:hover {
     cursor: pointer;
     color: $colorBackground;
-    background: $colorText;
+    background: $colorLink;
   }
 }
 
