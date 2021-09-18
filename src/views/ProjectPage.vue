@@ -1,12 +1,12 @@
 <template>
   <div>
     <Panel>
-      <div v-html="this.content"></div>
       <div class="panelBody">
+        <div class="textContainer" v-html="this.content"></div>
+        <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
         <div class="smallSection">
           <ProjectDetails :project="project"></ProjectDetails>
         </div>
-        <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
       </div>
     </Panel>
   </div>
