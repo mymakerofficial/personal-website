@@ -8,12 +8,13 @@ const router = new VueRouter({
   history: true,
   mode: 'history',
   routes: [
-    { path: '/', name: 'app', component: app }
+    //{ path: '/', name: 'app', component: app }
   ]
 })
 
 new Vue({
   el: '#app',
+  render: h => h(App),
   router: router,
 });
 
