@@ -26,9 +26,15 @@ export default {
     }
   },
 
+  methods: {
+    start() {
+      this.readme = this.$store.getters["projects/readme/getHtml"](this.project.name)
+    }
+  },
+
   created() {
-    this.$store.dispatch("projects/readme/load", this.project.name).then((data) => {
-      this.readme = data.html;
+    this.$store.dispatch("projects/readme/load", this.project.name).then(() => {
+      this.start()
     });
   }
 }

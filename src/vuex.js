@@ -10,41 +10,40 @@ const readme = {
     mutations: {
         initialiseStore(state) {
             if(localStorage && localStorage.getItem('readmes') != null){
-                JSON.parse(localStorage.getItem('readmes')).forEach((d) => {state[d.key] = {markdown: d.readme, html: markdown(d.readme)}})
+                JSON.parse(localStorage.getItem('readmes')).forEach((d) => {state[d.key] = d.readme})
             }
         },
         update(state , payload) {
-            state[payload.key] = {markdown: payload.readme, html: markdown(payload.readme)}
+            state[payload.key] = payload.readme
 
             let list = []
 
             Object.keys(state).forEach((key) => {
-                list.push({"key": key, "readme": state[key].markdown})
+                list.push({"key": key, "readme": state[key]})
             })
 
             localStorage.setItem('readmes', JSON.stringify(list));
         }
     },
     actions: {
-        load({ commit, state }, name){
+        load({ commit }, name){
             return new Promise((resolve, reject) => {
-                // check if readme is already loaded
-                if(state[name]) {
-                    resolve(state[name])
-                }else {
-                    // load readme if not already loaded
-                    axios.get(`/data/readme/${name}.md`).then(response => {
-                        commit('update', {key: name, readme: response.data})
-
-                        resolve(response.data)
-                    }).catch(error => {
-                        console.log(error)
-                        reject(null)
-                    })
-                }
+                axios.get(`/data/readme/${name}.md`).then(response => {
+                    commit('update', {key: name, readme: response.data})
+                    resolve(response.data)
+                }).catch(error => {
+                    console.log(error)
+                    reject(null)
+                })
             })
         }
     },
+    getters: {
+        getHtml: (state) => (name) => {
+            console.log(name)
+            return markdown(state[name])
+        }
+    }
 }
 
 const projects = {
