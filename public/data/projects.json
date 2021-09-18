@@ -4,6 +4,7 @@
     "displayName": "what's the day?",
     "summary": "A website that maybe tells you what day it is.",
     "description": "I wasted way to much time programming this. Please dont look at the time it took to make this.",
+    "projectPage": true,
     "url": "https://day.maiker.de",
     "git": "mymakerofficial/what-day-is-it",
     "buttons": [
@@ -27,6 +28,7 @@
     "displayName": "Tank Trouble",
     "summary": "A game with only one item-slot and life",
     "description": "Destroy all the enemy tanks without getting hit. Juggle between power-ups and try to reach the highest level. Its pretty self-explanatory actually..",
+    "projectPage": true,
     "url": "https://nic4901.itch.io/tank-trouble",
     "git": null,
     "buttons": [
@@ -49,6 +51,7 @@
     "displayName": "counting",
     "summary": "Its a clicker but like everybody has the same counter.",
     "description": "I had this idea a long time ago.. I dont know if it was a good one tho",
+    "projectPage": true,
     "url": "https://counting.cf",
     "git": null,
     "buttons": [
@@ -71,6 +74,7 @@
     "displayName": "school-games-launcher",
     "summary": "A simple games launcher made for school",
     "description": "A game launcher that can start any exe, website or steam game. You can load steam game information, save play times, control users and other cool things.",
+    "projectPage": false,
     "url": "https://github.com/mymakerofficial/school-games-launcher",
     "git": "mymakerofficial/school-games-launcher",
     "buttons": [
@@ -94,6 +98,7 @@
     "displayName": "towerdefense-game",
     "summary": "A tower defense game project made for school",
     "description": null,
+    "projectPage": false,
     "url": null,
     "git": null,
     "buttons": [],
