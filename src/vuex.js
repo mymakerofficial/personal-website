@@ -57,12 +57,22 @@ const projects = {
             if(localStorage && localStorage.getItem('projects') != null){
                 state.list = JSON.parse(localStorage.getItem('projects'))
             }
-
-            axios.get(`/data/projects.json`).then(response => {
-                state.list = response.data
-                localStorage.setItem('projects', JSON.stringify(response.data));
-            }).catch(error => {
-                console.log(error)
+        },
+        updateProjects(state, payload){
+            state.list = payload
+            localStorage.setItem('projects', JSON.stringify(payload));
+        }
+    },
+    actions: {
+        load({commit}) {
+            return new Promise((resolve, reject) => {
+                axios.get(`/data/projects.json`).then(response => {
+                    commit('updateProjects', response.data)
+                    resolve(response.data)
+                }).catch(error => {
+                    console.log(error)
+                    reject()
+                })
             })
         }
     },
