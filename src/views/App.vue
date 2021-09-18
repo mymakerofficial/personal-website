@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <div ref="backgroundCanvas" class="backgroundCanvas"></div>
     <Panel>
       <h1>My_Maker</h1>
@@ -76,5 +76,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./sass/app.scss";
+@import "../sass/app";
 </style>
