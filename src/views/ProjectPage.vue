@@ -1,7 +1,7 @@
 <template>
   <div>
     <Panel>
-      <div v-html="this.readme"></div>
+      <div v-html="this.content"></div>
       <div class="panelBody">
         <div class="smallSection">
           <ProjectDetails :project="project"></ProjectDetails>
@@ -15,6 +15,9 @@
 <script>
 import Panel from "@/components/Panel";
 import ProjectDetails from "@/components/ProjectDetails";
+import axios from "axios";
+import {markdown} from "@/js/markdown";
+
 export default {
   name: "ProjectPage",
   components: {ProjectDetails, Panel},
@@ -22,20 +25,22 @@ export default {
   data() {
     return {
       project: this.$store.getters["projects/getByName"](this.$route.params.name),
-      readme: ""
+      content: ""
     }
   },
 
   methods: {
     start() {
-      this.readme = this.$store.getters["projects/readme/getHtml"](this.project.name)
+      axios.get(`/data/project-pages/${this.project.name}.md`).then(response => {
+        this.content = markdown(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   },
 
   created() {
-    this.$store.dispatch("projects/readme/load", this.project.name).then(() => {
-      this.start()
-    });
+    this.start()
   }
 }
 </script>
