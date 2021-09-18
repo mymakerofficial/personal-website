@@ -35,7 +35,7 @@ export default {
 
   data() {
     return {
-      projects: this.$store.state.projects
+      projects: this.$store.state.projects.list
     }
   },
 

@@ -7,6 +7,10 @@
 <script>
 export default {
   name: "App",
+
+  beforeCreate() {
+    this.$store.dispatch("initialiseStore")
+  }
 }
 </script>
 
