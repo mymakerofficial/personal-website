@@ -15,9 +15,6 @@ export default {
     lastLoopTime: 16,
     lastFrameStart: performance.now(),
 
-    gui: new dat.GUI({name: 'Background'}),
-    stats: new Stats(),
-
     setup(element){
         this.element = element
 
@@ -38,6 +35,9 @@ export default {
 
 
         // debug stuff
+
+        this.gui = new dat.GUI({name: 'Background'})
+        this.stats = new Stats()
 
         this.gui.hide()
         document.debug = this.gui

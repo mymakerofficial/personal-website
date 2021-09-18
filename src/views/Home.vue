@@ -31,7 +31,7 @@ import background from "@/js/background";
 import Tooltip from "@/components/Tooltip";
 
 export default {
-  name: 'App',
+  name: 'Home',
   components: {Tooltip, ProjectPanel, Panel},
 
   data() {
