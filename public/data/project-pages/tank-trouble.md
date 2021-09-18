@@ -10,7 +10,7 @@ Destroy all the enemy tanks without getting hit. Juggle between power-ups and tr
 
 Made for the **GMTK Game Jam 2019**
 
-Made with love (and time pressure) by NIC4901 (Nick Stelke) and My_Maker
+Made with love (and time pressure) by NIC4901 and My_Maker
 
 &nbsp;
 
