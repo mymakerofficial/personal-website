@@ -1,7 +1,7 @@
 {
   "title": "what's the day?",
-  "backgroundColor": "#f2754e",
-  "textColor": "#fcfcfc",
-  "linkColor": "#fcfcfc",
-  "headerColor": "#fcfcfc"
+  "backgroundColor": "#fcfcfc",
+  "textColor": "#030303",
+  "linkColor": "#ff7d54",
+  "headerColor": "#ff7d54"
 }
