@@ -59,6 +59,11 @@ export default {
 
   created() {
     this.loadData()
-  }
+  },
+
+  beforeRouteLeave(to, from, next) {
+    document.body.style = null
+    next()
+  },
 }
 </script>
