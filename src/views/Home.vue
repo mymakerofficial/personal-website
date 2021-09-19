@@ -11,7 +11,7 @@
       </div>
       <Tooltip tooltip="click me!" time="1000"><span class="hiddenButton" @click="debug">[debug]</span></Tooltip>
     </Panel>
-    <ProjectPanel style="background: var(--colorBackground)" v-for="project in projects" :key="project.name" :project="project"></ProjectPanel>
+    <ProjectPanel v-for="project in projects" :key="project.name" :project="project"></ProjectPanel>
     <Panel>
       <h2>Links</h2>
       <h6><a href="https://github.com/mymakerofficial" target="_blank">GitHub<i class="mdi mdi-arrow-top-right"></i></a></h6>

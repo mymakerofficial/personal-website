@@ -121,9 +121,10 @@ export default {
         this.lastFrameStart = performance.now()
         this.stats.begin()
 
-        this.camera.position.setY((-window.pageYOffset / window.innerHeight) * 5)
+        this.camera.position.setY((-window.pageYOffset / window.innerHeight) * 10)
+        this.camera.position.setZ(10 - (window.pageYOffset / window.innerHeight) * 20)
 
-        if(window.pageYOffset < window.innerHeight * 10){
+        if(window.pageYOffset < window.innerHeight){
             for(let obj of this.objects){
                 obj.userData.boid.update(this.lastLoopTime > 100 ? 16 : this.lastLoopTime)
 
