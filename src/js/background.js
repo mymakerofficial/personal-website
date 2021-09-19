@@ -70,9 +70,9 @@ export default {
         boidsControlsFolder.add({ pushOut:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, 2)) }}, 'pushOut');
         boidsSpawnFolder.add(debugData, 'spawnAmount', 0, 2000, 10);
         boidsSpawnFolder.add({ spawn:() => { this.spawnBoids(debugData.spawnAmount) }}, 'spawn');
-        boidsBoundaryFolder.add(Boid, 'boundaryX', 0, 20, 1);
-        boidsBoundaryFolder.add(Boid, 'boundaryY', 0, 20, 1);
-        boidsBoundaryFolder.add(Boid, 'boundaryZ', 0, 20, 1);
+        boidsBoundaryFolder.add(Boid, 'boundaryX', 0, 20, 1).listen();
+        boidsBoundaryFolder.add(Boid, 'boundaryY', 0, 20, 1).listen();
+        boidsBoundaryFolder.add(Boid, 'boundaryZ', 0, 20, 1).listen();
         boidsParametersFolder.add(Boid, 'visualRange', 0, 10).listen();
         boidsParametersFolder.add(Boid, 'minDistance', 0, 5).listen();
         boidsParametersFolder.add(Boid, 'centeringFactor', 0, 1).listen();
@@ -121,10 +121,9 @@ export default {
         this.lastFrameStart = performance.now()
         this.stats.begin()
 
-        this.camera.position.setY((-window.pageYOffset / window.innerHeight) * 10)
-        this.camera.position.setZ(10 - (window.pageYOffset / window.innerHeight) * 20)
+        this.camera.position.setY((-window.pageYOffset / window.innerHeight) * 5)
 
-        if(window.pageYOffset < window.innerHeight){
+        if(window.pageYOffset < window.innerHeight * 10){
             for(let obj of this.objects){
                 obj.userData.boid.update(this.lastLoopTime > 100 ? 16 : this.lastLoopTime)
 
