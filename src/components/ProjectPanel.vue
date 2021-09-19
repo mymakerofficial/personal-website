@@ -7,7 +7,7 @@
       <p class="primary">{{project.summary}}</p>
       <p class="secondary">{{project.description}}</p>
       <div class="smallSection">
-        <ProjectDetails :project="project"></ProjectDetails>
+        <ProjectDetails :project="project" :minimal="true"></ProjectDetails>
       </div>
     </div>
     <div class="panelFooter">

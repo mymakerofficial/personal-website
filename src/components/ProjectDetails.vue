@@ -4,15 +4,15 @@
       <label>tags</label>
       <div><span class="listItem" v-for="tag in project.tags" :key="tag">{{tag.toLowerCase()}}</span></div>
     </div>
-    <div v-if="project.timespan.year">
+    <div v-if="project.timespan.year && !this.minimal">
       <label>development</label>
-      <div><span class="listItem"><Tooltip :tooltip="this.fullTimespan">{{this.timespan}}</Tooltip></span><span class="listItem">({{project.developmentStatus}})</span></div>
+      <div><span class="listItem"><Tooltip :tooltip="this.fullTimespan">{{this.timespan}}</Tooltip></span></div>
     </div>
     <div v-if="project.collaborators !== null && project.collaborators.length > 0">
       <label>collaborators</label>
       <div><span class="listItem" v-for="collaborator in project.collaborators" :key="collaborator.name">{{collaborator.name}}</span></div>
     </div>
-    <div v-if="project.positions !== null && project.positions.length > 0">
+    <div v-if="project.positions !== null && project.positions.length > 0 && !this.minimal">
       <label>position</label>
       <div><span class="listItem" v-for="position in project.positions" :key="position">{{position.toLowerCase()}}</span></div>
     </div>
@@ -27,7 +27,7 @@ export default {
 
   components: {Tooltip},
 
-  props: ["project"],
+  props: ["project","minimal"],
 
   computed: {
     startDate: function () {// convert unixtimestamp to date
