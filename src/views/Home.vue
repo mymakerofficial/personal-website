@@ -2,11 +2,13 @@
   <div>
     <div ref="backgroundCanvas" class="backgroundCanvas"></div>
     <Panel>
-      <h1>My_Maker</h1>
-      <h6><i class="mdi mdi-arrow-right"></i> Programmer of dumb websites and games</h6>
-      <h6><i class="mdi mdi-arrow-right"></i> Sometimes designer</h6>
-      <h6><i class="mdi mdi-arrow-right"></i> Professional VR enjoyer</h6>
-      <h6><i class="mdi mdi-arrow-right"></i> Also IT student</h6>
+      <div ref="head">
+        <h1>My_Maker</h1>
+        <h6><i class="mdi mdi-arrow-right"></i> Programmer of dumb websites and games</h6>
+        <h6><i class="mdi mdi-arrow-right"></i> Sometimes designer</h6>
+        <h6><i class="mdi mdi-arrow-right"></i> Professional VR enjoyer</h6>
+        <h6><i class="mdi mdi-arrow-right"></i> Also IT student</h6>
+      </div>
       <Tooltip tooltip="click me!" time="1000"><span class="hiddenButton" @click="debug">[debug]</span></Tooltip>
     </Panel>
     <ProjectPanel v-for="project in projects" :key="project.name" :project="project"></ProjectPanel>
@@ -28,6 +30,7 @@ import Panel from "@/components/Panel";
 import ProjectPanel from "@/components/ProjectPanel";
 import background from "@/js/background";
 import Tooltip from "@/components/Tooltip";
+import anime from "animejs";
 
 export default {
   name: 'Home',
@@ -44,6 +47,22 @@ export default {
       this.$nextTick(() => {
         background.setup(this.$refs.backgroundCanvas)
         background.render()
+        this.animate()
+      })
+    },
+    animate() {
+      anime.set(this.$refs.head.children,{
+        opacity: 0
+      })
+
+      anime({
+        targets: this.$refs.head.children,
+        translateX: [-100, 0],
+        opacity: [0, 1],
+        duration: 800,
+        delay: anime.stagger(60, {start: 1000}),
+        easing: 'easeOutElastic(0.1, 0.6)',
+        autostart: true,
       })
     },
     resize() {
