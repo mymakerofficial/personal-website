@@ -10,9 +10,17 @@ const routes = [
         component: Home
     },
     {
-        path: '/project/:name',
+        path: '/projects/:name',
         name: 'project',
         component: ProjectPage
+    },
+    {
+        path: '/p/:name',
+        redirect: { name: 'project' }
+    },
+    {
+        path: '/project/:name',
+        redirect: { name: 'project' }
     },
     {
         path: '*',
