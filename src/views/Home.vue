@@ -45,6 +45,7 @@ export default {
   methods: {
     start(){
       this.$nextTick(() => {
+        window.background = background
         background.setup(this.$refs.backgroundCanvas)
         background.render()
         this.animate()
@@ -79,6 +80,7 @@ export default {
   },
 
   destroyed() {
+    background.dispose()
     window.removeEventListener("resize", this.resize);
   }
 }

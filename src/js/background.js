@@ -15,8 +15,14 @@ export default {
     lastLoopTime: 16,
     lastFrameStart: performance.now(),
 
+    stats: new Stats(),
+
+    disposed: false,
+
     setup(element){
         this.element = element
+
+        this.disposed = false
 
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
@@ -37,7 +43,6 @@ export default {
         // debug stuff
 
         this.gui = new dat.GUI({name: 'Background'})
-        this.stats = new Stats()
 
         this.gui.hide()
         document.debug = this.gui
@@ -99,7 +104,7 @@ export default {
     },
 
     spawnBoids(amount) {
-        this.objects.forEach((obj) => this.scene.remove(obj))
+        if(this.object !== null)this.objects.forEach((obj) => this.scene.remove(obj))
 
         this.objects = [];
         Boid.boids = [];
@@ -112,33 +117,48 @@ export default {
         }
     },
 
+    dispose() {
+        this.disposed = true
+
+        Boid.boids = []
+        this.objects = []
+
+        this.element.removeChild(this.renderer.domElement)
+        this.material.dispose()
+        this.geometry.dispose()
+
+        this.gui.destroy()
+    },
+
     render(){
-        requestAnimationFrame(() => {
-            this.render();
-        });
+        if(!this.disposed) {
+            requestAnimationFrame(() => {
+                this.render();
+            });
 
-        this.lastLoopTime = performance.now() - this.lastFrameStart;
-        this.lastFrameStart = performance.now()
-        this.stats.begin()
+            this.lastLoopTime = performance.now() - this.lastFrameStart;
+            this.lastFrameStart = performance.now()
+            this.stats.begin()
 
-        this.camera.position.setY((-window.pageYOffset / window.innerHeight) * 10)
-        this.camera.position.setZ(10 - (window.pageYOffset / window.innerHeight) * 20)
+            this.camera.position.setY((-window.pageYOffset / window.innerHeight) * 10)
+            this.camera.position.setZ(10 - (window.pageYOffset / window.innerHeight) * 20)
 
-        if(window.pageYOffset < window.innerHeight){
-            for(let obj of this.objects){
-                obj.userData.boid.update(this.lastLoopTime > 100 ? 16 : this.lastLoopTime)
+            if (window.pageYOffset < window.innerHeight) {
+                for (let obj of this.objects) {
+                    obj.userData.boid.update(this.lastLoopTime > 100 ? 16 : this.lastLoopTime)
 
-                obj.position.set(
-                    obj.userData.boid.position.x,
-                    obj.userData.boid.position.y,
-                    obj.userData.boid.position.z
-                )
+                    obj.position.set(
+                        obj.userData.boid.position.x,
+                        obj.userData.boid.position.y,
+                        obj.userData.boid.position.z
+                    )
+                }
+
+                this.renderer.render(this.scene, this.camera);
             }
 
-            this.renderer.render( this.scene, this.camera );
+            this.stats.end()
         }
-
-        this.stats.end()
     }
 }
 
