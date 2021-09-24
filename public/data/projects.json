@@ -70,6 +70,27 @@
     }
   },
   {
+    "name": "boids",
+    "displayName": "boids",
+    "summary": "Fast boids algorithm written in java script for the background of my website.",
+    "description": null,
+    "projectPage": false,
+    "url": "/boids",
+    "git": null,
+    "buttons": [{"text": "open", "url": "/boids"}],
+    "thumbnail": null,
+    "icon": null,
+    "tags": ["algorithm","js","threejs","3D","boids"],
+    "developmentStatus": "finished",
+    "collaborators": [],
+    "positions": null,
+    "timespan": {
+      "started": null,
+      "finished": null,
+      "year": "2021"
+    }
+  },
+  {
     "name": "school-games-launcher",
     "displayName": "school-games-launcher",
     "summary": "A simple games launcher made for school",
