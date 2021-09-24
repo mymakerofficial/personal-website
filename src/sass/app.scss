@@ -200,3 +200,26 @@ button {
   background: transparent;
   color: transparent;
 }
+
+.backgroundStats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  font-family: $fontCode;
+  opacity: 0.2;
+
+  transition-duration: 200ms;
+
+  margin: 64px;
+
+  @media screen and (max-width: $screenSmall) {
+    &{
+      margin: 24px;
+    }
+  }
+
+  &.hide{
+    opacity: 0
+  }
+}

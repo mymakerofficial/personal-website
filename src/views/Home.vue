@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="backgroundCanvas" class="backgroundCanvas"></div>
+    <BoidsBackground></BoidsBackground>
     <Panel>
       <div ref="head">
         <h1>My_Maker</h1>
@@ -28,13 +28,13 @@
 <script>
 import Panel from "@/components/Panel";
 import ProjectPanel from "@/components/ProjectPanel";
-import background from "@/js/background";
 import Tooltip from "@/components/Tooltip";
 import anime from "animejs";
+import BoidsBackground from "@/components/BoidsBackground";
 
 export default {
   name: 'Home',
-  components: {Tooltip, ProjectPanel, Panel},
+  components: {BoidsBackground, Tooltip, ProjectPanel, Panel},
 
   data() {
     return {
@@ -45,9 +45,6 @@ export default {
   methods: {
     start(){
       this.$nextTick(() => {
-        window.background = background
-        background.setup(this.$refs.backgroundCanvas)
-        background.render()
         this.animate()
       })
     },
@@ -66,9 +63,6 @@ export default {
         autostart: true,
       })
     },
-    resize() {
-      background.resize()
-    },
     debug() {
       document.debug.show()
     }
@@ -76,13 +70,8 @@ export default {
 
   created() {
     this.start()
-    window.addEventListener("resize", this.resize);
-  },
 
-  destroyed() {
-    background.dispose()
-    window.removeEventListener("resize", this.resize);
-  }
+  },
 }
 </script>
 
