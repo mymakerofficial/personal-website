@@ -46,7 +46,15 @@ export default {
         this.gui.hide()
         document.debug = this.gui
 
-        let debugData = { showStats: false, spawnAmount: 500 }
+        let debugData = {
+            showStats: false,
+            spawnAmount: 500,
+            benchmark: {
+                steps: 100,
+                maxAmount: 1000,
+                threshold: 13
+            }
+        }
 
         let statsFolder = this.gui.addFolder('Stats');
         statsFolder.add({ toggleStats:() => {
@@ -65,19 +73,28 @@ export default {
 
         let boidsFolder = this.gui.addFolder('Boids');
         let boidsControlsFolder = boidsFolder.addFolder('Controls');
+        let boidsBenchmarkFolder = boidsFolder.addFolder('Benchmark');
         let boidsSpawnFolder = boidsFolder.addFolder('Spawner');
         let boidsBoundaryFolder = boidsFolder.addFolder('Boundary');
         let boidsParametersFolder = boidsFolder.addFolder('Parameters');
+
         boidsControlsFolder.add({ reset:function(){ Boid.boids.forEach((b) => b.reset()) }}, 'reset');
         boidsControlsFolder.add({ nullForce:function(){ Boid.boids.forEach((b) => b.direction = new THREE.Vector3()) }}, 'nullForce');
         boidsControlsFolder.add({ pullIn:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, -2)) }}, 'pullIn');
         boidsControlsFolder.add({ pushOut:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, 2)) }}, 'pushOut');
-        boidsControlsFolder.add({ benchmark:() => { this.benchmark() }}, 'benchmark');
+
+        boidsBenchmarkFolder.add(debugData.benchmark, 'steps', 5, 1000, 5);
+        boidsBenchmarkFolder.add(debugData.benchmark, 'maxAmount', 100, 5000, 100);
+        boidsBenchmarkFolder.add(debugData.benchmark, 'threshold', 1, 200, 1);
+        boidsBenchmarkFolder.add({ benchmark:() => { this.benchmark(debugData.benchmark.steps, debugData.benchmark.maxAmount, debugData.benchmark.threshold) }}, 'benchmark');
+
         boidsSpawnFolder.add(debugData, 'spawnAmount', 0, 2000, 10);
         boidsSpawnFolder.add({ spawn:() => { this.spawnBoids(debugData.spawnAmount) }}, 'spawn');
+
         boidsBoundaryFolder.add(Boid, 'boundaryX', 0, 20, 1).listen();
         boidsBoundaryFolder.add(Boid, 'boundaryY', 0, 20, 1).listen();
         boidsBoundaryFolder.add(Boid, 'boundaryZ', 0, 20, 1).listen();
+
         boidsParametersFolder.add(Boid, 'visualRange', 0, 10).listen();
         boidsParametersFolder.add(Boid, 'minDistance', 0, 5).listen();
         boidsParametersFolder.add(Boid, 'centeringFactor', 0, 0.1).listen();
@@ -88,6 +105,7 @@ export default {
         boidsParametersFolder.add(Boid, 'groupAvoidFactor', 0, 0.1).listen();
         boidsParametersFolder.add(Boid, 'groupAmount', 1, 5).listen();
         boidsParametersFolder.add(Boid, 'speedLimit', 0, 1).listen();
+
         boidsParametersFolder.add({ defaultValues:function(){
             Boid.visualRange = 2.4;
             Boid.minDistance = 0.6;
@@ -109,7 +127,7 @@ export default {
         this.renderer.setSize( window.innerWidth, window.innerHeight );
     },
 
-    benchmark() {
+    benchmark(steps = 100, maxAmount = 1000, threshold = 13) {
         let oldBoundary = {
             x: Boid.boundaryX,
             y: Boid.boundaryY,
@@ -121,9 +139,8 @@ export default {
         Boid.boundaryY = 0.1;
         Boid.boundaryZ = 0.1;
 
-        let maxAmount = 1500;
         let i = 1;
-        let steps = 100;
+        let log = []
 
         return new Promise((resolve) => {
 
@@ -135,18 +152,11 @@ export default {
                     Boid.boids.forEach((b) => b.position = new Vector3())
                     // wait
                     setTimeout(() => {
+                        log.push({simulationTime: this.lastSimulationTime, amount: i * steps})
+
                         // if simulation took to long return current amount
-                        if(this.lastSimulationTime > 13){
-                            // reset boundarys
-                            Boid.boundaryX = oldBoundary.x;
-                            Boid.boundaryY = oldBoundary.y;
-                            Boid.boundaryZ = oldBoundary.z;
-
-                            this.spawnBoids((i - 1) * steps)
-
-                            // return max amount
-                            resolve((i - 1) * steps)
-
+                        if(this.lastSimulationTime > threshold){
+                            returnResult((i - 1) * steps)
                             return
                         }
                         // spawn new amount
@@ -154,8 +164,24 @@ export default {
                         testAmount(i)
                     }, 100)
                 }else {
-                    return i * steps
+                    returnResult((i - 1) * steps)
+                    return
                 }
+            }
+
+            let returnResult = (amount) => {
+                // reset boundarys
+                Boid.boundaryX = oldBoundary.x;
+                Boid.boundaryY = oldBoundary.y;
+                Boid.boundaryZ = oldBoundary.z;
+
+                this.spawnBoids(amount)
+
+                console.log("%cBenchmark Result", "color:white; font-size:24px" );
+                console.table(log)
+
+                // return max amount
+                resolve(amount)
             }
 
 
