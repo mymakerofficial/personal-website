@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
 import Stats from 'stats.js'
-import {Boid} from "@/js/boids";
+import {Boid} from "@/js/multi-group-boids";
 
 export default {
     element: null,
@@ -14,6 +14,7 @@ export default {
 
     lastLoopTime: 16,
     lastFrameStart: performance.now(),
+    lastSimulationTime: 0,
 
     stats: new Stats(),
 
@@ -37,8 +38,7 @@ export default {
         this.material = new THREE.MeshNormalMaterial( {side: THREE.DoubleSide} );
         this.geometry = new THREE.IcosahedronGeometry(0.1)
 
-        this.spawnBoids(500)
-
+        this.spawnBoids(700)
 
         // debug stuff
 
@@ -144,6 +144,8 @@ export default {
             this.camera.position.setZ(10 - (window.pageYOffset / window.innerHeight) * 20)
 
             if (window.pageYOffset < window.innerHeight) {
+                let start = performance.now()
+
                 for (let obj of this.objects) {
                     obj.userData.boid.update(this.lastLoopTime > 100 ? 16 : this.lastLoopTime)
 
@@ -154,11 +156,19 @@ export default {
                     )
                 }
 
+                let end = performance.now()
+
+                this.lastSimulationTime = end - start
+
                 this.renderer.render(this.scene, this.camera);
             }
 
             this.stats.end()
         }
-    }
+    },
+
+    get boidsAmount() {return Boid.boids.length},
+
+    get fps() {return (1000/this.lastLoopTime).toFixed(1)}
 }
 
