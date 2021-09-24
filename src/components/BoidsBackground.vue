@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div ref="backgroundCanvas" class="backgroundCanvas"></div>
-    <span class="backgroundStats" :class="{hide: !this.statsVisible}">{{amount}} boid instances | {{time.toFixed(1)}}ms simulation time | {{triangles}} triangles | {{fps}}fps</span>
+    <div v-show="!benchmarking" ref="backgroundCanvas" class="backgroundCanvas"></div>
+    <span v-show="benchmarking" class="backgroundStats">testing your system...</span>
+    <span v-show="!benchmarking" class="backgroundStats" :class="{hide: !this.statsVisible}">{{amount}} boid instances | {{time.toFixed(1)}}ms simulation time | {{triangles}} triangles | {{fps}}fps</span>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ export default {
       time: 0,
       fps: 0,
       triangles: 0,
+      benchmarking: false,
       statsVisible: true
     }
   },
@@ -27,6 +29,11 @@ export default {
       this.$nextTick(() => {
         background.setup(this.$refs.backgroundCanvas)
         background.render()
+
+        this.benchmarking = true;
+        background.benchmark().then(() => {
+          this.benchmarking = false;
+        });
       })
 
       setInterval(() => {

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import * as dat from 'dat.gui';
 import Stats from 'stats.js'
 import {Boid} from "@/js/multi-group-boids";
+import {Vector3} from "three";
 
 export default {
     element: null,
@@ -38,8 +39,6 @@ export default {
         this.material = new THREE.MeshNormalMaterial( {side: THREE.DoubleSide} );
         this.geometry = new THREE.IcosahedronGeometry(0.1)
 
-        this.spawnBoids(700)
-
         // debug stuff
 
         this.gui = new dat.GUI({name: 'Background'})
@@ -73,6 +72,7 @@ export default {
         boidsControlsFolder.add({ nullForce:function(){ Boid.boids.forEach((b) => b.direction = new THREE.Vector3()) }}, 'nullForce');
         boidsControlsFolder.add({ pullIn:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, -2)) }}, 'pullIn');
         boidsControlsFolder.add({ pushOut:function(){ Boid.boids.forEach((b) => b.direction.addScaledVector(b.position, 2)) }}, 'pushOut');
+        boidsControlsFolder.add({ benchmark:() => { this.benchmark() }}, 'benchmark');
         boidsSpawnFolder.add(debugData, 'spawnAmount', 0, 2000, 10);
         boidsSpawnFolder.add({ spawn:() => { this.spawnBoids(debugData.spawnAmount) }}, 'spawn');
         boidsBoundaryFolder.add(Boid, 'boundaryX', 0, 20, 1).listen();
@@ -80,19 +80,25 @@ export default {
         boidsBoundaryFolder.add(Boid, 'boundaryZ', 0, 20, 1).listen();
         boidsParametersFolder.add(Boid, 'visualRange', 0, 10).listen();
         boidsParametersFolder.add(Boid, 'minDistance', 0, 5).listen();
-        boidsParametersFolder.add(Boid, 'centeringFactor', 0, 1).listen();
-        boidsParametersFolder.add(Boid, 'avoidFactor', 0, 1).listen();
-        boidsParametersFolder.add(Boid, 'alignFactor', 0, 1).listen();
-        boidsParametersFolder.add(Boid, 'boundTurnFactor', 0, 1).listen();
+        boidsParametersFolder.add(Boid, 'centeringFactor', 0, 0.1).listen();
+        boidsParametersFolder.add(Boid, 'avoidFactor', 0, 0.1).listen();
+        boidsParametersFolder.add(Boid, 'alignFactor', 0, 0.1).listen();
+        boidsParametersFolder.add(Boid, 'boundTurnFactor', 0, 0.1).listen();
+        boidsParametersFolder.add(Boid, 'groupVisualRange', 0, 10).listen();
+        boidsParametersFolder.add(Boid, 'groupAvoidFactor', 0, 0.1).listen();
+        boidsParametersFolder.add(Boid, 'groupAmount', 1, 5).listen();
         boidsParametersFolder.add(Boid, 'speedLimit', 0, 1).listen();
         boidsParametersFolder.add({ defaultValues:function(){
-            Boid.visualRange = 2;
+            Boid.visualRange = 2.4;
             Boid.minDistance = 0.6;
             Boid.centeringFactor = 0.008;
-            Boid.avoidFactor = 0.005;
+            Boid.avoidFactor = 0.004;
             Boid.alignFactor = 0.02;
-            Boid.boundTurnFactor = 0.01;
+            Boid.boundTurnFactor = 0.1;
             Boid.speedLimit = 0.1;
+            Boid.groupAmount = 3;
+            Boid.groupVisualRange = 4;
+            Boid.groupAvoidFactor = 0.002;
         }}, 'defaultValues');
     },
 
@@ -101,6 +107,70 @@ export default {
         this.camera.updateProjectionMatrix();
 
         this.renderer.setSize( window.innerWidth, window.innerHeight );
+    },
+
+    benchmark() {
+        let oldBoundary = {
+            x: Boid.boundaryX,
+            y: Boid.boundaryY,
+            z: Boid.boundaryZ
+        }
+
+        // make them stay in the center
+        Boid.boundaryX = 0.1;
+        Boid.boundaryY = 0.1;
+        Boid.boundaryZ = 0.1;
+
+        let maxAmount = 1500;
+        let i = 1;
+        let steps = 100;
+
+        return new Promise((resolve) => {
+
+            let testAmount = (i) => {
+                if(i * steps < maxAmount){
+                    // spawn boids
+                    this.spawnBoids(i * steps)
+                    // set boids position to center
+                    Boid.boids.forEach((b) => b.position = new Vector3())
+                    // wait
+                    setTimeout(() => {
+                        // if simulation took to long return current amount
+                        if(this.lastSimulationTime > 13){
+                            // reset boundarys
+                            Boid.boundaryX = oldBoundary.x;
+                            Boid.boundaryY = oldBoundary.y;
+                            Boid.boundaryZ = oldBoundary.z;
+
+                            this.spawnBoids((i - 1) * steps)
+
+                            // return max amount
+                            resolve((i - 1) * steps)
+
+                            return
+                        }
+                        // spawn new amount
+                        i++
+                        testAmount(i)
+                    }, 100)
+                }else {
+                    return i * steps
+                }
+            }
+
+
+            // clear
+            if(this.object !== null)this.objects.forEach((obj) => this.scene.remove(obj))
+
+            this.objects = [];
+            Boid.boids = [];
+
+            // start benchmark
+            setTimeout(() => {
+                testAmount(i)
+            }, 400)
+
+        });
     },
 
     spawnBoids(amount) {
