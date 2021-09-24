@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-show="!benchmarking" ref="backgroundCanvas" class="backgroundCanvas"></div>
-    <span v-show="benchmarking" class="backgroundStats">testing your system...</span>
+    <span v-show="benchmarking" class="backgroundStats">testing your system... [{{amount}} boids]</span>
     <span v-show="!benchmarking" class="backgroundStats" :class="{hide: !this.statsVisible}">{{amount}} boid instances | {{time.toFixed(1)}}ms simulation time | {{triangles}} triangles | {{fps}}fps</span>
   </div>
 </template>
