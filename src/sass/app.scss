@@ -205,6 +205,7 @@ button {
   position: absolute;
   bottom: 0;
   left: 0;
+  width: calc(100% - 64px);
 
   font-family: $fontCode;
   opacity: 0.2;
@@ -215,8 +216,14 @@ button {
 
   @media screen and (max-width: $screenSmall) {
     &{
+      width: calc(100% - 24px);
+      text-align: center;
       margin: 24px;
     }
+  }
+
+  &:hover {
+    opacity: 1;
   }
 
   &.hide{

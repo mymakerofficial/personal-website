@@ -1,7 +1,7 @@
 <template>
   <span @mouseover="startHover" @mouseleave="stopHover" @mousemove="move">
     <span ref="content"><slot></slot></span>
-    <span v-if="hover" v-show="show"><span class="tooltip" ref="tooltip" :style="{ top: top, left: left }">{{this.tooltip}}</span><span class="tooltipArrow" ref="tooltipArrow" :style="{ top: arrowTop, left: arrowLeft }"></span></span>
+    <span v-if="hover" v-show="show"><span class="tooltip" ref="tooltip" :style="{ top: top, left: left }">{{this.tooltip}}</span><span v-if="showArrow" class="tooltipArrow" ref="tooltipArrow" :style="{ top: arrowTop, left: arrowLeft }"></span></span>
   </span>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
   name: "Tooltip",
 
-  props: ["tooltip", "time"],
+  props: ["tooltip", "time", "arrow"],
 
   data() {
     return {
@@ -22,6 +22,12 @@ export default {
       arrowLeft: 0,
       arrowTop: 0,
       timeout: null,
+    }
+  },
+
+  computed: {
+    showArrow: function () {
+      return !(this.arrow === false);
     }
   },
 
