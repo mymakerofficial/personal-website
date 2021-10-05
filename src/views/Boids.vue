@@ -1,5 +1,5 @@
 <template>
-  <BoidsBackground></BoidsBackground>
+  <BoidsBackground :showStats="true"></BoidsBackground>
 </template>
 
 <script>

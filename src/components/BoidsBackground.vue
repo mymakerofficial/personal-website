@@ -1,8 +1,7 @@
 <template>
   <div>
     <div v-show="!benchmarking" ref="backgroundCanvas" class="backgroundCanvas"></div>
-    <span v-show="benchmarking" class="backgroundStats">testing your system... [{{amount}} boids]</span>
-    <span v-show="!benchmarking" class="backgroundStats" :class="{hide: !this.statsVisible}">
+    <span v-if="showStats" v-show="!benchmarking" class="backgroundStats" :class="{hide: !this.statsVisible}">
       <Tooltip :tooltip="calculationTooltip" :arrow="false">
         <span class="listItem">{{amount}} <i class="mdi mdi-circle-multiple-outline"></i></span>
         <span class="listItem">{{time.toFixed(1)}}ms <i class="mdi mdi-clock-outline"></i></span>
@@ -22,6 +21,9 @@ import Tooltip from "@/components/Tooltip";
 export default {
   name: "BoidsBackground",
   components: {Tooltip},
+
+  props: ["showStats"],
+
   data() {
     return {
       background: null,
@@ -50,9 +52,10 @@ export default {
         background.render()
 
         this.benchmarking = true;
-        background.benchmark().then(() => {
+        background.benchmark(100, 1000, 16, 10, 100).then(() => {
           this.benchmarking = false;
         });
+
       })
 
       setInterval(() => {

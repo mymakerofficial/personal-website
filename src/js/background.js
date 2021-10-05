@@ -17,6 +17,8 @@ export default {
     lastFrameStart: performance.now(),
     lastSimulationTime: 0,
 
+    predictedMaxBoids: 0,
+
     stats: new Stats(),
 
     disposed: false,
@@ -127,7 +129,7 @@ export default {
         this.renderer.setSize( window.innerWidth, window.innerHeight );
     },
 
-    benchmark(steps = 100, maxAmount = 1000, threshold = 13) {
+    benchmark(steps = 100, maxAmount = 1000, threshold = 13, stepTime = 100, waitTime = 300) {
         let oldBoundary = {
             x: Boid.boundaryX,
             y: Boid.boundaryY,
@@ -162,7 +164,7 @@ export default {
                         // spawn new amount
                         i++
                         testAmount(i)
-                    }, 100)
+                    }, stepTime)
                 }else {
                     returnResult((i - 1) * steps)
                     return
@@ -194,7 +196,7 @@ export default {
             // start benchmark
             setTimeout(() => {
                 testAmount(i)
-            }, 400)
+            }, waitTime)
 
         });
     },
