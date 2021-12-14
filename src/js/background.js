@@ -42,9 +42,8 @@ export default {
         this.geometry = new THREE.IcosahedronGeometry(0.1)
 
         new THREE.TextureLoader().load(
-            '/assets/matcaps/basic_dark.png',
+            '/assets/matcaps/basic_dark_orange.png',
             (texture) => {
-                console.log(texture)
                 this.material = new THREE.MeshMatcapMaterial( {side: THREE.DoubleSide, matcap: texture} );
             }
         );
