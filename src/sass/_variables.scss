@@ -1,11 +1,11 @@
 :root {
-  --colorBlack: #030303;
-  --colorWhite: #fcfcfc;
+  --colorBlack: #100f10;
+  --colorWhite: #e5e5e5;
 
-  --colorText: var(--colorBlack);
-  --colorHeader: var(--colorBlack);
-  --colorLink: var(--colorBlack);
-  --colorBackground: var(--colorWhite);
+  --colorText: var(--colorWhite);
+  --colorHeader: var(--colorWhite);
+  --colorLink: var(--colorWhite);
+  --colorBackground: var(--colorBlack);
 };
 
 $colorText: var(--colorText);
@@ -13,7 +13,7 @@ $colorHeader: var(--colorHeader);
 $colorLink: var(--colorLink);
 $colorBackground: var(--colorBackground);
 
-$colorSecondary1: #525252;
+$colorSecondary1: #a4a4a4;
 
 $colorTooltipBackground: $colorText;
 $colorTooltipText: $colorBackground;

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="backgroundBackground"></div>
     <div v-show="!benchmarking" ref="backgroundCanvas" class="backgroundCanvas"></div>
     <span v-if="showStats" v-show="!benchmarking" class="backgroundStats" :class="{hide: !this.statsVisible}">
       <Tooltip :tooltip="calculationTooltip" :arrow="false">
