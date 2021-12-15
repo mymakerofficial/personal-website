@@ -12,6 +12,21 @@
       <Tooltip tooltip="click me!" time="1000"><span class="hiddenButton" @click="debug">[debug]</span></Tooltip>
     </Panel>
     <ProjectPanel v-for="project in projects" :key="project.name" :project="project"></ProjectPanel>
+    <Panel id="faq">
+      <h2>FAQ</h2>
+      <br>
+      <h6>Can you fix my printer?</h6>
+      <h6><i class="mdi mdi-arrow-right-bottom"></i> no.</h6>
+      <br>
+      <h6>What are you doing?</h6>
+      <h6><i class="mdi mdi-arrow-right-bottom"></i> probably programming.</h6>
+      <br>
+      <h6>How are you?</h6>
+      <h6><i class="mdi mdi-arrow-right-bottom"></i> tired.</h6>
+      <br>
+      <h6>Why are you?</h6>
+      <h6><i class="mdi mdi-arrow-right-bottom"></i> yes.</h6>
+    </Panel>
     <Panel>
       <h2>Links</h2>
       <h6><a href="https://github.com/mymakerofficial" target="_blank">GitHub<i class="mdi mdi-arrow-top-right"></i></a></h6>
