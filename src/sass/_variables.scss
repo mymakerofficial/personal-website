@@ -8,15 +8,21 @@
   --colorBackground: var(--colorBlack);
 };
 
+$colorBlack: var(--colorBlack);
+$colorWhite: var(--colorWhite);
+
 $colorText: var(--colorText);
 $colorHeader: var(--colorHeader);
 $colorLink: var(--colorLink);
 $colorBackground: var(--colorBackground);
 
-$colorSecondary1: #a4a4a4;
+$colorWhiteSecondary: #a4a4a4;
+$colorBlackSecondary: #232123;
 
 $colorTooltipBackground: $colorText;
 $colorTooltipText: $colorBackground;
+
+$gradientOrange: linear-gradient(153deg, rgba(120,29,79,1) 0%, rgba(173,47,69,1) 100%);
 
 // fonts
 
