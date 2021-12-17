@@ -4,9 +4,13 @@
     <Panel>
       <div ref="head">
         <h1>My_Maker</h1>
+        <br>
         <h6><i class="mdi mdi-arrow-right"></i> Programmer of dumb websites and games</h6>
+        <br>
         <h6><i class="mdi mdi-arrow-right"></i> Sometimes designer</h6>
+        <br>
         <h6><i class="mdi mdi-arrow-right"></i> Professional VR enjoyer</h6>
+        <br>
         <h6><i class="mdi mdi-arrow-right"></i> Also IT student</h6>
       </div>
       <Tooltip tooltip="click me!" time="1000"><span class="hiddenButton" @click="debug">[debug]</span></Tooltip>
