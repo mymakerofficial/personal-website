@@ -21,7 +21,8 @@
       "started": 1615762800,
       "finished": 1630101600,
       "year": "2021"
-    }
+    },
+    "featured": true
   },
   {
     "name": "tank-trouble",
@@ -44,7 +45,8 @@
       "started": 1564696800,
       "finished": 1564869600,
       "year": "2019"
-    }
+    },
+    "featured": true
   },
   {
     "name": "counting",
@@ -67,7 +69,32 @@
       "started": 1592517600,
       "finished": 1601416800,
       "year": "2020"
-    }
+    },
+    "featured": true
+  },
+  {
+    "name": "marmo",
+    "displayName": "marmo",
+    "summary": "A game about marbles",
+    "description": null,
+    "projectPage": true,
+    "url": "https://my-maker.itch.io/marmo",
+    "git": null,
+    "buttons": [
+      {"text": "play", "url": "https://my-maker.itch.io/marmo"}
+    ],
+    "thumbnail": "https://img.itch.zone/aW1nLzI3OTgxMjEucG5n/315x250%23c/BLBnPT.png",
+    "icon": null,
+    "tags": ["game","arcade","puzzle"],
+    "developmentStatus": "finished",
+    "collaborators": [],
+    "positions": [],
+    "timespan": {
+      "started": null,
+      "finished": null,
+      "year": "2018"
+    },
+    "featured": true
   },
   {
     "name": "boids",
@@ -88,7 +115,8 @@
       "started": null,
       "finished": null,
       "year": "2021"
-    }
+    },
+    "featured": false
   },
   {
     "name": "school-games-launcher",
@@ -112,7 +140,8 @@
       "started": 1605049200,
       "finished": 1611183600,
       "year": "2020"
-    }
+    },
+    "featured": false
   },
   {
     "name": "towerdefense-game",
@@ -133,6 +162,7 @@
       "started": 1630706400,
       "finished": null,
       "year": "2021"
-    }
+    },
+    "featured": false
   }
 ]
