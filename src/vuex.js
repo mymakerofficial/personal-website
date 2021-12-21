@@ -1,5 +1,6 @@
 import Vuex from "vuex";
 import axios from "axios";
+import eventBus from './eventBus.js'
 
 const projects = {
     namespaced: true,
@@ -40,6 +41,28 @@ const projects = {
     }
 }
 
+const mouse = {
+    namespaced: true,
+    state: {
+        position: {x: 0, y: 0}
+    },
+    mutations: {
+        updatePosition(state, payload){
+            state.position.x = payload.x;
+            state.position.y = payload.y;
+            eventBus.$emit('mouse-position-changed')
+        }
+    },
+    getters: {
+        pagePosition: (state) => {
+            return {
+                x: state.position.x + 1,
+                y: state.position.y + 1
+            }
+        }
+    }
+}
+
 const createStore = () => {
     return new Vuex.Store({
         actions: {
@@ -48,7 +71,8 @@ const createStore = () => {
             }
         },
         modules: {
-            projects
+            projects,
+            mouse
         }
     });
 }

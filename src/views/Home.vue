@@ -16,17 +16,7 @@
       <Tooltip tooltip="click me!" time="1000"><span class="hiddenButton" @click="debug">[debug]</span></Tooltip>
     </Panel>
     <FeaturedProjectsPanel></FeaturedProjectsPanel>
-    <Panel>
-      <h1>Projects</h1>
-      <br>
-      <span v-for="project in projects" :key="project.name" :project="project">
-        <router-link :to="{ name: 'project', params: { name: project.name } }" style="text-decoration: none !important;">
-          <h6><i class="mdi mdi-arrow-right"></i> {{project.displayName}}</h6>
-          <p class="primary">{{project.summary}}</p>
-          <br>
-        </router-link>
-      </span>
-    </Panel>
+    <ProjectListPanel></ProjectListPanel>
     <Panel id="faq">
       <h2>FAQ</h2>
       <br>
@@ -66,10 +56,11 @@ import Tooltip from "@/components/Tooltip";
 import anime from "animejs";
 import BoidsBackground from "@/components/BoidsBackground";
 import FeaturedProjectsPanel from "@/components/FeaturedProjectsPanel";
+import ProjectListPanel from "@/components/ProjectListPanel";
 
 export default {
   name: 'Home',
-  components: {FeaturedProjectsPanel, BoidsBackground, Tooltip, Panel},
+  components: {ProjectListPanel, FeaturedProjectsPanel, BoidsBackground, Tooltip, Panel},
 
   data() {
     return {
