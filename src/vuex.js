@@ -37,6 +37,9 @@ const projects = {
         },
         getNames: (state) => {
             return state.list.map(p => p.name)
+        },
+        getFeatured: (state) => {
+            return state.list.filter(p => p.featured === true)
         }
     }
 }
@@ -56,8 +59,8 @@ const mouse = {
     getters: {
         pagePosition: (state) => {
             return {
-                x: state.position.x + 1,
-                y: state.position.y + 1
+                x: state.position.x + window.pageXOffset,
+                y: state.position.y + window.pageYOffset
             }
         }
     }

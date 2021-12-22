@@ -15,7 +15,7 @@ export default {
 
   data() {
     return {
-      projects: this.$store.state.projects.list.filter(p => p.featured === true)
+      projects: this.$store.getters["projects/getFeatured"]
     }
   }
 }
