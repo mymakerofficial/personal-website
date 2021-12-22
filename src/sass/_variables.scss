@@ -1,6 +1,8 @@
 :root {
   --colorBlack: #100f10;
+  --colorBlackSecondary: #232123;
   --colorWhite: #e5e5e5;
+  --colorWhiteSecondary: #a4a4a4;
 
   --colorText: var(--colorWhite);
   --colorHeader: var(--colorWhite);
@@ -16,8 +18,8 @@ $colorHeader: var(--colorHeader);
 $colorLink: var(--colorLink);
 $colorBackground: var(--colorBackground);
 
-$colorWhiteSecondary: #a4a4a4;
-$colorBlackSecondary: #232123;
+$colorBlackSecondary: var(--colorBlackSecondary);
+$colorWhiteSecondary: var(--colorWhiteSecondary);
 
 $colorTooltipBackground: $colorText;
 $colorTooltipText: $colorBackground;

@@ -1,26 +1,26 @@
 <template>
   <div>
-    <Panel>
-      <div class="panelBody">
-        <div class="textContainer" v-html="this.content"></div>
+    <div class="projectHeader">
+      <img :src="project.thumbnail" class="projectHeaderImage">
+      <div class="projectHeaderTitle">
         <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
-        <div class="smallSection">
-          <ProjectDetails :project="project"></ProjectDetails>
-        </div>
       </div>
-    </Panel>
+    </div>
+    <div class="textContainer" v-html="this.content"></div>
+    <div class="smallSection">
+      <ProjectDetails :project="project"></ProjectDetails>
+    </div>
   </div>
 </template>
 
 <script>
-import Panel from "@/components/Panel";
 import ProjectDetails from "@/components/ProjectDetails";
 import axios from "axios";
 import {markdown} from "@/js/markdown";
 
 export default {
   name: "ProjectPage",
-  components: {ProjectDetails, Panel},
+  components: {ProjectDetails},
 
   data() {
     return {
@@ -48,12 +48,15 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+      /*
       axios.get(`/data/project-pages/${this.project.name}.json`).then(response => {
         this.config = response.data
         this.applyConfig()
       }).catch(error => {
         console.log(error)
       })
+
+       */
     }
   },
 
