@@ -35,7 +35,7 @@
     "buttons": [
       {"text": "play", "url": "https://nic4901.itch.io/tank-trouble"}
     ],
-    "thumbnail": "https://img.itch.zone/aW1nLzI3OTgxMTgucG5n/315x250%23c/arCrEz.png",
+    "thumbnail": "/assets/img/tank-trouble-thumbnail.png",
     "icon": null,
     "tags": ["game","topdown","shooter","arcade","game jam","GMTK Game Jam 2019"],
     "developmentStatus": "finished",
@@ -83,7 +83,7 @@
     "buttons": [
       {"text": "play", "url": "https://my-maker.itch.io/marmo"}
     ],
-    "thumbnail": "https://img.itch.zone/aW1nLzI3OTgxMjEucG5n/315x250%23c/BLBnPT.png",
+    "thumbnail": "/assets/img/marmo-thumbnail.png",
     "icon": null,
     "tags": ["game","arcade","puzzle"],
     "developmentStatus": "finished",
