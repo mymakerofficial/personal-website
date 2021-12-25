@@ -80,6 +80,30 @@ body {
   background-position: center;
 }
 
+// -- cookieMessage --
+
+.cookieMessage {
+  --colorBackground: var(--colorWhite);
+  --colorText: var(--colorBlack);
+  --colorHeader: var(--colorText);
+  --colorLink: var(--colorText);
+
+  background-color: $colorBackground;
+
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  margin: 42px;
+  padding: 32px;
+  max-width: 468px;
+
+  & .secondary {
+    color: $colorBlackSecondary !important;
+  }
+}
+
 // -- text --
 
 h1, h2, h3, h4, h5, h6 {
@@ -197,6 +221,37 @@ button {
     cursor: pointer;
     color: $colorBackground;
     background: $colorLink;
+  }
+}
+
+button.noBorder {
+  background-color: $colorBackground;
+  border: solid 2px $colorBackground;
+
+  &:hover {
+    color: $colorLink;
+    border: solid 2px $colorLink;
+  }
+}
+
+button.solid {
+  color: $colorBackground;
+  background: $colorLink;
+  border: solid 2px $colorLink;
+
+  &:hover {
+    color: $colorLink;
+    background: transparent;
+  }
+}
+
+button.flat {
+  background-color: $colorBackground;
+  border: solid 2px $colorBackground;
+
+  &:hover {
+    color: $colorLink;
+    border: solid 2px $colorBackground;
   }
 }
 

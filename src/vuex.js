@@ -66,16 +66,91 @@ const mouse = {
     }
 }
 
+const cookieTimeout = 10
+
+const userPreferences = {
+    namespaced: true,
+    state: {
+        cookiesDismissed: false,
+        cookiesDismissedTime: 0,
+        cookiesDismissCounter: 0,
+        cookiesDontShowAgain: false
+    },
+    mutations: {
+        initialiseStore(state) {
+            if(localStorage && localStorage.getItem('userPreferences') != null){
+                let jsonData = JSON.parse(localStorage.getItem('userPreferences'))
+                state.cookiesDismissed = jsonData.cookiesDismissed
+                state.cookiesDismissedTime = jsonData.cookiesDismissedTime
+                state.cookiesDismissCounter = jsonData.cookiesDismissCounter
+                state.cookiesDontShowAgain = jsonData.cookiesDontShowAgain
+            }else {
+                localStorage.setItem('userPreferences', JSON.stringify(state));
+            }
+
+            if(state.cookiesDismissed && !state.cookiesDontShowAgain){
+                let timeSinceDismissed = (Date.now() / 1000 | 0) - state.cookiesDismissedTime
+                let timeLeft = cookieTimeout - timeSinceDismissed
+                if(timeSinceDismissed > cookieTimeout) {
+                    // show message again
+                    state.cookiesDismissed = false;
+                    localStorage.setItem('userPreferences', JSON.stringify(state));
+                } else {
+                    // wait for time that is left
+                    setTimeout(() => {
+                        state.cookiesDismissed = false;
+                        eventBus.$emit('cookies-dismissed-changed')
+                        localStorage.setItem('userPreferences', JSON.stringify(state));
+                    }, timeLeft * 1000)
+                }
+            }
+        },
+        setCookies(state, payload){
+            state.cookiesDismissed = payload
+            eventBus.$emit('cookies-dismissed-changed')
+
+            if(payload) {
+                state.cookiesDismissedTime = Date.now() / 1000 | 0
+                state.cookiesDismissCounter++;
+
+                if(!state.cookiesDontShowAgain){
+                    // reset after timeout
+                    setTimeout(() => {
+                        state.cookiesDismissed = false;
+                        eventBus.$emit('cookies-dismissed-changed')
+                        localStorage.setItem('userPreferences', JSON.stringify(state));
+                    }, cookieTimeout * 1000)
+                }
+            }
+            localStorage.setItem('userPreferences', JSON.stringify(state));
+        },
+        setCookiesDontShowAgain(state, payload) {
+            state.cookiesDontShowAgain = payload;
+            localStorage.setItem('userPreferences', JSON.stringify(state));
+        }
+    },
+    actions: {
+        dismissCookies({commit}) {
+            commit('setCookies', true)
+        },
+        dontShowCookiesAgain({commit}) {
+            commit('setCookiesDontShowAgain', true)
+        }
+    }
+}
+
 const createStore = () => {
     return new Vuex.Store({
         actions: {
             initialiseStore({ commit }){
                 commit("projects/initialiseStore")
+                commit("userPreferences/initialiseStore")
             }
         },
         modules: {
             projects,
-            mouse
+            mouse,
+            userPreferences
         }
     });
 }

@@ -1,13 +1,15 @@
 <template>
   <div v-if="loaded">
+    <CookieMessage></CookieMessage>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import CookieMessage from "@/components/CookieMessage";
 export default {
   name: "App",
-
+  components: {CookieMessage},
   data() {
     return {
       loaded: false
