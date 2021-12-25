@@ -2,7 +2,7 @@
   <div>
     <div class="projectHeader">
       <img v-if="project.thumbnail !== ''" :src="project.thumbnail" class="projectHeaderImage" ref="thumbnailImage" @load="getColor" >
-      <div class="projectHeaderTitle" :style="{'--colorBackground': thumbnailColorBackground, '--colorText': thumbnailColorText}">
+      <div class="projectHeaderTitle" :style="{'--colorBackground': thumbnailColorBackground, '--colorText': thumbnailColorText}" v-if="showTitle">
         <h5>{{ project.displayName }}</h5>
         <p class="primary">{{project.summary}}</p>
         <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
@@ -46,6 +46,9 @@ export default {
       if(!this.project) return ''
       if(!this.project.thumbnail) return ''
       return `rgb(${this.thumbnailColors[1][0]}, ${this.thumbnailColors[1][1]}, ${this.thumbnailColors[1][2]})`;
+    },
+    showTitle() {
+      return this.thumbnailColorBackground !== '' && this.thumbnailColorText !== '' || !this.project.thumbnail
     }
   },
 
