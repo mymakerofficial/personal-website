@@ -39,7 +39,6 @@ export default {
           targets: this.$refs.el,
           translateX: [600, -30, 0],
           duration: 700,
-          delay: 1000,
           easing: 'cubicBezier(0.5, .05, .1, .3)',
           autostart: true
         })

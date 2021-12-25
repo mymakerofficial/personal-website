@@ -104,6 +104,17 @@ const userPreferences = {
                     }, timeLeft * 1000)
                 }
             }
+
+            if(!state.cookiesDismissed && state.cookiesDismissCounter === 0){
+                state.cookiesDismissed = true;
+                localStorage.setItem('userPreferences', JSON.stringify(state));
+
+                setTimeout(() => {
+                    state.cookiesDismissed = false;
+                    eventBus.$emit('cookies-dismissed-changed')
+                    localStorage.setItem('userPreferences', JSON.stringify(state));
+                }, 10000)
+            }
         },
         setCookies(state, payload){
             state.cookiesDismissed = payload
