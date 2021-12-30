@@ -1,32 +1,54 @@
 <template>
   <div>
-    <Panel>
-      <div class="panelBody">
-        <div class="textContainer" v-html="this.content"></div>
+    <div class="projectHeader">
+      <img v-if="project.thumbnail !== ''" :src="project.thumbnail" class="projectHeaderImage" ref="thumbnailImage" @load="getColor" >
+      <div class="projectHeaderTitle" :style="{'--colorBackground': thumbnailColorBackground, '--colorText': thumbnailColorText}" v-if="showTitle">
+        <h5>{{ project.displayName }}</h5>
+        <p class="primary">{{project.summary}}</p>
         <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
-        <div class="smallSection">
-          <ProjectDetails :project="project"></ProjectDetails>
-        </div>
       </div>
-    </Panel>
+    </div>
+    <!--<div class="textContainer" v-html="this.content"></div>
+    <div class="smallSection">
+      <ProjectDetails :project="project"></ProjectDetails>
+    </div>-->
   </div>
 </template>
 
 <script>
-import Panel from "@/components/Panel";
-import ProjectDetails from "@/components/ProjectDetails";
+//import ProjectDetails from "@/components/ProjectDetails";
 import axios from "axios";
 import {markdown} from "@/js/markdown";
+import ColorThief from "colorthief"
+const colorThief = new ColorThief();
 
 export default {
   name: "ProjectPage",
-  components: {ProjectDetails, Panel},
+  //components: {ProjectDetails},
 
   data() {
     return {
       project: this.$store.getters["projects/getByName"](this.$route.params.name),
       content: "",
-      config: {}
+      thumbnailColors: null
+    }
+  },
+
+  computed: {
+    thumbnailColorBackground() {
+      if(!this.thumbnailColors) return ''
+      if(!this.project) return ''
+      if(!this.project.thumbnail) return ''
+      return `rgb(${this.thumbnailColors[0][0]}, ${this.thumbnailColors[0][1]}, ${this.thumbnailColors[0][2]})`;
+    },
+    thumbnailColorText() {
+      if(!this.thumbnailColors) return ''
+      if(!this.project) return ''
+      if(!this.project.thumbnail) return ''
+      return `rgb(${this.thumbnailColors[1][0]}, ${this.thumbnailColors[1][1]}, ${this.thumbnailColors[1][2]})`;
+    },
+    showTitle() {
+      return this.thumbnailColorBackground !== '' && this.thumbnailColorText !== '' || !this.project.thumbnail
     }
   },
 
@@ -34,23 +56,20 @@ export default {
     start() {
 
     },
-    applyConfig() {
-      let style = ``
-      if(this.config.textColor !== null) style += `--colorText: ${this.config.textColor};`
-      if(this.config.headerColor !== null) style += `--colorHeader: ${this.config.headerColor};`
-      if(this.config.linkColor !== null) style += `--colorLink: ${this.config.linkColor};`
-      if(this.config.backgroundColor !== null) style += `--colorBackground: ${this.config.backgroundColor};`
-      document.body.style = style
+    getColor() {
+      let img = this.$refs.thumbnailImage;
+      img.crossOrigin = "Anonymous";
+
+      try {
+        this.thumbnailColors = colorThief.getPalette(img, 2)
+      }
+      catch (e) {
+        this.thumbnailColors = null
+      }
     },
     loadData() {
       axios.get(`/data/project-pages/${this.project.name}.md`).then(response => {
         this.content = markdown(response.data)
-      }).catch(error => {
-        console.log(error)
-      })
-      axios.get(`/data/project-pages/${this.project.name}.json`).then(response => {
-        this.config = response.data
-        this.applyConfig()
       }).catch(error => {
         console.log(error)
       })

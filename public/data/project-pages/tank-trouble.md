@@ -1,9 +1,3 @@
-# Tank Trouble
-#### A game with only one item-slot and life
-
-&nbsp;
-
-
 Destroy all the enemy tanks without getting hit. Juggle between power-ups and try to reach the highest level. Its pretty self-explanatory actually..
 
 &nbsp;

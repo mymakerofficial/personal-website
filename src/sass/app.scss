@@ -23,6 +23,87 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+// -- project page --
+
+.projectHeader {
+  padding: 32px;
+}
+
+.projectHeaderImage {
+  height: auto;
+  max-height: 60vh;
+  width: 100%;
+  object-fit: contain;
+}
+
+.projectHeaderTitle {
+  --colorBackground: var(--colorWhite);
+  --colorText: var(--colorBlack);
+  --colorHeader: var(--colorText);
+  --colorLink: var(--colorText);
+
+  background-color: $colorBackground;
+
+  display: table;
+  margin: 64px auto;
+  padding: 32px;
+  min-width: 40vw;
+
+  @media (max-width: 630px) {
+    &.projectHeaderTitle {
+      display: block;
+      margin: 32px auto;
+      padding: 32px;
+    }
+  }
+}
+
+// -- cards --
+
+.card {
+  display: inline-grid;
+  margin: 42px;
+  width: 468px;
+}
+
+.cardBody {
+  display: block;
+  padding: 12px 24px;
+}
+
+.cardThumbnail {
+  margin: 24px;
+  height: 240px;
+  width: 420px;
+
+  background-size: cover;
+  background-position: center;
+}
+
+// -- cookieMessage --
+
+.cookieMessage {
+  --colorBackground: var(--colorWhite);
+  --colorText: var(--colorBlack);
+  --colorHeader: var(--colorText);
+  --colorLink: var(--colorText);
+
+  background-color: $colorBackground;
+
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  margin: 42px;
+  padding: 32px;
+  max-width: 468px;
+
+  & .secondary {
+    color: $colorBlackSecondary !important;
+  }
+}
+
 // -- text --
 
 h1, h2, h3, h4, h5, h6 {
@@ -57,6 +138,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
+  color: $colorText;
   font-size: $textSize;
   font-family: $fontText;
   margin: 12px;
@@ -66,7 +148,7 @@ p {
   }
 
   &.secondary {
-    color: $colorSecondary1;
+    color: $colorWhiteSecondary;
   }
 }
 
@@ -142,6 +224,37 @@ button {
   }
 }
 
+button.noBorder {
+  background-color: $colorBackground;
+  border: solid 2px $colorBackground;
+
+  &:hover {
+    color: $colorLink;
+    border: solid 2px $colorLink;
+  }
+}
+
+button.solid {
+  color: $colorBackground;
+  background: $colorLink;
+  border: solid 2px $colorLink;
+
+  &:hover {
+    color: $colorLink;
+    background: transparent;
+  }
+}
+
+button.flat {
+  background-color: $colorBackground;
+  border: solid 2px $colorBackground;
+
+  &:hover {
+    color: $colorLink;
+    border: solid 2px $colorBackground;
+  }
+}
+
 // -- tooltip --
 
 .tooltip {
@@ -170,7 +283,7 @@ button {
 }
 
 .backgroundBackground {
-  background: linear-gradient(153deg, rgba(120,29,79,1) 0%, rgba(173,47,69,1) 100%);
+  background: $gradientOrange;
   position: absolute;
   top: 0;
   left: 0;
