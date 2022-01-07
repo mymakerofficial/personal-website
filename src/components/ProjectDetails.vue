@@ -1,30 +1,32 @@
 <template>
   <div class="fluidCard secondary">
-    <div v-if="!this.project.timespan.started || !this.project.timespan.finished || this.project.timespan.release">
-      <label>release</label>
-      <div v-if="!this.project.timespan.release"><span class="listItem">{{this.project.timespan.year}}</span></div>
-      <div v-if="this.project.timespan.release"><Tooltip :tooltip="this.releaseDateFull"><span class="listItem">{{ releaseDateFormatted }}</span></Tooltip></div>
-      <br>
-    </div>
-    <div v-if="project.positions !== null && project.positions.length > 0 && !this.minimal">
-      <label>position</label>
-      <div><span class="listItem" v-for="position in project.positions" :key="position">{{position.toLowerCase()}}</span></div>
-      <br>
-    </div>
-    <div v-if="project.collaborators !== null && project.collaborators.length > 0">
-      <label>collaborators</label>
-      <div><span class="listItem" v-for="collaborator in project.collaborators" :key="collaborator.name">{{collaborator.name}}</span></div>
-      <br>
-    </div>
-    <div v-if="project.timespan.year && !this.minimal && this.project.timespan.started && this.project.timespan.finished">
-      <label>development</label>
-      <div><span class="listItem"><Tooltip :tooltip="this.fullTimespan">{{this.timespan}}</Tooltip></span></div>
-      <br>
-    </div>
-    <div v-if="project.tags !== null && project.tags.length > 0">
-      <label>tags</label>
-      <div><span class="listItem" v-for="tag in project.tags" :key="tag">{{tag.toLowerCase()}}</span></div>
-      <br>
+    <div class="cardBody">
+      <div v-if="!this.project.timespan.started || !this.project.timespan.finished || this.project.timespan.release">
+        <label>release</label>
+        <div v-if="!this.project.timespan.release"><span class="listItem">{{this.project.timespan.year}}</span></div>
+        <div v-if="this.project.timespan.release"><Tooltip :tooltip="this.releaseDateFull"><span class="listItem">{{ releaseDateFormatted }}</span></Tooltip></div>
+        <br>
+      </div>
+      <div v-if="project.positions !== null && project.positions.length > 0 && !this.minimal">
+        <label>position</label>
+        <div><span class="listItem" v-for="position in project.positions" :key="position">{{position.toLowerCase()}}</span></div>
+        <br>
+      </div>
+      <div v-if="project.collaborators !== null && project.collaborators.length > 0">
+        <label>collaborators</label>
+        <div><span class="listItem" v-for="collaborator in project.collaborators" :key="collaborator.name">{{collaborator.name}}</span></div>
+        <br>
+      </div>
+      <div v-if="project.timespan.year && !this.minimal && this.project.timespan.started && this.project.timespan.finished">
+        <label>development</label>
+        <div><span class="listItem"><Tooltip :tooltip="this.fullTimespan">{{this.timespan}}</Tooltip></span></div>
+        <br>
+      </div>
+      <div v-if="project.tags !== null && project.tags.length > 0">
+        <label>tags</label>
+        <div><span class="listItem" v-for="tag in project.tags" :key="tag">{{tag.toLowerCase()}}</span></div>
+        <br>
+      </div>
     </div>
   </div>
 </template>

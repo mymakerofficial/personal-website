@@ -3,16 +3,18 @@
     <div class="projectHeader">
       <img v-if="project.thumbnail !== ''" :src="project.thumbnail" class="projectHeaderImage" ref="thumbnailImage" @load="getColor" >
     </div>
-    <div class="fluidCard" :style="{'--colorBackground': thumbnailColorBackground, '--colorText': thumbnailColorText}" v-if="showTitle">
-      <h5>{{ project.displayName }}</h5>
-      <p class="primary">{{project.summary}}</p>
-      <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
+    <div class="fluidCard" :style="{'--colorBackground': thumbnailColorBackground, 'background': thumbnailColorBackgroundGradient, '--colorText': thumbnailColorText}" v-if="showTitle">
+      <div class="cardBody">
+        <h5>{{ project.displayName }}</h5>
+        <p class="primary">{{project.summary}}</p>
+        <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
+        <!--<div><button class="noBorder">show more <i class="mdi mdi-chevron-down"></i></button></div>-->
+      </div>
+      <div class="cardFooter" v-if="this.content">
+        <div class="textContainer" v-html="this.content" ></div>
+      </div>
     </div>
-    <!--<div class="textContainer" v-html="this.content"></div>
-    <div class="smallSection">
-
-    </div>-->
-    <div class="fluidCard container textContainer" v-html="this.content" v-if="this.content"></div>
+    <!--<div class="fluidCard container textContainer" v-html="this.content" v-if="this.content"></div>-->
     <ProjectDetails :project="project"></ProjectDetails>
   </div>
 </template>
@@ -32,22 +34,45 @@ export default {
     return {
       project: this.$store.getters["projects/getByName"](this.$route.params.name),
       content: "",
-      thumbnailColors: null
+      thumbnailColors: null,
+      config: null,
     }
   },
 
   computed: {
+    hasConfigColor() {
+      if(this.config == null) return false
+      return this.config.backgroundColorPrimary !== null && this.config.backgroundColorSecondary !== null && this.config.textColor !== null
+    },
+    thumbnailColorBackgroundGradient() {
+      if(!this.thumbnailColors) return ''
+      if(!this.project) return ''
+      if(!this.project.thumbnail) return ''
+      if(this.hasConfigColor) return `linear-gradient(153deg, ${this.config.backgroundColorPrimary} 0%, ${this.config.backgroundColorSecondary} 100%)`;
+      return `linear-gradient(153deg, rgb(${this.thumbnailColors[0][0]}, ${this.thumbnailColors[0][1]}, ${this.thumbnailColors[0][2]}) 0%, rgb(${this.thumbnailColors[3][0]}, ${this.thumbnailColors[3][1]}, ${this.thumbnailColors[3][2]}) 100%)`;
+    },
     thumbnailColorBackground() {
       if(!this.thumbnailColors) return ''
       if(!this.project) return ''
       if(!this.project.thumbnail) return ''
+      if(this.hasConfigColor) return this.config.backgroundColorPrimary
       return `rgb(${this.thumbnailColors[0][0]}, ${this.thumbnailColors[0][1]}, ${this.thumbnailColors[0][2]})`;
     },
     thumbnailColorText() {
       if(!this.thumbnailColors) return ''
       if(!this.project) return ''
       if(!this.project.thumbnail) return ''
-      return `rgb(${this.thumbnailColors[1][0]}, ${this.thumbnailColors[1][1]}, ${this.thumbnailColors[1][2]})`;
+
+      let brightest = 0;
+
+      for(let i = 1; i < this.thumbnailColors.length; i++){
+        let a = this.thumbnailColors[i][0] + this.thumbnailColors[i][1] + this.thumbnailColors[i][2] / 3
+        let b = this.thumbnailColors[brightest][0] + this.thumbnailColors[brightest][1] + this.thumbnailColors[brightest][2] / 3
+        if(a > b) brightest = i;
+      }
+
+      if(this.hasConfigColor) return this.config.textColor
+      return `rgb(${this.thumbnailColors[brightest][0]}, ${this.thumbnailColors[brightest][1]}, ${this.thumbnailColors[brightest][2]})`;
     },
     showTitle() {
       return this.thumbnailColorBackground !== '' && this.thumbnailColorText !== '' || !this.project.thumbnail
@@ -63,7 +88,7 @@ export default {
       img.crossOrigin = "Anonymous";
 
       try {
-        this.thumbnailColors = colorThief.getPalette(img, 2)
+        this.thumbnailColors = colorThief.getPalette(img, 6)
       }
       catch (e) {
         this.thumbnailColors = null
@@ -72,6 +97,11 @@ export default {
     loadData() {
       axios.get(`/data/project-pages/${this.project.name}.md`).then(response => {
         this.content = markdown(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+      axios.get(`/data/project-pages/${this.project.name}.json`).then(response => {
+        this.config = response.data
       }).catch(error => {
         console.log(error)
       })

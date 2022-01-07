@@ -47,6 +47,10 @@ body {
 .cardBody {
   display: block;
   padding: 12px 24px;
+
+  .fluidCard & {
+    padding: 32px;
+  }
 }
 
 .cardThumbnail {
@@ -58,24 +62,39 @@ body {
   background-position: center;
 }
 
+.cardFooter {
+  --colorBackground: var(--colorBlackSecondary);
+  --colorText: var(--colorWhiteSecondary);
+  --colorHeader: var(--colorWhiteSecondary);
+  --colorLink: var(--colorWhiteSecondary);
+
+  background-color: $colorBackground;
+
+  padding: 32px;
+}
+
 .fluidCard {
   --colorBackground: var(--colorWhite);
   --colorText: var(--colorBlack);
   --colorHeader: var(--colorText);
   --colorLink: var(--colorText);
 
-  background-color: $colorBackground;
+  background: $colorBackground;
 
   display: table;
   margin: 64px auto;
-  padding: 32px;
   width: 50vw;
+
+  @media (max-width: 1200px) {
+    & {
+      width: 75vw;
+    }
+  }
 
   @media (max-width: 830px) {
     & {
       display: block;
       margin: 32px;
-      padding: 32px;
       width: unset;
     }
   }
@@ -393,8 +412,8 @@ button.flat {
 
   font-size: 0.4em;
 
-  --colorBackground: var(--colorWhite);
-  --colorText: var(--colorBlack);
+  --colorBackground: var(--colorBlackSecondary);
+  --colorText: var(--colorWhite);
 
   background-color: $colorBackground;
   color: $colorText;

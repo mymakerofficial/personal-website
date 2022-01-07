@@ -11,7 +11,7 @@
       {"text": "open", "url": "https://day.maiker.de"},
       {"text": "github", "url": "https://github.com/mymakerofficial/what-day-is-it"}
     ],
-    "thumbnail": "https://day.maiker.de/img/banner.jpg",
+    "thumbnail": "/assets/img/whats_the_day_thumbnail.webp",
     "icon": "https://day.maiker.de/android-chrome-192x192.png",
     "tags": ["website","js","vue","pwa","markdown","random"],
     "developmentStatus": "finished",

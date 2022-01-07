@@ -1,7 +1,6 @@
 {
   "title": "what's the day?",
-  "backgroundColor": "#fcfcfc",
-  "textColor": "#030303",
-  "linkColor": "#ff7d54",
-  "headerColor": "#ff7d54"
+  "backgroundColorPrimary": "rgb(217, 65, 63)",
+  "backgroundColorSecondary": "rgb(121, 26, 62)",
+  "textColor": "rgb(248, 234, 227)"
 }
