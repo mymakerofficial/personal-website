@@ -1,10 +1,10 @@
-Destroy all the enemy tanks without getting hit. Juggle between power-ups and try to reach the highest level. Its pretty self-explanatory actually..
+A top-down arcade style shooter where you need to destroy every enemy in progressively harder levels with randomly generated maps. Juggle between power-ups and try to reach the highest level without getting hit.
 
 &nbsp;
 
-Made for the **GMTK Game Jam 2019**
+This game was made **in two days** for the **GMTK Game Jam 2019** with the Theme "only one".
 
-Made with love (and time pressure) by NIC4901 and My_Maker
+Made with Love (and time pressure) by **NIC4901 and My_Maker**
 
 &nbsp;
 

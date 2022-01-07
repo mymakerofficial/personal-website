@@ -1,7 +1,7 @@
 <template>
   <div>
     <BoidsBackground></BoidsBackground>
-    <Panel>
+    <Panel full-page="true">
       <div ref="head">
         <h1>My_Maker</h1>
         <br>
@@ -16,8 +16,8 @@
       <Tooltip tooltip="click me!" time="1000"><span class="hiddenButton" @click="debug">[debug]</span></Tooltip>
     </Panel>
     <FeaturedProjectsPanel></FeaturedProjectsPanel>
-    <ProjectListPanel></ProjectListPanel>
-    <Panel id="faq">
+    <ProjectListPanel show-more-link="true" show-title="true"></ProjectListPanel>
+    <Panel id="faq" full-page="true">
       <h2>FAQ</h2>
       <br>
       <h6>How are you?</h6>
@@ -32,7 +32,7 @@
       <h6>Why are you?</h6>
       <h6><i class="mdi mdi-arrow-right-bottom"></i> yes.</h6>
     </Panel>
-    <Panel>
+    <Panel full-page="true">
       <h2>Links</h2>
       <br>
       <h6><a href="https://github.com/mymakerofficial" target="_blank" style="text-decoration: none !important;">GitHub<i class="mdi mdi-arrow-top-right"></i></a></h6>

@@ -1,7 +1,6 @@
 {
   "title": "Tank Trouble",
-  "backgroundColor": "#1b1e2b",
-  "textColor": "#e5e5e5",
-  "linkColor": "#769592",
-  "headerColor": "#769592"
+  "backgroundColorPrimary": "rgb(85, 86, 112)",
+  "backgroundColorSecondary": "rgb(56, 58, 83)",
+  "textColor": "rgb(215, 217, 209)"
 }

@@ -48,6 +48,10 @@ export default {
           }
       )
     });
+
+    document.body.addEventListener('wheel', () => {
+      this.$store.dispatch('mouse/updateScroll')
+    })
   }
 }
 </script>

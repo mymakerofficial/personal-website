@@ -1,6 +1,7 @@
 import VueRouter from "vue-router";
 import Home from "@/views/Home";
 import ProjectPage from "@/views/ProjectPage";
+import Projects from "@/views/Projects";
 import Boids from "@/views/Boids";
 import NotFound from "@/views/NotFound"
 
@@ -22,6 +23,11 @@ const routes = [
     {
         path: '/project/:name',
         redirect: { name: 'project' }
+    },
+    {
+        path: '/projects',
+        name: 'projects',
+        component: Projects
     },
     {
         path: '/boids',

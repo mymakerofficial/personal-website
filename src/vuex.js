@@ -47,7 +47,8 @@ const projects = {
 const mouse = {
     namespaced: true,
     state: {
-        position: {x: 0, y: 0}
+        position: {x: 0, y: 0},
+        pagePosition: {x: 0, y: 0}
     },
     mutations: {
         updatePosition(state, payload){
@@ -56,12 +57,11 @@ const mouse = {
             eventBus.$emit('mouse-position-changed')
         }
     },
-    getters: {
-        pagePosition: (state) => {
-            return {
-                x: state.position.x + window.pageXOffset,
-                y: state.position.y + window.pageYOffset
-            }
+    actions: {
+        updateScroll({state}){
+            state.pagePosition.x = state.position.x + window.pageXOffset
+            state.pagePosition.y = state.position.y + window.pageYOffset
+            eventBus.$emit('mouse-position-changed')
         }
     }
 }
