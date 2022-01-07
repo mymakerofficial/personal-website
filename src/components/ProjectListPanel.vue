@@ -1,7 +1,7 @@
 <template>
   <div>
     <Panel>
-      <h1>Projects</h1>
+      <h1 v-if="showTitle">Projects</h1>
       <br>
       <span v-for="project in projects" :key="project.name" :project="project">
         <MouseDistanceAnimationElement distance="200" amount="64">
@@ -12,6 +12,13 @@
           </router-link>
         </MouseDistanceAnimationElement>
       </span>
+      <MouseDistanceAnimationElement distance="200" amount="64" v-if="showMoreLink">
+        <router-link :to="{ name: 'projects' }" style="text-decoration: none !important;">
+          <br>
+          <h6><i class="mdi mdi-view-dashboard"></i> show all</h6>
+          <br>
+        </router-link>
+      </MouseDistanceAnimationElement>
     </Panel>
   </div>
 </template>
@@ -22,6 +29,8 @@ import MouseDistanceAnimationElement from "@/components/MouseDistanceAnimationEl
 export default {
   name: "ProjectListPanel",
   components: {MouseDistanceAnimationElement, Panel},
+
+  props: ["showMoreLink","showTitle"],
 
   data() {
     return {

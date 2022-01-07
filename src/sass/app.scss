@@ -107,7 +107,7 @@ body {
   }
 
   &.container {
-    --colorBackground: var(--colorBackground);
+    --colorBackground: var(--colorBlack);
     --colorText: var(--colorWhiteSecondary);
     --colorHeader: var(--colorWhiteSecondary);
     --colorLink: var(--colorWhiteSecondary);
@@ -209,6 +209,10 @@ blockquote {
   border-left: solid 2px $colorText;
 }
 
+.mdi {
+  vertical-align: middle;
+}
+
 .textContainer {
   margin-bottom: 42px;
 }
@@ -226,14 +230,20 @@ img.emoji {
 // -- panel --
 
 .panel {
-  min-height: calc(100vh - 128px);
   padding: 64px;
 
   @media screen and (max-width: $screenSmall) {
     &{
       padding: 24px;
+    }
+
+    &.fullPage {
       min-height: calc(100vh - 48px);
     }
+  }
+
+  &.fullPage {
+    min-height: calc(100vh - 128px);
   }
 
   .panelBody {
