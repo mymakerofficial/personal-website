@@ -1,6 +1,6 @@
 {
   "title": "what's the day?",
-  "backgroundColor": "rgb(4, 251, 116)",
+  "backgroundColorPrimary": "rgb(4, 251, 116)",
   "backgroundColorSecondary": "rgb(4, 251, 116)",
   "textColor": "rgb(255, 0, 141)"
 }
