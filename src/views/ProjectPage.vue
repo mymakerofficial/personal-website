@@ -2,21 +2,23 @@
   <div>
     <div class="projectHeader">
       <img v-if="project.thumbnail !== ''" :src="project.thumbnail" class="projectHeaderImage" ref="thumbnailImage" @load="getColor" >
-      <div class="projectHeaderTitle" :style="{'--colorBackground': thumbnailColorBackground, '--colorText': thumbnailColorText}" v-if="showTitle">
-        <h5>{{ project.displayName }}</h5>
-        <p class="primary">{{project.summary}}</p>
-        <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
-      </div>
+    </div>
+    <div class="fluidCard" :style="{'--colorBackground': thumbnailColorBackground, '--colorText': thumbnailColorText}" v-if="showTitle">
+      <h5>{{ project.displayName }}</h5>
+      <p class="primary">{{project.summary}}</p>
+      <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
     </div>
     <!--<div class="textContainer" v-html="this.content"></div>
     <div class="smallSection">
-      <ProjectDetails :project="project"></ProjectDetails>
+
     </div>-->
+    <div class="fluidCard container textContainer" v-html="this.content" v-if="this.content"></div>
+    <ProjectDetails :project="project"></ProjectDetails>
   </div>
 </template>
 
 <script>
-//import ProjectDetails from "@/components/ProjectDetails";
+import ProjectDetails from "@/components/ProjectDetails";
 import axios from "axios";
 import {markdown} from "@/js/markdown";
 import ColorThief from "colorthief"
@@ -24,7 +26,7 @@ const colorThief = new ColorThief();
 
 export default {
   name: "ProjectPage",
-  //components: {ProjectDetails},
+  components: {ProjectDetails},
 
   data() {
     return {

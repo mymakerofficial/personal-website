@@ -20,6 +20,7 @@
     "timespan": {
       "started": 1615762800,
       "finished": 1630101600,
+      "release": null,
       "year": "2021"
     },
     "featured": true
@@ -33,7 +34,7 @@
     "url": "https://nic4901.itch.io/tank-trouble",
     "git": null,
     "buttons": [
-      {"text": "play", "url": "https://nic4901.itch.io/tank-trouble"}
+      {"text": "play on itch.io", "url": "https://nic4901.itch.io/tank-trouble"}
     ],
     "thumbnail": "/assets/img/tank-trouble-thumbnail.png",
     "icon": null,
@@ -44,6 +45,7 @@
     "timespan": {
       "started": 1564696800,
       "finished": 1564869600,
+      "release": 1564869600,
       "year": "2019"
     },
     "featured": true
@@ -68,6 +70,7 @@
     "timespan": {
       "started": 1592517600,
       "finished": 1601416800,
+      "release": null,
       "year": "2020"
     },
     "featured": true
@@ -92,6 +95,7 @@
     "timespan": {
       "started": null,
       "finished": null,
+      "release": null,
       "year": "2018"
     },
     "featured": true
@@ -114,6 +118,7 @@
     "timespan": {
       "started": null,
       "finished": null,
+      "release": null,
       "year": "2021"
     },
     "featured": false
@@ -139,6 +144,7 @@
     "timespan": {
       "started": 1605049200,
       "finished": 1611183600,
+      "release": null,
       "year": "2020"
     },
     "featured": false
@@ -154,14 +160,15 @@
     "buttons": [],
     "thumbnail": null,
     "icon": "https://day.maiker.de/android-chrome-192x192.png",
-    "tags": ["game","tower defense","unity","c#","pixel art","3D","school"],
+    "tags": ["game","tower defense","unity","c#","3D","school"],
     "developmentStatus": "planning",
     "collaborators": [],
     "positions": ["lead programmer","game design","graphic design"],
     "timespan": {
       "started": 1630706400,
       "finished": null,
-      "year": "2021"
+      "release": 1643929200,
+      "year": "2022"
     },
     "featured": false
   }

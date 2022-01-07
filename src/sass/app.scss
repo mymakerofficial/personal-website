@@ -26,7 +26,7 @@ body {
 // -- project page --
 
 .projectHeader {
-  padding: 32px;
+  padding: 32px 32px 0;
 }
 
 .projectHeaderImage {
@@ -34,28 +34,6 @@ body {
   max-height: 60vh;
   width: 100%;
   object-fit: contain;
-}
-
-.projectHeaderTitle {
-  --colorBackground: var(--colorWhite);
-  --colorText: var(--colorBlack);
-  --colorHeader: var(--colorText);
-  --colorLink: var(--colorText);
-
-  background-color: $colorBackground;
-
-  display: table;
-  margin: 64px auto;
-  padding: 32px;
-  min-width: 40vw;
-
-  @media (max-width: 630px) {
-    &.projectHeaderTitle {
-      display: block;
-      margin: 32px auto;
-      padding: 32px;
-    }
-  }
 }
 
 // -- cards --
@@ -78,6 +56,43 @@ body {
 
   background-size: cover;
   background-position: center;
+}
+
+.fluidCard {
+  --colorBackground: var(--colorWhite);
+  --colorText: var(--colorBlack);
+  --colorHeader: var(--colorText);
+  --colorLink: var(--colorText);
+
+  background-color: $colorBackground;
+
+  display: table;
+  margin: 64px auto;
+  padding: 32px;
+  width: 50vw;
+
+  @media (max-width: 830px) {
+    & {
+      display: block;
+      margin: 32px;
+      padding: 32px;
+      width: unset;
+    }
+  }
+
+  &.secondary {
+    --colorBackground: var(--colorBlackSecondary);
+    --colorText: var(--colorWhiteSecondary);
+    --colorHeader: var(--colorWhiteSecondary);
+    --colorLink: var(--colorWhiteSecondary);
+  }
+
+  &.container {
+    --colorBackground: var(--colorBackground);
+    --colorText: var(--colorWhiteSecondary);
+    --colorHeader: var(--colorWhiteSecondary);
+    --colorLink: var(--colorWhiteSecondary);
+  }
 }
 
 // -- cookieMessage --
@@ -161,10 +176,12 @@ span {
 }
 
 label {
+  font-size: 18px;
   display: block;
-  margin: 32px 0 12px 12px;
-  padding: 4px 0;
+  margin: 12px;
+  padding: 6px 0;
   font-weight: 600;
+  color: $colorText;
   border-bottom: solid 2px $colorText;
 }
 
@@ -175,6 +192,16 @@ blockquote {
 
 .textContainer {
   margin-bottom: 42px;
+}
+
+.textContainer img {
+  max-width: 100%;
+}
+
+img.emoji {
+  max-width: unset;
+  height: 1em;
+  vertical-align: middle;
 }
 
 // -- panel --
@@ -202,8 +229,10 @@ blockquote {
 // -- lists --
 
 .listItem {
+  color: $colorText;
   margin: 0 12px;
   padding: 6px 3px;
+  display: inline-block;
 }
 
 // -- buttons --
@@ -352,4 +381,24 @@ button.flat {
   &.hide{
     opacity: 0
   }
+}
+
+// -- badge --
+
+.badge {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  font-size: 0.4em;
+
+  --colorBackground: var(--colorWhite);
+  --colorText: var(--colorBlack);
+
+  background-color: $colorBackground;
+  color: $colorText;
+
+  margin: 0.3em 0.2em;
+  padding: 0.3em 0.6em;
 }
