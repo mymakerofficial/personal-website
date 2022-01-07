@@ -20,7 +20,7 @@ export default {
   methods: {
     update(){
       this.$nextTick(() => {
-        this.left = Math.sin(Math.max(this.distance - Math.abs(this.$store.getters["mouse/pagePosition"].y - this.$refs.el.offsetTop - (this.$refs.el.offsetHeight  / 2)), 0) / this.distance) * this.amount
+        this.left = Math.sin(Math.max(this.distance - Math.abs(this.$store.state.mouse.position.y + window.pageYOffset - this.$refs.el.offsetTop - (this.$refs.el.offsetHeight  / 2)), 0) / this.distance) * this.amount
         window.requestAnimationFrame(this.update);
       })
     },
