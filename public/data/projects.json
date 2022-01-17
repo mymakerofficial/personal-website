@@ -101,6 +101,29 @@
     "featured": true
   },
   {
+    "name": "towerdefense-game",
+    "displayName": "towerdefense-game",
+    "summary": "A tower defense game project made for school",
+    "description": null,
+    "projectPage": false,
+    "url": null,
+    "git": null,
+    "buttons": [],
+    "thumbnail": "/assets/img/tower_defense_preview.png",
+    "icon": "https://day.maiker.de/android-chrome-192x192.png",
+    "tags": ["game","tower defense","unity","c#","3D","school"],
+    "developmentStatus": "planning",
+    "collaborators": [],
+    "positions": ["lead programmer","game design","graphic design"],
+    "timespan": {
+      "started": 1630706400,
+      "finished": null,
+      "release": 1643929200,
+      "year": "2022"
+    },
+    "featured": true
+  },
+  {
     "name": "boids",
     "displayName": "boids",
     "summary": "Fast boids algorithm written in java script for the background of my website.",
@@ -146,29 +169,6 @@
       "finished": 1611183600,
       "release": null,
       "year": "2020"
-    },
-    "featured": false
-  },
-  {
-    "name": "towerdefense-game",
-    "displayName": "towerdefense-game",
-    "summary": "A tower defense game project made for school",
-    "description": null,
-    "projectPage": false,
-    "url": null,
-    "git": null,
-    "buttons": [],
-    "thumbnail": null,
-    "icon": "https://day.maiker.de/android-chrome-192x192.png",
-    "tags": ["game","tower defense","unity","c#","3D","school"],
-    "developmentStatus": "planning",
-    "collaborators": [],
-    "positions": ["lead programmer","game design","graphic design"],
-    "timespan": {
-      "started": 1630706400,
-      "finished": null,
-      "release": 1643929200,
-      "year": "2022"
     },
     "featured": false
   }
