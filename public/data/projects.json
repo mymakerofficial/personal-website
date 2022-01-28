@@ -7,6 +7,7 @@
     "projectPage": false,
     "url": null,
     "git": null,
+    "embed": null,
     "buttons": [{"text": "play on itch.io", "url": "https://my-maker.itch.io/city-defender"}],
     "thumbnail": "/assets/img/city_defender_thumbnail.webp",
     "icon": null,
@@ -30,6 +31,7 @@
     "projectPage": true,
     "url": "https://nic4901.itch.io/tank-trouble",
     "git": null,
+    "embed": "https://itch.io/embed-upload/1574230?color=12131a",
     "buttons": [
       {"text": "play on itch.io", "url": "https://nic4901.itch.io/tank-trouble"}
     ],
@@ -55,6 +57,7 @@
     "projectPage": true,
     "url": "https://day.maiker.de",
     "git": "mymakerofficial/what-day-is-it",
+    "embed": null,
     "buttons": [
       {"text": "open", "url": "https://day.maiker.de"},
       {"text": "github", "url": "https://github.com/mymakerofficial/what-day-is-it"}
@@ -81,6 +84,7 @@
     "projectPage": true,
     "url": "https://counting.cf",
     "git": null,
+    "embed": null,
     "buttons": [
       {"text": "start clicking", "url": "https://counting.cf"}
     ],
@@ -106,6 +110,7 @@
     "projectPage": true,
     "url": "https://my-maker.itch.io/marmo",
     "git": null,
+    "embed": "https://itch.io/embed-upload/1600832?color=1c1c21",
     "buttons": [
       {"text": "play on itch.io", "url": "https://my-maker.itch.io/marmo"}
     ],
@@ -131,6 +136,7 @@
     "projectPage": false,
     "url": "/boids",
     "git": null,
+    "embed": null,
     "buttons": [{"text": "open", "url": "/boids"}],
     "thumbnail": null,
     "icon": null,
@@ -154,6 +160,7 @@
     "projectPage": false,
     "url": "https://github.com/mymakerofficial/school-games-launcher",
     "git": "mymakerofficial/school-games-launcher",
+    "embed": null,
     "buttons": [
       {"text": "download", "url": "https://github.com/mymakerofficial/school-games-launcher/releases/tag/v1.0"},
       {"text": "github", "url": "https://github.com/mymakerofficial/school-games-launcher"}

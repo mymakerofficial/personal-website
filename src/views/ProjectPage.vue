@@ -7,7 +7,7 @@
       <div class="cardBody">
         <h5>{{ project.displayName }}</h5>
         <p class="primary">{{project.summary}}</p>
-        <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
+        <router-link :to="{name: 'playInBrowser', params: {name: this.$route.params.name}}" v-if="project.embed"><button>play now <i class="mdi mdi-play"></i></button></router-link> <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
         <!--<div><button class="noBorder">show more <i class="mdi mdi-chevron-down"></i></button></div>-->
       </div>
       <div class="cardFooter" v-if="this.content">
