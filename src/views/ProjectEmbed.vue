@@ -1,6 +1,6 @@
 <template>
   <div>
-    <iframe :src="project.embed" class="gameiframe"></iframe>
+    <iframe :src="project.embed" class="gameiframe" mozallowfullscreen="true" frameborder="0" scrolling="no" webkitallowfullscreen="true" msallowfullscreen="true" allowtransparency="true" id="game_drop" allowfullscreen="true"></iframe>
   </div>
 </template>
 
