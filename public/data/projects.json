@@ -7,8 +7,8 @@
     "projectPage": false,
     "url": null,
     "git": null,
-    "embed": null,
-    "buttons": [{"text": "play on itch.io", "url": "https://my-maker.itch.io/city-defender"}],
+    "embed": "https://itch.io/embed-upload/5151997?color=0d0d11",
+    "buttons": [{"text": "view on itch.io", "url": "https://my-maker.itch.io/city-defender"}],
     "thumbnail": "/assets/img/city_defender_thumbnail.webp",
     "icon": null,
     "tags": ["game","tower defense","unity","c#","3D","school"],
@@ -33,7 +33,7 @@
     "git": null,
     "embed": "https://itch.io/embed-upload/1574230?color=12131a",
     "buttons": [
-      {"text": "play on itch.io", "url": "https://nic4901.itch.io/tank-trouble"}
+      {"text": "view on itch.io", "url": "https://nic4901.itch.io/tank-trouble"}
     ],
     "thumbnail": "/assets/img/tank-trouble-thumbnail.png",
     "icon": null,
@@ -112,7 +112,7 @@
     "git": null,
     "embed": "https://itch.io/embed-upload/1600832?color=1c1c21",
     "buttons": [
-      {"text": "play on itch.io", "url": "https://my-maker.itch.io/marmo"}
+      {"text": "view on itch.io", "url": "https://my-maker.itch.io/marmo"}
     ],
     "thumbnail": "/assets/img/marmo-thumbnail.png",
     "icon": null,
