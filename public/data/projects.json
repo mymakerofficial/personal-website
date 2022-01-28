@@ -1,27 +1,24 @@
 [
   {
-    "name": "what-day-is-it",
-    "displayName": "what's the day?",
-    "summary": "A website that maybe tells you what day it is.",
-    "description": "I wasted way to much time programming this. Please dont look at the time it took to make this.",
-    "projectPage": true,
-    "url": "https://day.maiker.de",
-    "git": "mymakerofficial/what-day-is-it",
-    "buttons": [
-      {"text": "open", "url": "https://day.maiker.de"},
-      {"text": "github", "url": "https://github.com/mymakerofficial/what-day-is-it"}
-    ],
-    "thumbnail": "/assets/img/whats_the_day_thumbnail.webp",
-    "icon": "https://day.maiker.de/android-chrome-192x192.png",
-    "tags": ["website","js","vue","pwa","markdown","random"],
-    "developmentStatus": "finished",
-    "collaborators": [],
-    "positions": [],
+    "name": "city-defender",
+    "displayName": "City Defender",
+    "summary": "A tower defense game project made for school",
+    "description": null,
+    "projectPage": false,
+    "url": null,
+    "git": null,
+    "buttons": [{"text": "play on itch.io", "url": "https://my-maker.itch.io/city-defender"}],
+    "thumbnail": "/assets/img/city_defender_thumbnail.webp",
+    "icon": null,
+    "tags": ["game","tower defense","unity","c#","3D","school"],
+    "developmentStatus": "planning",
+    "collaborators": [{"name": "Jus44","url": null}],
+    "positions": ["lead programmer","game design","graphic design"],
     "timespan": {
-      "started": 1615762800,
-      "finished": 1630101600,
-      "release": null,
-      "year": "2021"
+      "started": 1630706400,
+      "finished": null,
+      "release": 1643929200,
+      "year": "2022"
     },
     "featured": true
   },
@@ -47,6 +44,32 @@
       "finished": 1564869600,
       "release": 1564869600,
       "year": "2019"
+    },
+    "featured": true
+  },
+  {
+    "name": "what-day-is-it",
+    "displayName": "what's the day?",
+    "summary": "A website that maybe tells you what day it is.",
+    "description": "I wasted way to much time programming this. Please dont look at the time it took to make this.",
+    "projectPage": true,
+    "url": "https://day.maiker.de",
+    "git": "mymakerofficial/what-day-is-it",
+    "buttons": [
+      {"text": "open", "url": "https://day.maiker.de"},
+      {"text": "github", "url": "https://github.com/mymakerofficial/what-day-is-it"}
+    ],
+    "thumbnail": "/assets/img/whats_the_day_thumbnail.webp",
+    "icon": "https://day.maiker.de/android-chrome-192x192.png",
+    "tags": ["website","js","vue","pwa","markdown","random"],
+    "developmentStatus": "finished",
+    "collaborators": [],
+    "positions": [],
+    "timespan": {
+      "started": 1615762800,
+      "finished": 1630101600,
+      "release": null,
+      "year": "2021"
     },
     "featured": true
   },
@@ -84,7 +107,7 @@
     "url": "https://my-maker.itch.io/marmo",
     "git": null,
     "buttons": [
-      {"text": "play", "url": "https://my-maker.itch.io/marmo"}
+      {"text": "play on itch.io", "url": "https://my-maker.itch.io/marmo"}
     ],
     "thumbnail": "/assets/img/marmo-thumbnail.png",
     "icon": null,
@@ -97,29 +120,6 @@
       "finished": null,
       "release": null,
       "year": "2018"
-    },
-    "featured": true
-  },
-  {
-    "name": "towerdefense-game",
-    "displayName": "towerdefense-game",
-    "summary": "A tower defense game project made for school",
-    "description": null,
-    "projectPage": false,
-    "url": null,
-    "git": null,
-    "buttons": [],
-    "thumbnail": "/assets/img/tower_defense_preview.png",
-    "icon": "https://day.maiker.de/android-chrome-192x192.png",
-    "tags": ["game","tower defense","unity","c#","3D","school"],
-    "developmentStatus": "planning",
-    "collaborators": [],
-    "positions": ["lead programmer","game design","graphic design"],
-    "timespan": {
-      "started": 1630706400,
-      "finished": null,
-      "release": 1643929200,
-      "year": "2022"
     },
     "featured": true
   },
