@@ -482,4 +482,8 @@ button.flat {
 
   margin: 0.3em 0.2em;
   padding: 0.3em 0.6em;
+
+  &.important {
+    background: $gradientOrange;
+  }
 }
