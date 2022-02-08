@@ -73,7 +73,7 @@ body {
 }
 
 .cardFooter {
-  --colorBackground: var(--colorBlackSecondary);
+  --colorBackground: var(--colorBlack);
   --colorText: var(--colorWhiteSecondary);
   --colorHeader: var(--colorWhiteSecondary);
   --colorLink: var(--colorWhiteSecondary);
@@ -121,6 +121,26 @@ body {
     --colorText: var(--colorWhiteSecondary);
     --colorHeader: var(--colorWhiteSecondary);
     --colorLink: var(--colorWhiteSecondary);
+  }
+}
+
+.fluidContainer {
+  display: table;
+  margin: auto;
+  width: 50vw;
+
+  @media (max-width: 1200px) {
+    & {
+      width: 75vw;
+    }
+  }
+
+  @media (max-width: $screenSmall) {
+    & {
+      display: block;
+      margin: 32px;
+      width: unset;
+    }
   }
 }
 
@@ -441,6 +461,7 @@ button.flat {
   overflow: hidden;
   word-break: break-all;
   color: $colorBlackSecondary;
+  user-select: none;
 }
 
 // -- badge --
