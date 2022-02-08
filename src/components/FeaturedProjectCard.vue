@@ -4,7 +4,7 @@
       <div class="card" :style="{transform: `translate(${this.translate.x}px,${this.translate.y}px)`}">
         <div class="cardThumbnail" :style="{backgroundImage: `url(${this.project.thumbnail})`}"></div>
         <div class="cardBody">
-          <h6>{{this.project.displayName}} <span class="badge"><i class="mdi mdi-tag"></i> {{project.tags[0]}}</span> <span class="badge" v-if="!(new Date() < new Date(project.timespan.release * 1000))"><i class="mdi mdi-calendar"></i> {{project.timespan.year}}</span> <span class="badge" v-if="new Date() < new Date(project.timespan.release * 1000)"><i class="mdi mdi-calendar"></i> coming {{ new Intl.DateTimeFormat('en', { month: 'short' }).format(new Date(project.timespan.release * 1000))}} {{new Date(project.timespan.release * 1000).getFullYear()}}</span></h6>
+          <h6>{{this.project.displayName}} <!--<span class="badge"><i class="mdi mdi-tag"></i> {{project.tags[0]}}</span> <span class="badge" v-if="!(new Date() < new Date(project.timespan.release * 1000))"><i class="mdi mdi-calendar"></i> {{project.timespan.year}}</span> <span class="badge" v-if="new Date() < new Date(project.timespan.release * 1000)"><i class="mdi mdi-calendar"></i> coming {{ new Intl.DateTimeFormat('en', { month: 'short' }).format(new Date(project.timespan.release * 1000))}} {{new Date(project.timespan.release * 1000).getFullYear()}}</span>--></h6>
           <p class="primary">{{this.project.summary}}</p>
         </div>
       </div>
