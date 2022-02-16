@@ -17,9 +17,10 @@
     "positions": ["lead programmer","game design","graphic design"],
     "timespan": {
       "started": 1630706400,
-      "finished": null,
+      "finished": 1643994000,
       "release": 1643929200,
-      "year": "2022"
+      "year": "2022",
+      "sortByDate": 1643994000
     },
     "featured": true
   },
@@ -45,7 +46,8 @@
       "started": 1564696800,
       "finished": 1564869600,
       "release": 1564869600,
-      "year": "2019"
+      "year": "2019",
+      "sortByDate": 1564869600
     },
     "featured": true
   },
@@ -72,7 +74,8 @@
       "started": 1615762800,
       "finished": 1630101600,
       "release": null,
-      "year": "2021"
+      "year": "2021",
+      "sortByDate": 1630101600
     },
     "featured": true
   },
@@ -98,7 +101,8 @@
       "started": 1592517600,
       "finished": 1601416800,
       "release": null,
-      "year": "2020"
+      "year": "2020",
+      "sortByDate": 1601416800
     },
     "featured": true
   },
@@ -124,7 +128,8 @@
       "started": null,
       "finished": null,
       "release": null,
-      "year": "2018"
+      "year": "2018",
+      "sortByDate": 1514764800
     },
     "featured": true
   },
@@ -147,8 +152,9 @@
     "timespan": {
       "started": null,
       "finished": null,
-      "release": null,
-      "year": "2021"
+      "release": 1632438000,
+      "year": "2021",
+      "sortByDate": 1632438000
     },
     "featured": false
   },
@@ -175,7 +181,8 @@
       "started": 1605049200,
       "finished": 1611183600,
       "release": null,
-      "year": "2020"
+      "year": "2020",
+      "sortByDate": 1611183600
     },
     "featured": false
   }

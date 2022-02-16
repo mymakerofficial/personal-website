@@ -39,10 +39,10 @@ export default {
         this.camera.position.setZ(10)
 
         this.material = new THREE.MeshMatcapMaterial( {side: THREE.DoubleSide} );
-        this.geometry = new THREE.IcosahedronGeometry(0.1)
+        this.geometry = new THREE.IcosahedronGeometry(0.15)
 
         new THREE.TextureLoader().load(
-            '/assets/matcaps/basic_dark_orange.png',
+            '/assets/matcaps/basic_dark_light.png',
             (texture) => {
                 this.material = new THREE.MeshMatcapMaterial( {side: THREE.DoubleSide, matcap: texture} );
             }

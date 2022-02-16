@@ -1,7 +1,7 @@
 <template>
   <div>
     <BoidsBackground></BoidsBackground>
-    <Panel full-page="true">
+    <Panel full-page="true" style="background-color: unset">
       <div ref="head">
         <h1>My_Maker</h1>
         <br>
@@ -17,7 +17,7 @@
     </Panel>
     <FeaturedProjectsPanel></FeaturedProjectsPanel>
     <ProjectListPanel show-more-link="true" show-title="true"></ProjectListPanel>
-    <Panel id="faq" full-page="true">
+    <Panel id="faq" full-page="true" class="themeInverted">
       <h2>FAQ</h2>
       <br>
       <h6>How are you?</h6>

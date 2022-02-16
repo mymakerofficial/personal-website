@@ -1,7 +1,7 @@
 :root {
   --colorBlack: #100f10;
   --colorBlackSecondary: #18181a;
-  --colorWhite: #e5e5e5;
+  --colorWhite: #f3f3f3;
   --colorWhiteSecondary: #cbcbcb;
 
   --colorText: var(--colorWhite);
@@ -9,6 +9,18 @@
   --colorLink: var(--colorWhite);
   --colorBackground: var(--colorBlack);
 };
+
+.themeInverted {
+  --colorBlack: #f3f3f3;
+  --colorBlackSecondary: #e8e8e8;
+  --colorWhite: #100f10;
+  --colorWhiteSecondary: #18181a;
+
+  --colorText: var(--colorWhite);
+  --colorHeader: var(--colorWhite);
+  --colorLink: var(--colorWhite);
+  --colorBackground: var(--colorBlack);
+}
 
 $colorBlack: var(--colorBlack);
 $colorWhite: var(--colorWhite);
@@ -24,7 +36,7 @@ $colorWhiteSecondary: var(--colorWhiteSecondary);
 $colorTooltipBackground: $colorText;
 $colorTooltipText: $colorBackground;
 
-$gradientOrange: linear-gradient(153deg, rgba(120,29,79,1) 0%, rgba(173,47,69,1) 100%);
+$gradientOrange: linear-gradient(153deg, #BA2A41 0%, #F52A41 100%);
 
 // fonts
 
@@ -34,7 +46,7 @@ $fontCode: 'Overpass Mono', monospace;
 
 // sizes
 
-$screenSmall: 500px;
+$screenSmall: 840px;
 
 $headingSizes:
   1 7em 800, //h1

@@ -34,6 +34,6 @@ Additional programming
 
 #### Special thanks to (in alphabetical order)
 
-DasMich, essiebes, Gwen, Sariku
+DasMich, essiebes, Gwendolyn, Sariku
 
 and everybody that helped and played during development

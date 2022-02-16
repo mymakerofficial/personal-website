@@ -1,20 +1,19 @@
 <template>
   <div>
-    <div class="projectHeader">
-      <img v-if="project.thumbnail !== ''" :src="project.thumbnail" class="projectHeaderImage" ref="thumbnailImage" @load="getColor" >
-    </div>
-    <div class="fluidCard" :style="{'--colorBackground': thumbnailColorBackground, 'background': thumbnailColorBackgroundGradient, '--colorText': thumbnailColorText}" v-if="showTitle">
-      <div class="cardBody">
-        <h5>{{ project.displayName }}</h5>
-        <p class="primary">{{project.summary}}</p>
-        <router-link :to="{name: 'playInBrowser', params: {name: this.$route.params.name}}" v-if="project.embed"><button>play now <i class="mdi mdi-play"></i></button></router-link> <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
-        <!--<div><button class="noBorder">show more <i class="mdi mdi-chevron-down"></i></button></div>-->
+    <Panel>
+      <div class="projectHeader">
+        <img v-if="project.thumbnail !== ''" :src="project.thumbnail" class="projectHeaderImage" ref="thumbnailImage" @load="getColor" >
       </div>
-      <div class="cardFooter" v-if="this.content">
-        <div class="textContainer" v-html="this.content" ></div>
+      <div class="fluidCard" :style="{'--colorBackground': thumbnailColorBackground, 'background': thumbnailColorBackgroundGradient, '--colorText': thumbnailColorText}" v-if="showTitle">
+        <div class="cardBody">
+          <h5>{{ project.displayName }}</h5>
+          <p class="primary">{{project.summary}}</p>
+          <router-link :to="{name: 'playInBrowser', params: {name: this.$route.params.name}}" v-if="project.embed"><button>play now <i class="mdi mdi-play"></i></button></router-link> <a :href="button.url" target="_blank" v-for="button in project.buttons" :key="button.text"><button>{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a>
+          <!--<div><button class="noBorder">show more <i class="mdi mdi-chevron-down"></i></button></div>-->
+        </div>
       </div>
-    </div>
-    <!--<div class="fluidCard container textContainer" v-html="this.content" v-if="this.content"></div>-->
+    </Panel>
+    <div class="fluidCard container textContainer" v-html="this.content" v-if="this.content"></div>
     <ProjectDetails :project="project"></ProjectDetails>
   </div>
 </template>

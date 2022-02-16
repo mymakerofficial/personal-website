@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3 class="backgroundText" style="z-index: -200"><span v-for="n in 1000" :key="n">{{ project.displayName }} </span></h3>
     <iframe :src="project.embed" class="gameiframe" mozallowfullscreen="true" frameborder="0" scrolling="no" webkitallowfullscreen="true" msallowfullscreen="true" allowtransparency="true" id="game_drop" allowfullscreen="true"></iframe>
   </div>
 </template>

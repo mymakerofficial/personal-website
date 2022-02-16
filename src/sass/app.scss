@@ -42,6 +42,16 @@ body {
   display: inline-grid;
   margin: 42px;
   width: 468px;
+  background-color: rgba($colorBlack, 0.5);
+  backdrop-filter: blur(24px);
+
+  @media (max-width: $screenSmall) {
+    & {
+      position: relative;
+      margin: 42px 0;
+      width: 100%;
+    }
+  }
 }
 
 .cardBody {
@@ -63,7 +73,7 @@ body {
 }
 
 .cardFooter {
-  --colorBackground: var(--colorBlackSecondary);
+  --colorBackground: var(--colorBlack);
   --colorText: var(--colorWhiteSecondary);
   --colorHeader: var(--colorWhiteSecondary);
   --colorLink: var(--colorWhiteSecondary);
@@ -91,7 +101,7 @@ body {
     }
   }
 
-  @media (max-width: 830px) {
+  @media (max-width: $screenSmall) {
     & {
       display: block;
       margin: 32px;
@@ -111,6 +121,26 @@ body {
     --colorText: var(--colorWhiteSecondary);
     --colorHeader: var(--colorWhiteSecondary);
     --colorLink: var(--colorWhiteSecondary);
+  }
+}
+
+.fluidContainer {
+  display: table;
+  margin: auto;
+  width: 50vw;
+
+  @media (max-width: 1200px) {
+    & {
+      width: 75vw;
+    }
+  }
+
+  @media (max-width: $screenSmall) {
+    & {
+      display: block;
+      margin: 32px;
+      width: unset;
+    }
   }
 }
 
@@ -141,7 +171,8 @@ body {
 // -- text --
 
 h1, h2, h3, h4, h5, h6 {
-  color: $colorHeader
+  color: $colorHeader;
+  position: relative;
 }
 
 @each $name, $size, $weight in $headingSizes {
@@ -150,6 +181,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: $weight;
     font-family: $fontTitle;
     margin: unset;
+  }
+
+  h#{$name} * {
+    font-family: $fontTitle;
   }
 }
 
@@ -168,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: $weight;
     font-family: $fontTitle;
     color: $colorHeader;
-    margin: 24px 12px;
+    margin: 24px 0 /*12px*/;
 
   }
 }
@@ -177,7 +212,7 @@ p {
   color: $colorText;
   font-size: $textSize;
   font-family: $fontText;
-  margin: 12px;
+  //margin: 12px;
 
   &.primary {
     font-weight: 500;
@@ -235,6 +270,8 @@ img.emoji {
 
 .panel {
   padding: 64px;
+  background-color: $colorBackground;
+  overflow-x: hidden;
 
   @media screen and (max-width: $screenSmall) {
     &{
@@ -358,6 +395,7 @@ button.flat {
 
 ::-webkit-scrollbar {
   width: 22px;
+  height: 22px;
 }
 
 ::-webkit-scrollbar-track {
@@ -416,6 +454,16 @@ button.flat {
   }
 }
 
+.backgroundText {
+  position: absolute;
+  height: 95%;
+  width: 100%;
+  overflow: hidden;
+  word-break: break-all;
+  color: $colorBlackSecondary;
+  user-select: none;
+}
+
 // -- badge --
 
 .badge {
@@ -434,4 +482,8 @@ button.flat {
 
   margin: 0.3em 0.2em;
   padding: 0.3em 0.6em;
+
+  &.important {
+    background: $gradientOrange;
+  }
 }
