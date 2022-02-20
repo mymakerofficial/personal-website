@@ -17,8 +17,12 @@ export default {
   },
 
   beforeCreate() {
+    console.log("VERCEL_GIT_COMMIT_SHA", process.env.VERCEL_GIT_COMMIT_SHA)
+
     this.$store.dispatch("projects/load").then(() => {
-      this.loaded = true;
+      this.$store.dispatch("cookieDialogue/load").then(() => {
+        this.loaded = true;
+      });
     });
     this.$store.dispatch("initialiseStore")
 

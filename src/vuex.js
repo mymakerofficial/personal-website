@@ -66,6 +66,7 @@ const mouse = {
     }
 }
 
+/*
 const cookieTimeout = 10
 
 const userPreferences = {
@@ -150,18 +151,128 @@ const userPreferences = {
     }
 }
 
+ */
+
+let setMessageDismissedValue = (state, value) => {
+    state.messageDismissed = value;
+    eventBus.$emit('cookie-message-dismissed-changed');
+
+    if(value == false){
+        state.currentKey = state.nextKey;
+        state.nextKey = "";
+    }else if(value == true) {
+        state.currentKey = "";
+    }
+
+    localStorage.setItem('cookieDialogue', JSON.stringify(state));
+}
+
+const cookieDialogue = {
+    namespaced: true,
+    state: {
+        dialogue: {},
+        messageDismissed: false,
+        messageDismissedTime: 0,
+        messageCount: 0,
+        currentKey: "start",
+        nextKey: "",
+        messageTimeout: 5
+    },
+    mutations: {
+        initialiseStore(state) {
+            if(localStorage && localStorage.getItem('cookieDialogue') != null){
+                let jsonData = JSON.parse(localStorage.getItem('cookieDialogue'))
+                state.messageDismissed = jsonData.messageDismissed
+                state.messageDismissedTime = jsonData.messageDismissedTime
+                state.messageCount = jsonData.messageCount
+                state.currentKey = jsonData.currentKey
+                state.nextKey = jsonData.nextKey
+                state.messageTimeout = jsonData.messageTimeout
+            }else {
+                localStorage.setItem('cookieDialogue', JSON.stringify(state));
+            }
+
+            if(state.messageDismissed){
+                let timeSinceDismissed = (Date.now() / 1000 | 0) - state.messageDismissedTime
+                let timeLeft = state.messageTimeout - timeSinceDismissed
+                if(timeSinceDismissed > state.messageTimeout) {
+                    // show message again
+                    setMessageDismissedValue(state, false)
+                } else {
+                    // wait for time that is left
+                    setTimeout(() => {
+                        setMessageDismissedValue(state,false)
+                    }, timeLeft * 1000)
+                }
+            }
+
+            if(!state.messageDismissed && state.messageCount === 0){
+                setMessageDismissedValue(state,true)
+
+                setTimeout(() => {
+                    setMessageDismissedValue(state,false)
+                }, 10000)
+            }
+        },
+        updateDialogue(state, payload) {
+            state.dialogue = payload;
+        },
+        setMessageDismissed(state, payload){
+            setMessageDismissedValue(state, payload)
+
+            if(payload == true) {
+                state.messageDismissedTime = Date.now() / 1000 | 0
+                state.messageCount++;
+
+                localStorage.setItem('cookieDialogue', JSON.stringify(state));
+
+                // reset after timeout
+                setTimeout(() => {
+                    setMessageDismissedValue(state,false)
+                }, state.messageTimeout * 1000)
+            }
+        },
+        setNextMessage(state, payload){
+            state.nextKey = payload
+            localStorage.setItem('cookieDialogue', JSON.stringify(state));
+        }
+    },
+    actions: {
+        dismissMessage({commit}, payload) {
+            commit('setMessageDismissed', true)
+            commit('setNextMessage', payload)
+        },
+        load({commit}) {
+            return new Promise((resolve, reject) => {
+                axios.get(`/data/cookie-dialogue.json`).then(response => {
+                    commit('updateDialogue', response.data)
+                    resolve(response.data)
+                }).catch(error => {
+                    console.log(error)
+                    reject()
+                })
+            })
+        }
+    },
+    getters: {
+        getCurrentMessage: (state) => {
+            return state.dialogue[state.currentKey]
+        }
+    }
+}
+
 const createStore = () => {
     return new Vuex.Store({
         actions: {
             initialiseStore({ commit }){
                 commit("projects/initialiseStore")
-                commit("userPreferences/initialiseStore")
+                commit("cookieDialogue/initialiseStore")
             }
         },
         modules: {
             projects,
             mouse,
-            userPreferences
+            cookieDialogue
         }
     });
 }

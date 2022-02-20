@@ -1,15 +1,10 @@
 <template>
-  <div v-if="!this.$store.state.userPreferences.cookiesDismissed">
+  <div v-if="!this.$store.state.cookieDialogue.messageDismissed">
     <div class="cookieMessage" ref="el">
-      <h6><i class="mdi mdi-cookie"></i> No cookies here.</h6>
-      <div v-if="!alternateMessage">
-        <p><b>This website does not use any cookies</b> and when you press the button nothing will happen. I know, I find it hard to believe myself.</p>
-        <button class="solid" @click="dismiss(false)">I accept this atrocity</button> <button class="noBorder" @click="shake">I disagree</button>
-      </div>
-      <div v-if="alternateMessage">
-        <p>Just as a reminder: This website still uses no cookies. Do you want us to keep you in the loop?</p>
-        <p class="secondary"><small>Pro Tip: Click "No. Leave me alone." to never see this message again.</small></p>
-        <button class="solid" @click="dismiss(true)">No. Leave me alone.</button> <button class="noBorder" @click="dismiss(false)">Keep me in the loop!</button>
+      <h6><i class="mdi mdi-cookie"></i> {{this.$store.getters["cookieDialogue/getCurrentMessage"].header}}</h6>
+      <div>
+        <p>{{this.$store.getters["cookieDialogue/getCurrentMessage"].text}}</p>
+        <button class="solid" @click="dismiss(button.target)" v-for="button in this.$store.getters['cookieDialogue/getCurrentMessage'].buttons" :key="button.target">{{ button.text }}</button>
       </div>
     </div>
   </div>
@@ -22,11 +17,6 @@ import eventBus from "@/eventBus";
 export default {
   name: "CookieMessage",
 
-  computed: {
-    alternateMessage: function () {
-      return this.$store.state.userPreferences.cookiesDismissCounter % 3 === 2
-    }
-  },
 
   methods: {
     fadein() {
@@ -43,8 +33,6 @@ export default {
           autostart: true
         })
       })
-
-
     },
     shake() {
       anime({
@@ -55,7 +43,7 @@ export default {
         autostart: true,
       })
     },
-    dismiss(forever) {
+    dismiss(target) {
       anime({
         targets: this.$refs.el,
         translateX: [0, -10, 600],
@@ -64,8 +52,7 @@ export default {
         autostart: true,
         complete: () => {
           this.$refs.el.style.transform = ""
-          if(forever) this.$store.dispatch('userPreferences/dontShowCookiesAgain')
-          this.$store.dispatch('userPreferences/dismissCookies')
+          this.$store.dispatch('cookieDialogue/dismissMessage', target)
         }
       })
     }
@@ -73,8 +60,8 @@ export default {
 
   created() {
     this.fadein()
-    eventBus.$on('cookies-dismissed-changed', () => {
-      if(!this.$store.state.userPreferences.cookiesDismissed) this.fadein()
+    eventBus.$on('cookie-message-dismissed-changed', () => {
+      if(!this.$store.state.cookieDialogue.messageDismissed) this.fadein()
     })
   }
 }

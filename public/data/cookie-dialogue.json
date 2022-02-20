@@ -1,0 +1,18 @@
+{
+  "start": {
+    "header": "Test 1",
+    "text": "Test 1",
+    "buttons": [{
+      "text": "Ok",
+      "target": "RwfK0X"
+    }]
+  },
+  "RwfK0X": {
+    "header": "Test 2",
+    "text": "Test 2",
+    "buttons": [{
+      "text": "Ok",
+      "target": "start"
+    }]
+  }
+}
