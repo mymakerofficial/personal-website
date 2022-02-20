@@ -17,7 +17,7 @@ export default {
   },
 
   beforeCreate() {
-    console.log("VERCEL_GIT_COMMIT_SHA", process.env.VERCEL_GIT_COMMIT_SHA)
+    console.log("VUE_APP_VERCEL_GIT_COMMIT_SHA", process.env.VUE_APP_VERCEL_GIT_COMMIT_SHA)
 
     this.$store.dispatch("projects/load").then(() => {
       this.$store.dispatch("cookieDialogue/load").then(() => {
