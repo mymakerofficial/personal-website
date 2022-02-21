@@ -1,0 +1,339 @@
+{
+  "start": {
+    "header": ":mdi-cookie: No cookies here.",
+    "text": "**This website does not use any cookies** and when you press accept nothing will happen. I know, I find it hard to believe myself.",
+    "buttons": [{
+      "text": "I accept this atrocity",
+      "class": "solid",
+      "target": "xozDYK",
+      "delay": 8
+    },{
+      "text": "I disagree",
+      "class": "noBorder",
+      "target": "EtpqLg",
+      "delay": 1
+    }]
+  },
+  "xozDYK": {
+    "header": "Are you sure?",
+    "text": "Are you really ok with this website not having any cookies? Cookies are nice sometimes you know.",
+    "buttons": [{
+      "text": "Yes",
+      "class": "solid",
+      "target": "RwfK0X",
+      "delay": 8
+    },{
+      "text": "Actually i'd like some cookies",
+      "class": "noBorder",
+      "target": "Le3RrC",
+      "delay": 2
+    }]
+  },
+  "RwfK0X": {
+    "header": ":mdi-reminder: Reminder",
+    "text": "Just as a reminder.. I know you probably already know this but **this website still uses no cookies.**",
+    "buttons": [{
+      "text": "That's pretty cool!",
+      "class": "solid",
+      "target": "TfYRKq",
+      "delay": 0
+    },{
+      "text": "I dont like cookies!",
+      "class": "noBorder",
+      "target": "sxL1yD",
+      "delay": 1
+    }]
+  },
+  "TfYRKq": {
+    "header": "I know",
+    "text": "I put a lot of work in.. well just not adding cookies to this website.",
+    "buttons": [{
+      "text": "Wow how did you do that?",
+      "class": "solid",
+      "target": "qrxoAn",
+      "delay": 0
+    }]
+  },
+  "qrxoAn": {
+    "header": "",
+    "text": "Well when one finds oneself in the position of not needing cookies on a website, what does one do then?",
+    "buttons": [{
+      "text": "What does one do?",
+      "class": "",
+      "target": "n9GX7Q",
+      "delay": 0
+    },{
+      "text": "How?",
+      "class": "",
+      "target": "n9GX7Q",
+      "delay": 0
+    }]
+  },
+  "n9GX7Q": {
+    "header": "Just don't add cookies.",
+    "text": "easy as that",
+    "buttons": [{
+      "text": "But what if i want cookies? Like for eating.",
+      "class": "solid",
+      "target": "Le3RrC",
+      "delay": 1
+    }]
+  },
+  "Le3RrC": {
+    "header": "Well in that case",
+    "text": "I think i have some cookies left just for you somewhere around here... give me a second.",
+    "buttons": [{
+      "text": "Ok, I will wait.",
+      "class": "solid",
+      "target": "tioBu5",
+      "delay": 20
+    }]
+  },
+  "tioBu5": {
+    "header": "I found some!",
+    "text": "I made them myself! They are very tasty. You can have some if you want.",
+    "buttons": [{
+      "text": "Yes please",
+      "class": "solid",
+      "target": "rtynHv",
+      "delay": 0
+    },{
+      "text": "No thanks",
+      "class": "noBorder",
+      "target": "sxL1yD",
+      "delay": 1
+    }]
+  },
+  "rtynHv": {
+    "header": "*You have been offered \u0022cookie\u0022*",
+    "text": "Do you accept?",
+    "buttons": [{
+      "text": "Yes",
+      "class": "solid",
+      "target": "N91EUI",
+      "delay": 1
+    },{
+      "text": "No",
+      "class": "noBorder",
+      "target": "",
+      "delay": 0
+    }]
+  },
+  "N91EUI": {
+    "header": "*New achievement unlocked*",
+    "text": "Cookies!!",
+    "buttons": [{
+      "text": "Continue",
+      "class": "solid",
+      "target": "sr7WKX",
+      "delay": 1
+    },{
+      "text": "No",
+      "class": "noBorder",
+      "target": "RwfK0X",
+      "delay": 10
+    }]
+  },
+  "sr7WKX": {
+    "header": "Here, your cookie:",
+    "text": "# :cookie:",
+    "buttons": [{
+      "text": "*eat cookie*",
+      "class": "solid",
+      "target": "start",
+      "delay": 15
+    },{
+      "text": "*eat cake*",
+      "class": "noBorder",
+      "target": "P4rX9o",
+      "delay": 2
+    }]
+  },
+  "P4rX9o": {
+    "header": "What?",
+    "text": "You weren't supposed to do that.",
+    "buttons": [{
+      "text": "Yes",
+      "class": "solid",
+      "target": "start",
+      "delay": 15
+    },{
+      "text": "*try again*",
+      "class": "noBorder",
+      "target": "rtynHv",
+      "delay": 2
+    }]
+  },
+  "sxL1yD": {
+    "header": "Why?",
+    "text": "Why dont you want any cookies?",
+    "buttons": [{
+      "text": "I just dont like cookies :\u200E(",
+      "class": "solid",
+      "target": "R9JhE9",
+      "delay": 1
+    },{
+      "text": "I want to see the world burn",
+      "class": "noBorder",
+      "target": "O7OIq2",
+      "delay": 1
+    }]
+  },
+  "EtpqLg": {
+    "header": "Why?",
+    "text": "Why would you disagree?",
+    "buttons": [{
+      "text": "I don't care",
+      "class": "solid",
+      "target": "QgC62A",
+      "delay": 1
+    },{
+      "text": "I want to see the world burn!",
+      "class": "noBorder",
+      "target": "O7OIq2",
+      "delay": 1
+    }]
+  },
+  "QgC62A": {
+    "header": "Hmm",
+    "text": "I dont believe you. Tell me the truth.",
+    "buttons": [{
+      "text": "I am used to pressing disagree on cookie popups",
+      "class": "",
+      "target": "79bybL",
+      "delay": 1
+    },{
+      "text": "I just want some cookies..",
+      "class": "",
+      "target": "Le3RrC",
+      "delay": 1
+    }]
+  },
+  "79bybL": {
+    "header": "I understand...",
+    "text": "Well even tho you dont strike me as the biggest cookie fan, might i still offer you some?",
+    "buttons": [{
+      "text": "Sure!",
+      "class": "",
+      "target": "Le3RrC",
+      "delay": 1
+    },{
+      "text": "No thanks",
+      "class": "",
+      "target": "sxL1yD",
+      "delay": 1
+    }]
+  },
+  "R9JhE9": {
+    "header": "Cake?",
+    "text": "Do you want some cake instead?",
+    "buttons": [
+      {
+        "text": "Yes",
+        "class": "solid",
+        "target": "tsAkbl",
+        "delay": 4
+      },
+      {
+        "text": "The cake is a lie",
+        "class": "noBorder",
+        "target": "Fjd8by",
+        "delay": 1
+      }]
+  },
+  "tsAkbl": {
+    "header": "No cake.",
+    "text": "Sorry I dont have any cake for you.",
+    "buttons": [
+      {
+        "text": ":birthday:",
+        "class": "solid",
+        "target": "qL5MyO",
+        "delay": 1
+      },
+      {
+        "text": "I just dont like cookies :\u200E(",
+        "class": "noBorder",
+        "target": "R9JhE9",
+        "delay": 6
+      }]
+  },
+  "Fjd8by": {
+    "header": "Portal",
+    "text": "Have you ever heared of the hit game Portal?",
+    "buttons": [
+      {
+        "text": "Yes",
+        "class": "solid",
+        "target": "tsAkbl",
+        "delay": 4
+      },
+      {
+        "text": "What?",
+        "class": "noBorder",
+        "target": "qL5MyO",
+        "delay": 1
+      }]
+  },
+  "qL5MyO": {
+    "header": "what?",
+    "text": "you are not even making sense",
+    "buttons": [
+      {
+        "text": "Yes",
+        "class": "solid",
+        "target": "y7d9F8",
+        "delay": 1
+      },
+      {
+        "text": "I disagree",
+        "class": "noBorder",
+        "target": "",
+        "delay": 0
+      }]
+  },
+  "y7d9F8": {
+    "header": "",
+    "text": "You are not you when you're hungry. Eat a cookie.",
+    "buttons": [
+      {
+        "text": "Yes",
+        "class": "solid",
+        "target": "rtynHv",
+        "delay": 1
+      },
+      {
+        "text": "No",
+        "class": "noBorder",
+        "target": "",
+        "delay": 0
+      }]
+  },
+  "O7OIq2": {
+    "header": "Who doesn't?",
+    "text": "Who doesn't want to see the world burn?",
+    "buttons": [
+      {
+        "text": "Yeah..",
+        "class": "solid",
+        "target": "R9JhE9",
+        "delay": 4
+      },{
+        "text": ":fire:",
+        "class": "solid",
+        "target": "h3zFxZ",
+        "delay": 0
+      }]
+  },
+  "h3zFxZ": {
+    "header": "AAAAAA!!",
+    "text": "Why would you set me on fire?!?",
+    "buttons": [
+      {
+        "text": "I just like to see the world burn",
+        "class": "solid",
+        "target": "Le3RrC",
+        "delay": 4
+      }]
+  }
+}
