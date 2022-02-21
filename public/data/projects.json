@@ -36,7 +36,7 @@
     "buttons": [
       {"text": "view on itch.io", "url": "https://nic4901.itch.io/tank-trouble"}
     ],
-    "thumbnail": "/assets/img/tank-trouble-thumbnail.png",
+    "thumbnail": "/assets/img/tank-trouble-thumbnail.webp",
     "icon": null,
     "tags": ["game","topdown","shooter","arcade","game jam","GMTK Game Jam 2019"],
     "developmentStatus": "finished",

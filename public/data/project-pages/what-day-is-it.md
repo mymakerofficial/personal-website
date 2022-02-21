@@ -1,6 +1,5 @@
-###### This website tells you what day it is.
-
-###### Most of the time it doesn't tho.
+### This website tells you what day it is.
+### Most of the time it doesn't tho.
 
 &nbsp;
 
