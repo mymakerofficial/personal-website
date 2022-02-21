@@ -54,6 +54,11 @@ export default {
       })
     },
     dismiss(button) {
+      if(!button.target){
+        this.shake()
+        return;
+      }
+
       anime({
         targets: this.$refs.el,
         translateX: [0, -10, 600],

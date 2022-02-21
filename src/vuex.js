@@ -176,7 +176,7 @@ const cookieDialogue = {
         messageCount: 0,
         currentKey: "start",
         nextKey: "start",
-        messageTimeout: 5
+        messageTimeout: 1
     },
     mutations: {
         initialiseStore(state) {
@@ -213,7 +213,7 @@ const cookieDialogue = {
 
                 setTimeout(() => {
                     setMessageDismissedValue(state,false)
-                }, 10000)
+                }, 3000)
             }
         },
         updateDialogue(state, payload) {

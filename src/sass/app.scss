@@ -327,6 +327,9 @@ button {
   font-size: 1.1em;
   font-weight: 600;
 
+  transition-duration: 80ms;
+  transition-property: color, background-color, border;
+
   &:hover {
     cursor: pointer;
     color: $colorBackground;
@@ -351,7 +354,6 @@ button.solid {
 
   &:hover {
     color: $colorLink;
-    border: solid 2px transparent;
     background: transparent;
   }
 }
