@@ -1,18 +1,57 @@
 {
   "start": {
-    "header": "Test 1",
-    "text": "Test 1",
+    "header": ":mdi-cookie: No cookies here.",
+    "text": "**This website does not use any cookies** and when you press the button nothing will happen. I know, I find it hard to believe myself.",
     "buttons": [{
-      "text": "Ok",
-      "target": "RwfK0X"
+      "text": "I accept this atrocity",
+      "class": "solid",
+      "target": "xozDYK",
+      "delay": 10
+    },{
+      "text": "I disagree",
+      "class": "noBorder",
+      "target": "EtpqLg",
+      "delay": 1
+    }]
+  },
+  "xozDYK": {
+    "header": "Are you sure?",
+    "text": "Are you really ok with this website not having any cookies? This might be very unusual for you.",
+    "buttons": [{
+      "text": "I'm fine",
+      "class": "solid",
+      "target": "RwfK0X",
+      "delay": 10
+    },{
+      "text": "Actually i'd like some cookies",
+      "class": "noBorder",
+      "target": "RwfK0X",
+      "delay": 10
     }]
   },
   "RwfK0X": {
-    "header": "Test 2",
-    "text": "Test 2",
+    "header": ":mdi-reminder: Reminder",
+    "text": "Just as a reminder.. I know you probably already know this but **this website still uses no cookies.**",
     "buttons": [{
-      "text": "Ok",
-      "target": "start"
+      "text": "That's pretty cool!",
+      "class": "solid",
+      "target": "start",
+      "delay": 1
+    }]
+  },
+  "EtpqLg": {
+    "header": "Why?",
+    "text": "why would you disagree?",
+    "buttons": [{
+      "text": "I don't care",
+      "class": "noBorder",
+      "target": "start",
+      "delay": 1
+    },{
+      "text": "I want to see the world burn!",
+      "class": "solid",
+      "target": "start",
+      "delay": 1
     }]
   }
 }

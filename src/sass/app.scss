@@ -186,6 +186,14 @@ h1, h2, h3, h4, h5, h6 {
   h#{$name} * {
     font-family: $fontTitle;
   }
+
+  h#{$name} p {
+    display: unset;
+    color: unset;
+    font-size: unset;
+    font-family: unset;
+    margin: unset;
+  }
 }
 
 @each $name, $size, $weight in $headingSizesSmall {
@@ -198,13 +206,16 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  .textContainer h#{$name} {
+  .textContainer h#{$name}, button h#{$name} {
     font-size: $size / 1.5;
     font-weight: $weight;
     font-family: $fontTitle;
     color: $colorHeader;
     margin: 24px 0 /*12px*/;
+  }
 
+  button h#{$name}{
+    color: unset;
   }
 }
 
@@ -340,18 +351,40 @@ button.solid {
 
   &:hover {
     color: $colorLink;
+    border: solid 2px transparent;
     background: transparent;
   }
 }
 
 button.flat {
   background-color: $colorBackground;
+  color: $colorLink;
   border: solid 2px $colorBackground;
 
   &:hover {
     color: $colorLink;
     border: solid 2px $colorBackground;
   }
+}
+
+button.border {
+  color: $colorLink;
+  background: transparent;
+  border: solid 2px $colorLink;
+
+  &:hover {
+    color: $colorBackground;
+    border: solid 2px $colorLink;
+    background: $colorLink;
+  }
+}
+
+button p {
+  display: unset;
+  color: unset;
+  font-size: unset;
+  font-family: unset;
+  margin: unset;
 }
 
 // -- tooltip --

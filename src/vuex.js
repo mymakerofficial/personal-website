@@ -175,7 +175,7 @@ const cookieDialogue = {
         messageDismissedTime: 0,
         messageCount: 0,
         currentKey: "start",
-        nextKey: "",
+        nextKey: "start",
         messageTimeout: 5
     },
     mutations: {
@@ -207,7 +207,9 @@ const cookieDialogue = {
             }
 
             if(!state.messageDismissed && state.messageCount === 0){
-                setMessageDismissedValue(state,true)
+                //setMessageDismissedValue(state,true)
+                state.messageDismissed = true
+                localStorage.setItem('cookieDialogue', JSON.stringify(state));
 
                 setTimeout(() => {
                     setMessageDismissedValue(state,false)
@@ -235,12 +237,17 @@ const cookieDialogue = {
         setNextMessage(state, payload){
             state.nextKey = payload
             localStorage.setItem('cookieDialogue', JSON.stringify(state));
+        },
+        setMessageTimeout(state, payload){
+            state.messageTimeout = payload
+            localStorage.setItem('cookieDialogue', JSON.stringify(state));
         }
     },
     actions: {
         dismissMessage({commit}, payload) {
+            commit('setMessageTimeout', payload.delay)
             commit('setMessageDismissed', true)
-            commit('setNextMessage', payload)
+            commit('setNextMessage', payload.target)
         },
         load({commit}) {
             return new Promise((resolve, reject) => {

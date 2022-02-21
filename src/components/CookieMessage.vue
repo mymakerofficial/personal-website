@@ -1,11 +1,9 @@
 <template>
   <div v-if="!this.$store.state.cookieDialogue.messageDismissed">
     <div class="cookieMessage" ref="el">
-      <h6><i class="mdi mdi-cookie"></i> {{this.$store.getters["cookieDialogue/getCurrentMessage"].header}}</h6>
-      <div>
-        <p>{{this.$store.getters["cookieDialogue/getCurrentMessage"].text}}</p>
-        <button class="solid" @click="dismiss(button.target)" v-for="button in this.$store.getters['cookieDialogue/getCurrentMessage'].buttons" :key="button.target">{{ button.text }}</button>
-      </div>
+      <h6 v-html="header" v-if="header"></h6>
+      <span v-html="text" v-if="text"></span>
+      <button @click="dismiss(button)" v-for="button in this.$store.getters['cookieDialogue/getCurrentMessage'].buttons" :key="button.target" v-html="applyMarkdown(button.text)" :class="button.class"></button>
     </div>
   </div>
 </template>
@@ -13,12 +11,24 @@
 <script>
 import anime from "animejs";
 import eventBus from "@/eventBus";
+import {markdown} from "@/js/markdown";
 
 export default {
   name: "CookieMessage",
 
+  computed: {
+    header() {
+      if(!this.$store) return ""
+      return markdown(this.$store.getters["cookieDialogue/getCurrentMessage"].header)
+    },
+    text() {
+      if(!this.$store) return ""
+      return markdown(this.$store.getters["cookieDialogue/getCurrentMessage"].text)
+    }
+  },
 
   methods: {
+    applyMarkdown: (value) => markdown(value),
     fadein() {
       this.$nextTick(() => {
         anime.set(this.$refs.el,{
@@ -43,7 +53,7 @@ export default {
         autostart: true,
       })
     },
-    dismiss(target) {
+    dismiss(button) {
       anime({
         targets: this.$refs.el,
         translateX: [0, -10, 600],
@@ -52,7 +62,7 @@ export default {
         autostart: true,
         complete: () => {
           this.$refs.el.style.transform = ""
-          this.$store.dispatch('cookieDialogue/dismissMessage', target)
+          this.$store.dispatch('cookieDialogue/dismissMessage', {target: button.target, delay: button.delay})
         }
       })
     }
