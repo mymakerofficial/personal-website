@@ -168,6 +168,43 @@ body {
   }
 }
 
+.cookieNotification {
+  display: block;
+
+  --colorBackground: var(--colorWhite);
+  --colorText: var(--colorWhite);
+  --colorHeader: var(--colorText);
+
+  color: $colorText !important;
+  background: transparent;
+
+  backdrop-filter: brightness(50%) invert(100%) brightness(10%);
+
+  transition-duration: 80ms;
+
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  margin: 12px;
+  padding: 12px;
+  width: 38px;
+  height: 38px;
+  vertical-align: center;
+  text-align: center;
+
+  &:hover {
+    --colorBackground: var(--colorWhite);
+    --colorText: var(--colorBlack);
+
+    backdrop-filter: brightness(10%) invert(100%) brightness(100%);
+
+    border: solid 2px transparent;
+    outline: solid 2px 2px $colorBackground;
+  }
+}
+
 // -- text --
 
 h1, h2, h3, h4, h5, h6 {

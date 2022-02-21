@@ -1,6 +1,10 @@
 <template>
-  <div v-if="!this.$store.state.cookieDialogue.messageDismissed">
-    <div class="cookieMessage" ref="el">
+  <div v-if="this.$route.name === 'home'">
+    <div class="cookieNotification" ref="notification" v-if="!this.$store.state.cookieDialogue.messageDismissed && this.$store.state.cookieDialogue.messageMinimised" @click="unhide">
+      <h6><i class="mdi mdi-cookie-alert"></i></h6>
+    </div>
+    <div class="cookieMessage" ref="message" v-if="!this.$store.state.cookieDialogue.messageDismissed && !this.$store.state.cookieDialogue.messageMinimised">
+      <button class="flat" @click="hide()" v-if="this.$store.state.cookieDialogue.messageCount !== 0" style="position: absolute; top: 0; right: 0; margin: 0; background-color: transparent; border: transparent"><i class="mdi mdi-window-close"></i></button>
       <h6 v-html="header" v-if="header"></h6>
       <span v-html="text" v-if="text"></span>
       <button @click="dismiss(button)" v-for="button in this.$store.getters['cookieDialogue/getCurrentMessage'].buttons" :key="button.target" v-html="applyMarkdown(button.text)" :class="button.class"></button>
@@ -29,14 +33,42 @@ export default {
 
   methods: {
     applyMarkdown: (value) => markdown(value),
+    unhide() {
+      anime({
+        targets: this.$refs.notification,
+        translateX: [0, -10, 600],
+        duration: 200,
+        easing: 'cubicBezier(0.5, .05, .1, .3)',
+        autostart: true,
+        complete: () => {
+          this.$store.dispatch('cookieDialogue/unhideMessage')
+          this.fadein()
+        }
+      })
+    },
+    hide() {
+      this.$store.dispatch('cookieDialogue/hideMessage')
+    },
     fadein() {
       this.$nextTick(() => {
-        anime.set(this.$refs.el,{
+        anime.set(this.$refs.message,{
           translateX: 600
         })
 
         anime({
-          targets: this.$refs.el,
+          targets: this.$refs.message,
+          translateX: [600, -30, 0],
+          duration: 700,
+          easing: 'cubicBezier(0.5, .05, .1, .3)',
+          autostart: true
+        })
+
+        anime.set(this.$refs.notification,{
+          translateX: 600
+        })
+
+        anime({
+          targets: this.$refs.notification,
           translateX: [600, -30, 0],
           duration: 700,
           easing: 'cubicBezier(0.5, .05, .1, .3)',
@@ -46,7 +78,7 @@ export default {
     },
     shake() {
       anime({
-        targets: this.$refs.el,
+        targets: this.$refs.message,
         translateX: [0, -32, 32, -32, 32, -32, 0],
         duration: 400,
         easing: 'linear',
@@ -60,14 +92,18 @@ export default {
       }
 
       anime({
-        targets: this.$refs.el,
+        targets: this.$refs.message,
         translateX: [0, -10, 600],
         duration: 400,
         easing: 'cubicBezier(0.5, .05, .1, .3)',
         autostart: true,
         complete: () => {
-          this.$refs.el.style.transform = ""
+          this.$refs.message.style.transform = ""
           this.$store.dispatch('cookieDialogue/dismissMessage', {target: button.target, delay: button.delay})
+
+          if(button.delay > 8){
+            this.hide()
+          }
         }
       })
     }

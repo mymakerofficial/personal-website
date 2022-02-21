@@ -6,7 +6,7 @@
       "text": "I accept this atrocity",
       "class": "solid",
       "target": "xozDYK",
-      "delay": 10
+      "delay": 8
     },{
       "text": "I disagree",
       "class": "noBorder",
@@ -21,7 +21,7 @@
       "text": "Yes",
       "class": "solid",
       "target": "RwfK0X",
-      "delay": 10
+      "delay": 8
     },{
       "text": "Actually i'd like some cookies",
       "class": "noBorder",
@@ -36,7 +36,7 @@
       "text": "That's pretty cool!",
       "class": "solid",
       "target": "TfYRKq",
-      "delay": 1
+      "delay": 0
     },{
       "text": "I dont like cookies!",
       "class": "noBorder",
@@ -51,7 +51,7 @@
       "text": "Wow how did you do that?",
       "class": "solid",
       "target": "qrxoAn",
-      "delay": 1
+      "delay": 0
     }]
   },
   "qrxoAn": {
@@ -61,12 +61,12 @@
       "text": "What does one do?",
       "class": "",
       "target": "n9GX7Q",
-      "delay": 1
+      "delay": 0
     },{
       "text": "How?",
       "class": "",
       "target": "n9GX7Q",
-      "delay": 1
+      "delay": 0
     }]
   },
   "n9GX7Q": {
@@ -83,10 +83,10 @@
     "header": "Well in that case",
     "text": "I think i have some cookies left just for you somewhere around here... give me a second.",
     "buttons": [{
-      "text": "Ok",
+      "text": "Ok, I will wait.",
       "class": "solid",
       "target": "tioBu5",
-      "delay": 10
+      "delay": 20
     }]
   },
   "tioBu5": {
@@ -115,15 +115,15 @@
     },{
       "text": "No",
       "class": "noBorder",
-      "target": "sxL1yD",
-      "delay": 1
+      "target": "",
+      "delay": 0
     }]
   },
   "N91EUI": {
     "header": "*New achievement unlocked*",
     "text": "Cookies!!",
     "buttons": [{
-      "text": "Ok",
+      "text": "Continue",
       "class": "solid",
       "target": "sr7WKX",
       "delay": 1
@@ -189,7 +189,7 @@
       "delay": 1
     },{
       "text": "I want to see the world burn!",
-      "class": "",
+      "class": "noBorder",
       "target": "O7OIq2",
       "delay": 1
     }]
@@ -310,8 +310,8 @@
       }]
   },
   "O7OIq2": {
-    "header": ":fire:",
-    "text": "Who doesn't?",
+    "header": "Who doesn't?",
+    "text": "Who doesn't want to see the world burn?",
     "buttons": [
       {
         "text": "Yeah..",
@@ -326,7 +326,7 @@
       }]
   },
   "h3zFxZ": {
-    "header": "Aaaa",
+    "header": "AAAAAA!!",
     "text": "Why would you set me on fire?!?",
     "buttons": [
       {

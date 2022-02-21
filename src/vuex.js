@@ -173,6 +173,7 @@ const cookieDialogue = {
         dialogue: {},
         messageDismissed: false,
         messageDismissedTime: 0,
+        messageMinimised: false,
         messageCount: 0,
         currentKey: "start",
         nextKey: "start",
@@ -184,6 +185,7 @@ const cookieDialogue = {
                 let jsonData = JSON.parse(localStorage.getItem('cookieDialogue'))
                 state.messageDismissed = jsonData.messageDismissed
                 state.messageDismissedTime = jsonData.messageDismissedTime
+                state.messageMinimised = jsonData.messageMinimised
                 state.messageCount = jsonData.messageCount
                 state.currentKey = jsonData.currentKey
                 state.nextKey = jsonData.nextKey
@@ -241,6 +243,10 @@ const cookieDialogue = {
         setMessageTimeout(state, payload){
             state.messageTimeout = payload
             localStorage.setItem('cookieDialogue', JSON.stringify(state));
+        },
+        setMessageMinimised(state, payload){
+            state.messageMinimised = payload
+            localStorage.setItem('cookieDialogue', JSON.stringify(state));
         }
     },
     actions: {
@@ -248,6 +254,12 @@ const cookieDialogue = {
             commit('setMessageTimeout', payload.delay)
             commit('setMessageDismissed', true)
             commit('setNextMessage', payload.target)
+        },
+        unhideMessage({commit}){
+            commit('setMessageMinimised', false)
+        },
+        hideMessage({commit}){
+            commit('setMessageMinimised', true)
         },
         load({commit}) {
             return new Promise((resolve, reject) => {
