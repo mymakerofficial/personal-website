@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Panel>
+    <div>
       <div class="projectHeader">
         <img v-if="project.thumbnail !== ''" :src="project.thumbnail" class="projectHeaderImage" ref="thumbnailImage" @load="getColor" >
       </div>
@@ -12,9 +12,14 @@
           <!--<div><button class="noBorder">show more <i class="mdi mdi-chevron-down"></i></button></div>-->
         </div>
       </div>
-    </Panel>
-    <div class="fluidCard container textContainer" v-html="this.content" v-if="this.content"></div>
-    <ProjectDetails :project="project"></ProjectDetails>
+    </div>
+    <div class="fluidCard secondary" v-if="loading">
+      <div class="cardBody">
+        loading content...
+      </div>
+    </div>
+    <div class="fluidCard container textContainer" v-html="this.content" v-if="this.content && !loading"></div>
+    <ProjectDetails :project="project" v-if="!loading"></ProjectDetails>
   </div>
 </template>
 
@@ -35,15 +40,21 @@ export default {
       content: "",
       thumbnailColors: null,
       config: null,
+      loadingConfig: true,
+      loadingContent: true,
     }
   },
 
   computed: {
+    loading() {
+      return this.loadingConfig && this.loadingContent;
+    },
     hasConfigColor() {
       if(this.config == null) return false
       return this.config.backgroundColorPrimary !== null && this.config.backgroundColorSecondary !== null && this.config.textColor !== null
     },
     thumbnailColorBackgroundGradient() {
+      if(this.config == null) return ''
       if(!this.thumbnailColors) return ''
       if(!this.project) return ''
       if(!this.project.thumbnail) return ''
@@ -52,6 +63,7 @@ export default {
       return `linear-gradient(153deg, rgb(${this.thumbnailColors[0][0]}, ${this.thumbnailColors[0][1]}, ${this.thumbnailColors[0][2]}) 0%, rgb(${this.thumbnailColors[3][0]}, ${this.thumbnailColors[3][1]}, ${this.thumbnailColors[3][2]}) 100%)`;
     },
     thumbnailColorBackground() {
+      if(this.config == null) return ''
       if(!this.thumbnailColors) return ''
       if(!this.project) return ''
       if(!this.project.thumbnail) return ''
@@ -72,6 +84,7 @@ export default {
         if(a > b) brightest = i;
       }
 
+      if(this.config == null) return ''
       if(this.config.textColor == null) return ''
       if(this.hasConfigColor) return this.config.textColor
       return `rgb(${this.thumbnailColors[brightest][0]}, ${this.thumbnailColors[brightest][1]}, ${this.thumbnailColors[brightest][2]})`;
@@ -96,12 +109,16 @@ export default {
     loadData() {
       axios.get(`/data/project-pages/${this.project.name}.md`).then(response => {
         this.content = markdown(response.data)
+        this.loadingContent = false;
       }).catch(error => {
+        this.loadingContent = false;
         console.log(error)
       })
       axios.get(`/data/project-pages/${this.project.name}.json`).then(response => {
         this.config = response.data
+        this.loadingConfig = false;
       }).catch(error => {
+        this.loadingConfig = false;
         console.log(error)
       })
     }

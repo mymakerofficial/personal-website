@@ -6,7 +6,7 @@
       <span v-for="year in organizedList" :key="year.year">
         <br>
         <br>
-        <MouseDistanceAnimationElement distance="200" amount="32">
+        <MouseDistanceAnimationElement distance="200" amount="64">
           <h5>{{year.year}}</h5>
         </MouseDistanceAnimationElement>
         <br>

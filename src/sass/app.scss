@@ -45,6 +45,12 @@ body {
   background-color: rgba($colorBlack, 0.5);
   backdrop-filter: blur(24px);
 
+  @supports (-moz-appearance:none) {
+    & {
+      background-color: $colorBlack;
+    }
+  }
+
   @media (max-width: $screenSmall) {
     & {
       position: relative;
@@ -202,6 +208,16 @@ body {
 
     border: solid 2px transparent;
     outline: solid 2px 2px $colorBackground;
+  }
+
+  @supports (-moz-appearance:none) {
+    & {
+      background-color: $colorBlack;
+    }
+
+    &:hover {
+      background-color: $colorWhite;
+    }
   }
 }
 
