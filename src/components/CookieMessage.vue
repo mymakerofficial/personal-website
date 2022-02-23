@@ -36,13 +36,21 @@ export default {
     unhide() {
       anime({
         targets: this.$refs.notification,
-        translateX: [0, -10, 600],
-        duration: 200,
+        translateX: [0, -100],
+        translateY: [0, -100],
+        scale: [1, 2],
+        opacity: [1, 0],
+        duration: 60,
         easing: 'cubicBezier(0.5, .05, .1, .3)',
         autostart: true,
         complete: () => {
           this.$store.dispatch('cookieDialogue/unhideMessage')
-          this.fadein()
+          anime.set(this.$refs.notification,{
+            scale: 1,
+            translateX: 0,
+            translateY: 0,
+            opacity: 1
+          })
         }
       })
     },
