@@ -98,7 +98,7 @@ body {
   background: $colorBackground;
 
   display: table;
-  margin: 64px auto;
+  margin: 64px 0;
   width: 50vw;
 
   @media (max-width: 1200px) {
@@ -115,15 +115,13 @@ body {
     }
   }
 
-  &.secondary {
-    --colorBackground: var(--colorBlackSecondary);
-    --colorText: var(--colorWhiteSecondary);
-    --colorHeader: var(--colorWhiteSecondary);
-    --colorLink: var(--colorWhiteSecondary);
+  &.center {
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  &.container {
-    --colorBackground: var(--colorBlack);
+  &.secondary {
+    --colorBackground: var(--colorBlackSecondary);
     --colorText: var(--colorWhiteSecondary);
     --colorHeader: var(--colorWhiteSecondary);
     --colorLink: var(--colorWhiteSecondary);
@@ -148,6 +146,46 @@ body {
       width: unset;
     }
   }
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 0 32px;
+
+  @media (min-width: 576px) {
+    & {
+      max-width: 540px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    & {
+      max-width: 720px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    & {
+      max-width: 960px;
+    }
+  }
+
+  /*
+  @media (min-width: 1200px) {
+    & {
+      max-width: 1140px;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    & {
+      max-width: 1320px;
+    }
+  }
+   */
 }
 
 // -- cookieMessage --
@@ -302,11 +340,11 @@ label {
   padding: 6px 0;
   font-weight: 600;
   color: $colorText;
-  border-bottom: solid 2px $colorText;
 }
 
 blockquote {
   margin: 24px;
+  padding: 4px 24px;
   border-left: solid 2px $colorText;
 }
 
@@ -400,6 +438,18 @@ button.noBorder {
   }
 }
 
+button.flat {
+  background-color: transparent;
+  color: $colorLink;
+  border: solid 2px transparent;
+
+  &:hover {
+    color: $colorBackground;
+    background: $colorLink;
+    border: solid 2px $colorLink;
+  }
+}
+
 button.solid {
   color: $colorBackground;
   background: $colorLink;
@@ -408,17 +458,6 @@ button.solid {
   &:hover {
     color: $colorLink;
     background: transparent;
-  }
-}
-
-button.flat {
-  background-color: $colorBackground;
-  color: $colorLink;
-  border: solid 2px $colorBackground;
-
-  &:hover {
-    color: $colorLink;
-    border: solid 2px $colorBackground;
   }
 }
 
@@ -574,4 +613,24 @@ button p {
   &.important {
     background: $gradientOrange;
   }
+}
+
+// -- navbar --
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 63px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  z-index: 100000;
+
+  backdrop-filter: blur(24px) brightness(90%) invert(100%) brightness(40%);
 }

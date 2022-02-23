@@ -1,5 +1,6 @@
 <template>
   <div v-if="loaded">
+    <Navbar></Navbar>
     <CookieMessage></CookieMessage>
     <router-view></router-view>
   </div>
@@ -7,9 +8,10 @@
 
 <script>
 import CookieMessage from "@/components/CookieMessage";
+import Navbar from "@/components/Navbar";
 export default {
   name: "App",
-  components: {CookieMessage},
+  components: {Navbar, CookieMessage},
   data() {
     return {
       loaded: false

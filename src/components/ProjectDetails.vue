@@ -1,5 +1,5 @@
 <template>
-  <div class="fluidCard secondary">
+  <div class="fluidCard container secondary">
     <div class="cardBody">
       <div v-if="!this.project.timespan.started || !this.project.timespan.finished || this.project.timespan.release">
         <label>release</label>
