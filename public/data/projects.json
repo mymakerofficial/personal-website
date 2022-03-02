@@ -142,7 +142,7 @@
     "url": "/boids",
     "git": null,
     "embed": null,
-    "buttons": [{"text": "open", "url": "/boids"}],
+    "buttons": [{"text": "open", "url": "/boids"}, {"text": "source code", "url": "https://github.com/mymakerofficial/personal-website/blob/master/src/js/multi-group-boids.js"}],
     "thumbnail": null,
     "icon": null,
     "tags": ["algorithm","js","threejs","3D","boids"],
