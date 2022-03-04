@@ -178,7 +178,12 @@ const cookieDialogue = {
         setReturnMessage({commit}){
             commit('setMessageTimeout', 10)
             commit('setMessageDismissed', true)
-            commit('setNextMessage', "RwfK0X")
+
+            let keys = ["onzjd5","SrQdQu","CHPLbl"]
+
+            commit('setNextMessage', keys[Math.floor(Math.random()*keys.length)])
+
+            commit('setMessageMinimised', true)
         },
         load({commit}) {
             return new Promise((resolve, reject) => {

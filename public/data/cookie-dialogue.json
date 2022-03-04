@@ -141,7 +141,7 @@
       "text": "*eat cookie*",
       "class": "solid",
       "target": "start",
-      "delay": 15
+      "delay": 60
     },{
       "text": "*eat cake*",
       "class": "noBorder",
@@ -156,7 +156,7 @@
       "text": "Yes",
       "class": "solid",
       "target": "start",
-      "delay": 15
+      "delay": 60
     },{
       "text": "*try again*",
       "class": "noBorder",
@@ -335,5 +335,101 @@
         "target": "Le3RrC",
         "delay": 4
       }]
+  },
+  "onzjd5": {
+    "header": ":mdi-hand-wave: Hi!",
+    "text": "It is nice to see you again.",
+    "buttons": [
+      {
+        "text": "Hi :mdi-hand-wave:",
+        "class": "solid",
+        "target": "4XIzwr",
+        "delay": 4
+      }]
+  },
+  "SrQdQu": {
+    "header": ":mdi-hand-wave: Hi!",
+    "text": "You've been gone so long, I missed you.",
+    "buttons": [
+      {
+        "text": "Hi :mdi-hand-wave:",
+        "class": "solid",
+        "target": "4XIzwr",
+        "delay": 4
+      }]
+  },
+  "CHPLbl": {
+    "header": ":mdi-hand-wave: Hi!",
+    "text": "I haven't seen a face in years.",
+    "buttons": [
+      {
+        "text": "Hi :mdi-hand-wave:",
+        "class": "solid",
+        "target": "qsyNg9",
+        "delay": 4
+      }]
+  },
+  "4XIzwr": {
+    "header": "",
+    "text": "Where have you been?",
+    "buttons": [
+      {
+        "text": "Not here",
+        "class": "solid",
+        "target": "TcJCip",
+        "delay": 4
+      },
+      {
+        "text": "Far away",
+        "class": "noBorder",
+        "target": "TcJCip",
+        "delay": 4
+      }
+    ]
+  },
+  "qsyNg9": {
+    "header": "",
+    "text": "Im so glad to see you.",
+    "buttons": [
+      {
+        "text": "*smile awkwardly*",
+        "class": "solid",
+        "target": "TcJCip",
+        "delay": 4
+      }
+    ]
+  },
+  "TcJCip": {
+    "header": "",
+    "text": "You know, I have something for you! As a gift in spirit of your return.",
+    "buttons": [
+      {
+        "text": "What is it?",
+        "class": "solid",
+        "target": "fDeVoZ",
+        "delay": 4
+      },
+      {
+        "text": "Im not buying anything",
+        "class": "noBorder",
+        "target": "fDeVoZ",
+        "delay": 4
+      }
+    ]
+  },
+  "fDeVoZ": {
+    "header": "Cookies!",
+    "text": "I made them myself! They are very tasty. You can have some if you want.",
+    "buttons": [{
+      "text": "Yes please",
+      "class": "solid",
+      "target": "rtynHv",
+      "delay": 0
+    },{
+      "text": "No thanks",
+      "class": "noBorder",
+      "target": "sxL1yD",
+      "delay": 1
+    }]
   }
 }

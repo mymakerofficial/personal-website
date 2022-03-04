@@ -43,7 +43,7 @@ export default {
 
     // show return message when user last exited website over 6 hours ago
     if(this.$store.state.user.lastPageExit !== 0){
-      if((new Date().getTime() / 1000) - this.$store.state.user.lastPageExit > 21600){
+      if((new Date().getTime() / 1000) - this.$store.state.user.lastPageExit > 3600){
         this.$store.dispatch("cookieDialogue/setReturnMessage")
       }
     }

@@ -1,7 +1,7 @@
 <template>
   <div v-if="this.$route.name === 'home'">
     <div class="cookieNotification" ref="notification" v-if="!this.$store.state.cookieDialogue.messageDismissed && this.$store.state.cookieDialogue.messageMinimised" @click="unhide">
-      <h6><i class="mdi mdi-cookie-alert"></i></h6>
+      <h6><i v-if="['onzjd5','SrQdQu','CHPLbl'].includes(this.$store.state.cookieDialogue.currentKey)" class="mdi mdi-hand-wave"></i><i v-else class="mdi mdi-cookie-alert"></i></h6>
     </div>
     <div class="cookieMessage" ref="message" v-if="!this.$store.state.cookieDialogue.messageDismissed && !this.$store.state.cookieDialogue.messageMinimised">
       <button class="flat" @click="hide()" v-if="this.$store.state.cookieDialogue.messageCount !== 0" style="position: absolute; top: 0; right: 0; margin: 0; background-color: transparent; border: transparent"><i class="mdi mdi-window-close"></i></button>
