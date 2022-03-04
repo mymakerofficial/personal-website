@@ -66,92 +66,6 @@ const mouse = {
     }
 }
 
-/*
-const cookieTimeout = 10
-
-const userPreferences = {
-    namespaced: true,
-    state: {
-        cookiesDismissed: false,
-        cookiesDismissedTime: 0,
-        cookiesDismissCounter: 0,
-        cookiesDontShowAgain: false
-    },
-    mutations: {
-        initialiseStore(state) {
-            if(localStorage && localStorage.getItem('userPreferences') != null){
-                let jsonData = JSON.parse(localStorage.getItem('userPreferences'))
-                state.cookiesDismissed = jsonData.cookiesDismissed
-                state.cookiesDismissedTime = jsonData.cookiesDismissedTime
-                state.cookiesDismissCounter = jsonData.cookiesDismissCounter
-                state.cookiesDontShowAgain = jsonData.cookiesDontShowAgain
-            }else {
-                localStorage.setItem('userPreferences', JSON.stringify(state));
-            }
-
-            if(state.cookiesDismissed && !state.cookiesDontShowAgain){
-                let timeSinceDismissed = (Date.now() / 1000 | 0) - state.cookiesDismissedTime
-                let timeLeft = cookieTimeout - timeSinceDismissed
-                if(timeSinceDismissed > cookieTimeout) {
-                    // show message again
-                    state.cookiesDismissed = false;
-                    localStorage.setItem('userPreferences', JSON.stringify(state));
-                } else {
-                    // wait for time that is left
-                    setTimeout(() => {
-                        state.cookiesDismissed = false;
-                        eventBus.$emit('cookies-dismissed-changed')
-                        localStorage.setItem('userPreferences', JSON.stringify(state));
-                    }, timeLeft * 1000)
-                }
-            }
-
-            if(!state.cookiesDismissed && state.cookiesDismissCounter === 0){
-                state.cookiesDismissed = true;
-                localStorage.setItem('userPreferences', JSON.stringify(state));
-
-                setTimeout(() => {
-                    state.cookiesDismissed = false;
-                    eventBus.$emit('cookies-dismissed-changed')
-                    localStorage.setItem('userPreferences', JSON.stringify(state));
-                }, 10000)
-            }
-        },
-        setCookies(state, payload){
-            state.cookiesDismissed = payload
-            eventBus.$emit('cookies-dismissed-changed')
-
-            if(payload) {
-                state.cookiesDismissedTime = Date.now() / 1000 | 0
-                state.cookiesDismissCounter++;
-
-                if(!state.cookiesDontShowAgain){
-                    // reset after timeout
-                    setTimeout(() => {
-                        state.cookiesDismissed = false;
-                        eventBus.$emit('cookies-dismissed-changed')
-                        localStorage.setItem('userPreferences', JSON.stringify(state));
-                    }, cookieTimeout * 1000)
-                }
-            }
-            localStorage.setItem('userPreferences', JSON.stringify(state));
-        },
-        setCookiesDontShowAgain(state, payload) {
-            state.cookiesDontShowAgain = payload;
-            localStorage.setItem('userPreferences', JSON.stringify(state));
-        }
-    },
-    actions: {
-        dismissCookies({commit}) {
-            commit('setCookies', true)
-        },
-        dontShowCookiesAgain({commit}) {
-            commit('setCookiesDontShowAgain', true)
-        }
-    }
-}
-
- */
 
 let setMessageDismissedValue = (state, value) => {
     state.messageDismissed = value;
@@ -261,6 +175,11 @@ const cookieDialogue = {
         hideMessage({commit}){
             commit('setMessageMinimised', true)
         },
+        setReturnMessage({commit}){
+            commit('setMessageTimeout', 10)
+            commit('setMessageDismissed', true)
+            commit('setNextMessage', "RwfK0X")
+        },
         load({commit}) {
             return new Promise((resolve, reject) => {
                 axios.get(`/data/cookie-dialogue.json`).then(response => {
@@ -280,18 +199,66 @@ const cookieDialogue = {
     }
 }
 
+const user = {
+    namespaced: true,
+    state: {
+        lastPageLoad: 0,
+        lastPageExit: 0,
+        gitCommitSha: null,
+    },
+    mutations: {
+        initialiseStore(state) {
+            if(localStorage && localStorage.getItem('user') != null){
+                let jsonData = JSON.parse(localStorage.getItem('user'))
+                state.lastPageLoad = jsonData.lastPageLoad
+                state.lastPageExit = jsonData.lastPageExit
+                state.gitCommitSha = jsonData.gitCommitSha
+            }
+        },
+        updateLastPageLoad(state, payload){
+            state.lastPageLoad = payload
+            localStorage.setItem('user', JSON.stringify(state));
+        },
+        updateLastPageExit(state, payload){
+            state.lastPageExit = payload
+            localStorage.setItem('user', JSON.stringify(state));
+        },
+        updateGitCommitSha(state, payload){
+            if(payload !== state.gitCommitSha) {
+                eventBus.$emit('site-version-changed');
+
+                state.gitCommitSha = payload
+                localStorage.setItem('user', JSON.stringify(state));
+            }
+        }
+    },
+    actions: {
+        load({commit}) {
+            commit("updateLastPageLoad", new Date().getTime() / 1000)
+        },
+        exit({commit}) {
+            commit("updateLastPageExit", new Date().getTime() / 1000)
+        },
+        setGitCommitSha({commit}, payload){
+            commit("updateGitCommitSha", payload)
+        }
+    }
+}
+
 const createStore = () => {
     return new Vuex.Store({
         actions: {
             initialiseStore({ commit }){
+                commit("user/initialiseStore")
                 commit("projects/initialiseStore")
                 commit("cookieDialogue/initialiseStore")
             }
         },
         modules: {
+            user,
             projects,
             mouse,
-            cookieDialogue
+            cookieDialogue,
         }
     });
 }
