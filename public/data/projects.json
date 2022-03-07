@@ -12,7 +12,7 @@
     "thumbnail": "/assets/img/city_defender_thumbnail.webp",
     "icon": null,
     "tags": ["game","tower defense","unity","c#","3D","school"],
-    "developmentStatus": "planning",
+    "developmentStatus": "finished",
     "collaborators": [{"name": "Jus44","url": null}],
     "positions": ["lead programmer","game design","graphic design"],
     "timespan": {
@@ -143,7 +143,7 @@
     "git": null,
     "embed": null,
     "buttons": [{"text": "open", "url": "/boids"}, {"text": "source code", "url": "https://github.com/mymakerofficial/personal-website/blob/master/src/js/multi-group-boids.js"}],
-    "thumbnail": null,
+    "thumbnail": "/assets/img/boids-thumbnail.png",
     "icon": null,
     "tags": ["algorithm","js","threejs","3D","boids"],
     "developmentStatus": "finished",
@@ -155,6 +155,34 @@
       "release": 1632438000,
       "year": "2021",
       "sortByDate": 1632438000
+    },
+    "featured": false
+  },
+  {
+    "name": "simple-cs-raycaster",
+    "displayName": "simple-cs-raycaster",
+    "summary": "A simple cs raycaster with texture mapping and 2D sprite rendering.",
+    "description": "A simple cs raycaster with texture mapping and 2D sprite rendering.",
+    "projectPage": false,
+    "url": "https://github.com/mymakerofficial/simple-cs-raycaster",
+    "git": "mymakerofficial/simple-cs-raycaster",
+    "embed": null,
+    "buttons": [
+      {"text": "download", "url": "https://github.com/mymakerofficial/simple-cs-raycaster/releases/tag/1"},
+      {"text": "github", "url": "https://github.com/mymakerofficial/simple-cs-raycaster"}
+    ],
+    "thumbnail": "/assets/img/simple-cs-raycaster-thumbnail.jpg",
+    "icon": null,
+    "tags": ["app","c#","raycaster"],
+    "developmentStatus": "finished",
+    "collaborators": [],
+    "positions": [],
+    "timespan": {
+      "started": null,
+      "finished": null,
+      "release": null,
+      "year": "2020",
+      "sortByDate": 1583967600
     },
     "featured": false
   },
@@ -171,7 +199,7 @@
       {"text": "download", "url": "https://github.com/mymakerofficial/school-games-launcher/releases/tag/v1.0"},
       {"text": "github", "url": "https://github.com/mymakerofficial/school-games-launcher"}
     ],
-    "thumbnail": null,
+    "thumbnail": "/assets/img/school-games-launcher-thumbnail.png",
     "icon": "https://github.com/mymakerofficial/school-games-launcher/raw/main/img/icon.png",
     "tags": ["app","c#","windows forms","launcher","school"],
     "developmentStatus": "finished",
@@ -183,6 +211,31 @@
       "release": null,
       "year": "2020",
       "sortByDate": 1611183600
+    },
+    "featured": false
+  },
+  {
+    "name": "dungeon-escape",
+    "displayName": "Dungeon Escape",
+    "summary": "A game about escaping a dungeon, my first game with c#",
+    "description": "A game about escaping a dungeon, my first game with c#.",
+    "projectPage": false,
+    "url": null,
+    "git": null,
+    "embed": null,
+    "buttons": [],
+    "thumbnail": "/assets/img/dungeon-escape-thumbnail.png",
+    "icon": null,
+    "tags": ["app","c#","console"],
+    "developmentStatus": "finished",
+    "collaborators": [],
+    "positions": [],
+    "timespan": {
+      "started": null,
+      "finished": null,
+      "release": null,
+      "year": "2019",
+      "sortByDate": 1568325600
     },
     "featured": false
   }

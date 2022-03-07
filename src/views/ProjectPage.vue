@@ -55,20 +55,18 @@ export default {
       return this.config.backgroundColorPrimary !== null && this.config.backgroundColorSecondary !== null && this.config.textColor !== null
     },
     thumbnailColorBackgroundGradient() {
-      if(this.config == null) return ''
       if(!this.thumbnailColors) return ''
       if(!this.project) return ''
       if(!this.project.thumbnail) return ''
-      if(this.config.backgroundColorPrimary == null && this.config.backgroundColorSecondary == null) return ''
+      if(this.config !== null && this.config.backgroundColorPrimary == null && this.config.backgroundColorSecondary == null) return ''
       if(this.hasConfigColor) return `linear-gradient(153deg, ${this.config.backgroundColorPrimary} 0%, ${this.config.backgroundColorSecondary} 100%)`;
       return `linear-gradient(153deg, rgb(${this.thumbnailColors[0][0]}, ${this.thumbnailColors[0][1]}, ${this.thumbnailColors[0][2]}) 0%, rgb(${this.thumbnailColors[3][0]}, ${this.thumbnailColors[3][1]}, ${this.thumbnailColors[3][2]}) 100%)`;
     },
     thumbnailColorBackground() {
-      if(this.config == null) return ''
       if(!this.thumbnailColors) return ''
       if(!this.project) return ''
       if(!this.project.thumbnail) return ''
-      if(this.config.backgroundColorPrimary == null) return ''
+      if(this.config !== null && this.config.backgroundColorPrimary == null) return ''
       if(this.hasConfigColor) return this.config.backgroundColorPrimary
       return `rgb(${this.thumbnailColors[0][0]}, ${this.thumbnailColors[0][1]}, ${this.thumbnailColors[0][2]})`;
     },
@@ -85,8 +83,7 @@ export default {
         if(a > b) brightest = i;
       }
 
-      if(this.config == null) return ''
-      if(this.config.textColor == null) return ''
+      if(this.config !== null && this.config.textColor == null) return ''
       if(this.hasConfigColor) return this.config.textColor
       return `rgb(${this.thumbnailColors[brightest][0]}, ${this.thumbnailColors[brightest][1]}, ${this.thumbnailColors[brightest][2]})`;
     }
