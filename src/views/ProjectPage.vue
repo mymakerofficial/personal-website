@@ -106,7 +106,7 @@ export default {
     },
     loadData() {
       axios.get(`/data/project-pages/${this.project.name}.md`).then(response => {
-        if(!response.data.includes("<!DOCTYPE html>")) {
+        if(!response.data.toString().includes("<!DOCTYPE html>")) {
           this.content = markdown(response.data)
         }
 
@@ -115,7 +115,7 @@ export default {
         this.loadingContent = false;
       })
       axios.get(`/data/project-pages/${this.project.name}.json`).then(response => {
-        if(!response.data.includes("<!DOCTYPE html>")) {
+        if(!response.data.toString().includes("<!DOCTYPE html>")) {
           this.config = response.data
         }
 
