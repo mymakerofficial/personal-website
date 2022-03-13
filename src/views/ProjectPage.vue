@@ -106,22 +106,22 @@ export default {
     },
     loadData() {
       axios.get(`/data/project-pages/${this.project.name}.md`).then(response => {
-        if(response.data.includes("<!DOCTYPE html>")) return
+        if(!response.data.includes("<!DOCTYPE html>")) {
+          this.content = markdown(response.data)
+        }
 
-        this.content = markdown(response.data)
         this.loadingContent = false;
-      }).catch(error => {
+      }).catch(() => {
         this.loadingContent = false;
-        console.log(error)
       })
       axios.get(`/data/project-pages/${this.project.name}.json`).then(response => {
-        if(response.data.includes("<!DOCTYPE html>")) return
+        if(!response.data.includes("<!DOCTYPE html>")) {
+          this.config = response.data
+        }
 
-        this.config = response.data
         this.loadingConfig = false;
-      }).catch(error => {
+      }).catch(() => {
         this.loadingConfig = false;
-        console.log(error)
       })
     }
   },
