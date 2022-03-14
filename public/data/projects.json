@@ -134,6 +134,31 @@
     "featured": true
   },
   {
+    "name": "pi-day-2022",
+    "displayName": "Approximating Pi",
+    "summary": "Approximating Pi using Monte Carlo method for Pi Day 2022",
+    "description": null,
+    "projectPage": false,
+    "url": "https://pi-day-2022-mymaker.vercel.app/",
+    "git": "mymakerofficial/pi-day-2022",
+    "embed": null,
+    "buttons": [{"text": "open", "url": "https://pi-day-2022-mymaker.vercel.app/"}],
+    "thumbnail": "/assets/img/pi-day-2022-thumbnail.png",
+    "icon": null,
+    "tags": ["math","pi","piday","js","vue"],
+    "developmentStatus": "finished",
+    "collaborators": [],
+    "positions": null,
+    "timespan": {
+      "started": 1647212400,
+      "finished": 1647212400,
+      "release": 1647212400,
+      "year": "2022",
+      "sortByDate": 1647212400
+    },
+    "featured": false
+  },
+  {
     "name": "boids",
     "displayName": "boids",
     "summary": "Fast boids algorithm written in java script for the background of my website.",
