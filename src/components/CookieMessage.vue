@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.$route.name === 'home'">
+  <div v-if="this.$route.name === 'home' && ['onzjd5','SrQdQu','CHPLbl'].includes(this.$store.state.cookieDialogue.currentKey)">
     <div class="cookieNotification" ref="notification" v-if="!this.$store.state.cookieDialogue.messageDismissed && this.$store.state.cookieDialogue.messageMinimised" @click="unhide">
       <h6><i v-if="['onzjd5','SrQdQu','CHPLbl'].includes(this.$store.state.cookieDialogue.currentKey)" class="mdi mdi-hand-wave"></i><i v-else class="mdi mdi-cookie-alert"></i></h6>
     </div>
