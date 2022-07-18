@@ -1,5 +1,30 @@
 [
   {
+    "name": "profyle",
+    "displayName": "profyle",
+    "summary": "Your online presence in one place!",
+    "description": "Show the world who you are!\n\n\nEverything you\non one page\nwith one simple link",
+    "projectPage": false,
+    "url": "https://profyle.net/",
+    "git": null,
+    "embed": null,
+    "buttons": [{"text": "look at it", "url": "https://profyle.net/"},{"text": "get your own profyle", "url": "https://profyle.net/register"}],
+    "thumbnail": "/assets/img/profyle-thumbnail.png",
+    "icon": null,
+    "tags": ["website","social platform","js","vue","tailwind"],
+    "developmentStatus": "in development",
+    "collaborators": [{"name": "darkarotte","url": "https://profyle.net/darkarotte"}, {"name": "juce","url": "https://profyle.net/juce"}],
+    "positions": ["front-end developer","ui/ux design"],
+    "timespan": {
+      "started": 1653084000,
+      "finished": null,
+      "release": 1656626400,
+      "year": "2022",
+      "sortByDate": 1656626400
+    },
+    "featured": true
+  },
+  {
     "name": "city-defender",
     "displayName": "City Defender",
     "summary": "an unusual tower defense game",
@@ -242,8 +267,8 @@
   {
     "name": "dungeon-escape",
     "displayName": "Dungeon Escape",
-    "summary": "A game about escaping a dungeon, my first game with c#",
-    "description": "A game about escaping a dungeon, my first game with c#.",
+    "summary": "A game about escaping a dungeon, my first game written in c#",
+    "description": "A game about escaping a dungeon, my first game written in c#.",
     "projectPage": false,
     "url": null,
     "git": null,
