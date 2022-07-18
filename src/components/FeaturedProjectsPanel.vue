@@ -1,7 +1,7 @@
 <template>
   <Panel style="position: relative;" class="themeInverted">
-    <h1 class="backgroundText"><span>Featured </span><span v-for="n in 100" :key="n">{{backgroundWords[Math.round(Math.random()*backgroundWords.length)]}} </span></h1>
-    <h1>Featured</h1>
+    <!--<h1 class="backgroundText"><span>Featured </span><span v-for="n in 100" :key="n">{{backgroundWords[Math.round(Math.random()*backgroundWords.length)]}} </span></h1>-->
+    <h3>Featured projects</h3>
     <span v-for="project in projects" :key="project.name">
       <FeaturedProjectCard :project="project"></FeaturedProjectCard>
     </span>

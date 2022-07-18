@@ -42,8 +42,8 @@ body {
   display: inline-grid;
   margin: 42px;
   width: 468px;
-  background-color: rgba($colorBlack, 0.5);
-  backdrop-filter: blur(24px);
+  background-color: rgb($colorBlack);
+  /*backdrop-filter: blur(24px);*/
 
   @supports (-moz-appearance:none) {
     & {
@@ -67,12 +67,17 @@ body {
   .fluidCard & {
     padding: 32px;
   }
+
+  .container & {
+    padding: 3rem 5rem;
+  }
 }
 
 .cardThumbnail {
   margin: 24px;
   height: 240px;
   width: 420px;
+  border-radius: 1.5rem;
 
   background-size: cover;
   background-position: center;
@@ -152,6 +157,7 @@ body {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 3rem;
 
   padding: 0 32px;
 
@@ -412,8 +418,9 @@ img.emoji {
 button {
   color: $colorLink;
   margin: 12px;
-  padding: 6px 12px;
+  padding: 12px 42px;
   border: solid 2px $colorLink;
+  border-radius: 999999px;
   background: none;
   font-size: 1.1em;
   font-weight: 600;

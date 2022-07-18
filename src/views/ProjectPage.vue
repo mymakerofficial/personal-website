@@ -4,10 +4,11 @@
       <div class="projectHeader">
         <img v-if="project.thumbnail !== ''" :src="project.thumbnail" class="projectHeaderImage" ref="thumbnailImage" @load="getColor" >
       </div>
-      <div class="fluidCard container" :style="{'--colorBackground': thumbnailColorBackground, 'background': thumbnailColorBackgroundGradient, '--colorText': thumbnailColorText}">
+      <div class="fluidCard container primaryContainer" :style="{'--colorBackground': thumbnailColorBackground, 'background': thumbnailColorBackgroundGradient, '--colorText': thumbnailColorText}">
         <div class="cardBody">
           <h5>{{ project.displayName }}</h5>
           <p class="primary">{{project.summary}}</p>
+          <br v-if="project.buttons.length > 0 || project.embed">
           <router-link :to="{name: 'playInBrowser', params: {name: this.$route.params.name}}" v-if="project.embed"><button class="solid">play now <i class="mdi mdi-play"></i></button></router-link> <a :href="button.url" target="_blank" v-for="(button, index) in project.buttons" :key="button.text"><button class="flat" :class="{'solid': index == 0 && !project.embed}">{{button.text}} <i class="mdi mdi-arrow-top-right"></i></button></a> <!--<button class="flat"><i class="mdi mdi-share-variant"></i></button>-->
         </div>
       </div>

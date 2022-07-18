@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BoidsBackground></BoidsBackground>
+    <!--<BoidsBackground></BoidsBackground>-->
     <Panel full-page="true" style="background-color: unset">
       <div ref="head">
         <h1>My_Maker</h1>
@@ -41,6 +41,8 @@
       <br>
       <h6><a href="https://www.youtube.com/channel/UCXv_YqyPVOSNocCS8fmu8Hw" target="_blank" style="text-decoration: none !important;">YouTube<i class="mdi mdi-arrow-top-right"></i></a></h6>
       <br>
+      <h6><a href="https://profyle.net/maker" target="_blank" style="text-decoration: none !important;">profyle<i class="mdi mdi-arrow-top-right"></i></a></h6>
+      <br>
       <h6><Tooltip tooltip="Please tell me why my stuff is always offline" time="2500"><a href="http://status.maiker.de" target="_blank" style="text-decoration: none !important;">Status Page<i class="mdi mdi-arrow-top-right"></i></a></Tooltip></h6>
       <br><br><br>
       <h2>Contact</h2>
@@ -54,13 +56,12 @@
 import Panel from "@/components/Panel";
 import Tooltip from "@/components/Tooltip";
 import anime from "animejs";
-import BoidsBackground from "@/components/BoidsBackground";
 import FeaturedProjectsPanel from "@/components/FeaturedProjectsPanel";
 import ProjectListPanel from "@/components/ProjectListPanel";
 
 export default {
   name: 'Home',
-  components: {ProjectListPanel, FeaturedProjectsPanel, BoidsBackground, Tooltip, Panel},
+  components: {ProjectListPanel, FeaturedProjectsPanel, Tooltip, Panel},
 
   data() {
     return {
